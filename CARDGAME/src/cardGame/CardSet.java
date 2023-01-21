@@ -1,6 +1,8 @@
 package cardGame;
 
-public class CardSet {
+import javax.swing.*;
+
+public class CardSet extends JButton {
     /*
     ### 컨셉 ###
     화투패는 1~12월로 분류되고 각 월당 4장, 4장 x 12월 48장
@@ -42,9 +44,10 @@ s
    */
 
     int cNum; //카드 넘버
-    boolean attG; // 광 성질을 갖는가?
-    boolean attL; // 띠 성질을 갖는가?
-    boolean attA; // 동물패 성질을 갖는가?
-    boolean attB; // 고도리(새) 성질을 갖는가?
-
+//    boolean attG; // 광 성질을 갖는가?
+//    boolean attL; // 띠 성질을 갖는가?
+//    boolean attA; // 동물패 성질을 갖는가?
+//    boolean attB; // 고도리(새) 성질을 갖는가?
+    String path = String.format("./src/cardGame/images/%d.png",cNum);
+    ImageIcon img = new ImageIcon(path);
 }
