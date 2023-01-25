@@ -322,7 +322,7 @@ public class Controler extends JFrame  {
 
 
     void oCardsCheck () {
-                        System.out.println("왜 추가가 늦게되지"); //스레드를 나눠야될거같은데 모르겠음
+                        System.out.println("왜 추가가 늦게되지??"); //스레드를 나눠야될거같은데 모르겠음
                         oCards[openCount].setIcon(new ImageIcon(String.format("./src/cardGame/images/output/%d.png",  oCards[openCount].cNum)));
                         oCards[openCount].setPreferredSize(new Dimension(65, 100));
                         oCards[openCount].setBorderPainted(false);
