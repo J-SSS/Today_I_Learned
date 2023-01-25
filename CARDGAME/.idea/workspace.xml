@@ -49,7 +49,7 @@
   <component name="RunManager" selected="애플리케이션.Controler">
     <configuration name="Controler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cardGame.Controler" />
-      <module name="CARDGAME" />
+      <module name="_ToyProject_1_CARDGAME" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cardGame.*" />
@@ -62,14 +62,14 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="CARDGAME" />
+      <module name="_ToyProject_1_CARDGAME" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="RunGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cardGame.RunGame" />
-      <module name="CARDGAME" />
+      <module name="_ToyProject_1_CARDGAME" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cardGame.*" />
@@ -82,7 +82,20 @@
     </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
-      <module name="CARDGAME" />
+      <module name="_ToyProject_1_CARDGAME" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="_ToyProject_1_CARDGAME" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="_ToyProject_1_CARDGAME" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,7 +125,7 @@
       <workItem from="1674474702989" duration="15568000" />
       <workItem from="1674531062982" duration="34879000" />
       <workItem from="1674569399500" duration="21000" />
-      <workItem from="1674617104813" duration="2085000" />
+      <workItem from="1674617104813" duration="2711000" />
     </task>
     <servers />
   </component>
