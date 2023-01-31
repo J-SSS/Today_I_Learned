@@ -234,7 +234,7 @@ public class RunGame extends JFrame  {
      for (int i = 0; i < cards.length; i++) { // (2)게임패널에 배치
          cards[i] = new CardSet();
          cards[i].cNum = nList[i];
-         cards[i].Flipped();//게임 시작시 공개되는 앞면
+         cards[i].flipped();//게임 시작시 공개되는 앞면
          cards[i].setBackground(Color.gray);
 
          gameP.add(cards[i]);
@@ -244,7 +244,7 @@ public class RunGame extends JFrame  {
  void cardSet() {
      for(int i = 0 ; i<cards.length ; i++) {
          cards[i].nonFlipped(); // (1)일정 시간이 지난 후엔 카드 뒷면을 기본으로 보여줌
-//         cards[i].Flipped();//모두 앞면으로 시작(테스트용)
+//         cards[i].flipped();//모두 앞면으로 시작(테스트용)
          int finalI = i;
          cards[i].addActionListener(new ActionListener() { // 누를시 각 카드의 앞면을 보여주고 체크를 위한 배열에 담음
              @Override
@@ -252,7 +252,7 @@ public class RunGame extends JFrame  {
                  if (!cards[finalI].isChecking && clicked.size()<2){
                      // isChecking == true인 카드는 눌러도 반응이 없다. -> 하나의 카드를 두 번 누르는것을 방지
                      // List.size가 2 이하일때 실행 -> 검사식에는 두 장 까지만 올릴 수 있다.
-                     cards[finalI].Flipped();
+                     cards[finalI].flipped();
                      clicked.add(cards[finalI]); // 검사용 List에 담음
                      cards[finalI].isChecking=true; // 검사중인 카드임을 표시
                  }
@@ -333,7 +333,6 @@ public class RunGame extends JFrame  {
             cCardP.add( oCards[openCount]);
         }
     }
-
 
     public static void main(String[] args) throws InterruptedException {
         new RunGame();

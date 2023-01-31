@@ -50,8 +50,7 @@ public class CardSet extends JButton {
         this.setIcon(new ImageIcon("./src/cardGame/images/card.png"));
         this.isChecking = false;
     }
-
-    void Flipped() {
+    void flipped() {
         this.setIcon(new ImageIcon(String.format("./src/cardGame/images/%d.png", this.cNum)));
     }
 
