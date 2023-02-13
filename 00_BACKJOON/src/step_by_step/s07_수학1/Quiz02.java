@@ -19,18 +19,20 @@ public class Quiz02 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 //        0 6 18 36 60    0 1 3 6 10 15 21
-        int num = sc.nextInt();
+//        int num = sc.nextInt();
+//
+//        int count = 0;
+//        int devide = 6;
+//        int plus = 1;
+//
+//        if((num-1)/devide>1){
+//            devide = 6*(plus+plus);
+//
+//        }
 
-        int count = 0;
-        int devide = 6;
-        int plus = 1;
-
-        if((num-1)/devide>1){
-            devide = 6*(plus+plus)
-
-        }
-
-
+    while(sc.hasNext()){
+        System.out.println("??");
+    }
 
 
     }
