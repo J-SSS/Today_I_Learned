@@ -1,4 +1,4 @@
-package step_by_step.s04_1차함수;
+package step_by_step.s04_1차원배열;
 
 /*
 문제
@@ -14,33 +14,20 @@ package step_by_step.s04_1차함수;
  */
 
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Quiz06 {
     public static void main(String[] args)  {
         Scanner sc = new Scanner(System.in);
 
-        int[] list = new int[42];
-        for(int i = 0; i < list.length ; i++){
-            list[i]=i;
-        }
-
-        int count = 1;
+        int[]  list = new int[10];
 
         for(int i = 0; i <10 ; i++) {
           int num = sc.nextInt()%42;
-          for(int j = 0 ; j < 10 ; j ++){
-              if(list[j]==num){
-                  list[j]=99;
-              }
-          }
+            list[i]=num;
         }
+        System.out.println( Arrays.stream(list).distinct().count());
 
-        for(int i = 0 ; i <list.length ; i++){
-            if(list[i]==99){
-                count++;
-            }
-        }
-        System.out.println(count);
     }
 }

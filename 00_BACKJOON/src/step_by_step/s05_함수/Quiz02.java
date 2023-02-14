@@ -1,6 +1,7 @@
 package step_by_step.s05_함수;
 
-import java.util.ArrayList;
+
+
 
 /*
 문제
@@ -18,37 +19,51 @@ n을 d(n)의 생성자라고 한다. 위의 수열에서 33은 39의 생성자�
 출력
 10,000보다 작거나 같은 셀프 넘버를 한 줄에 하나씩 증가하는 순서로 출력한다.
  */
-class SelfNum {
-    ArrayList<Integer> list = new ArrayList<>();
-    ArrayList<Integer> total = new ArrayList<>();
-    void nonSelfNum() {
+
+import java.util.ArrayList;
+public class Quiz02 {
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+            for (int i = 1; i < 10000; i++) {
+                int j = i;
+
+                int subNum = j;
+                int divide = 10000;
+                boolean finish = true;
+
+                while (finish){
+                    if(divide !=1){
+                        if(j/divide == 0) {
+                            divide = divide/10;
+                        }
+                        else if(j/divide >= 1){
+                            subNum += j/divide;
+                            j-=(j/divide)*divide;
+                            divide = divide/10;
+                        }
+                    } else if (divide ==1){
+                          subNum += j%10;
+                          finish = false;
+                    }
+                }
+                    list.add(subNum);
+            }
 
 
-        int subNum;
-        for (int i = 1; i <= 10000; i++) {
-            subNum = i + i/10000 + i/1000 + i/100 + i/10 +  i % 10;
-            list.add(subNum);
-            System.out.println(subNum);
-
-        }
-        for (int i = 0; i <= 10000; i++) {
-            total.add(i);
-            for (int j = 0; j < list.size(); j++) {
-                if (total.get(i) == list.get(j)) {
-                    total.set(i,0);
+            for (int i = 0; i <= 10000; i++) {
+                int self = i;
+                for (int j = 0; j < list.size(); j++) {
+                    if (self == (int)list.get(j)) {
+                        self=0;
+                    }
+                }
+                if(self!=0){
+                    System.out.println(i);
                 }
             }
 
         }
 
     }
-}
-public class Quiz02 {
-    public static void main(String[] args) {
 
-        SelfNum selfNum = new SelfNum();
-        selfNum.nonSelfNum();
-
-
-    }
-}

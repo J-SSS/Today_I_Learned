@@ -24,13 +24,25 @@ public class Quiz12 {
 
         int num = sc.nextInt();
 
-        System.out.println(num%10+num/10);
-        int num2 = num%10+num/10;
-        int num3 = num2%10+num2;
+        int ten = 0;
+        int one = 0;
+        int count = 0;
+        int fixN = num;
+        boolean isF = true;
+        while(isF){
+            ten = fixN/10;
+            one = fixN%10;
 
-//        System.out.println(num%10);
+            int subN = (ten+one)%10;
+            fixN = one*10+subN;
+            count++;
+
+            if (fixN ==num){
+                isF = false;
+            }
         }
-
+        System.out.println(count);
+        }
     }
 
 

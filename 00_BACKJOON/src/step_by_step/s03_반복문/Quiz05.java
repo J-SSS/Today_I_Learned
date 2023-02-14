@@ -22,20 +22,28 @@ Python을 사용하고 있다면, input 대신 sys.stdin.readline을 사용할 �
 각 테스트케이스마다 A+B를 한 줄에 하나씩 순서대로 출력한다.
  */
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Quiz05 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
 
-        int cnt = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        for(int i =0 ; i<cnt ; i++){
-            int num1 = sc.nextInt();
-            int num2 = sc.nextInt();
+        int num = Integer.parseInt(br.readLine());
 
-            System.out.println(num1+num2);
+        for(int i = 0 ; i < num ; i++ ){
+
+            String num1 = br.readLine();
+
+            StringTokenizer st = new StringTokenizer(num1);
+
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+
+            System.out.println(a+b);
         }
-
     }
 }

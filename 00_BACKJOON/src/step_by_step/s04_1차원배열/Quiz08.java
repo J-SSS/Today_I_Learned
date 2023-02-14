@@ -1,4 +1,4 @@
-package step_by_step.s04_1차함수;
+package step_by_step.s04_1차원배열;
 
 /*
 문제
