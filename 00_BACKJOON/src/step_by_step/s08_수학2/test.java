@@ -12,6 +12,7 @@ package step_by_step.s08_수학2;
  */
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class test {
 
@@ -51,9 +52,18 @@ public class test {
 
     public static void main(String[] args) {
        Solution ss = new Solution();
+        String s = "123";
+        StringTokenizer st = new StringTokenizer(s);
 
-       ;
-        System.out.println(ss.solution("hello","ohell"));
+        long sum = 0;
+        for(int i = 1 ; i<2500 ; i++){
+            sum += 2500*i;
+        }
+        System.out.println(sum);
+
+        char a ='1';
+        System.out.println((int)a);
+
 
 
     }
