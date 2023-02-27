@@ -4,8 +4,8 @@ import java.util.Arrays;
 public class Test {
     public static void main(String[] args) {
 
-    String[] str = {"one","two","three"};
-        Arrays.asList(str).indexOf("two"); // 1반환
+    char a = 'A';
+        System.out.println((int)a);
 
     }
 }
