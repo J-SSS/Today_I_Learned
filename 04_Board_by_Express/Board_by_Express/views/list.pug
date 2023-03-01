@@ -1,0 +1,28 @@
+extends layout
+block content
+    main
+        h2=title
+        table
+            thead#listHead
+                tr
+                    td#listIndex
+                    td#listTitle 제목
+                    td#listId 작성자
+                    td#listReg 작성일
+                    td#listHit 조회
+
+            tbody#listBody
+                -for(const data of rows)
+                    tr
+                             td#listBodyIndex=data.b_id
+                             td#listBodyTitle
+                                a(href='/board/read/'+data.b_id)=data.title
+                             td#listBodyId=data.u_id
+                             td#listBodyReg=data.regdate
+                             td#listBodyHit=data.hit
+            tfoot
+                tr
+                    td
+                        a(href="/board/write")
+                            input(type='button' value='글쓰기')
+

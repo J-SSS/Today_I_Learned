@@ -1,0 +1,9 @@
+extends layout
+block content
+    main
+        h2=title
+        table
+            tr
+                td 작성자
+                td
+                    input(type='text' name='name' value=`${row.u_id}`)

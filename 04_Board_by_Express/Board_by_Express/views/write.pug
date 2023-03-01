@@ -1,0 +1,22 @@
+extends layout
+block content
+    main
+        h2 타이틀
+        form(action='/board/write' method='post')
+            table
+                tr
+                    td 작성자
+                    td
+                        input(type='text' name='name' id='name' required)
+                tr
+                    td 제목
+                    td
+                        input(type='text' name='title' id='title' required)
+                tr
+                    td 내용
+                    td
+                        input(type='text' name='content' id='content' required)
+
+                tr
+                    td
+                        input(type='submit' value='글쓰기')

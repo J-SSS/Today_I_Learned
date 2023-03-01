@@ -1,8 +1,94 @@
 body {
-  padding: 50px;
+  padding: 0px;
+  margin: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+#headerNav{
+  height: 50px;
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  vertical-align: center;
+}
+#headerNav>p>a{
+  font-size: 25px;
+  line-height: 25px;
+  padding-left: 20px;
+  font-weight: bold;
+}
+
+#headerNav>ul{
+  display: flex;
+  list-style: none;
+}
+
+#headerNav>ul>li{
+  padding: 0 10px;
+
+}
+#headerNav>ul>li:last-child{
+  padding: 0 10px;
+  padding-right: 20px;
+
+}
+#headerNav>ul>li:hover a{
+  color: red;
+}
+
+#headerNav a{
+  color: #fff;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+main{
+  margin: 20px;
+}
+
+table {
+  border-spacing: 0px;
+}
+/* 리스트 영역 */
+#listHead td{
+  padding: 5px 5px 10px 5px;
+  text-align: center;
+  font-weight: bold;
+  border-top: 1px solid black;
+}
+
+#listIndex{
+  width: 80px;
+}
+#listTitle{
+
+  width: 300px;
+}
+#listId{
+  width: 50px;
+}
+#listReg{
+  width: 80px;
+}
+#listHit{
+  width: 50px;
+}
+/*table, tr, td{*/
+/*  border: 1px solid black;*/
+/*}*/
+
+#listBody td{
+  margin: 0px;
+  padding: 5px;
+  border-bottom: 0.1px solid #e8e8e8;
+  box-sizing: border-box;
+
+}
+#listBodyIndex, #listBodyReg, #listBodyHit{
+  text-align: center;
+  font-size: 0.9em;
 }
