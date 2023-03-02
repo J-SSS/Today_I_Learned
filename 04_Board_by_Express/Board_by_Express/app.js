@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const {RR} = require("mysql/lib/PoolSelector");
+const {RR} = require("mysql/lib/PoolSelector"); // ?? 찾아보기
 const boardRouter = require('./routes/board');
 
 var app = express();
