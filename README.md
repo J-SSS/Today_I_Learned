@@ -5,7 +5,10 @@
 　   
 ##  03. Express.js로 게시판 만들기
 #### 📁 03_Board_by_Express
-![20230305_115433](https://user-images.githubusercontent.com/118149752/222939294-5d60391a-3cdf-4f87-90d7-fe9e7d07bd96.png)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/118149752/222939294-5d60391a-3cdf-4f87-90d7-fe9e7d07bd96.png">
+</p>
 
 - Express.js를 이용한 기초적인 게시판 구현에 대해 다룬 책입니다.  
 - Express.js에서 MVC패턴을 어떤 구조로 설계하는지에 대해 참고할 수 있었고,  
