@@ -39,7 +39,7 @@
 
 <details>
 <summary>
-<h2> 01. SPRING 기초 배우기
+<h2> 01. SPRING 기초 스터디
 </summary>
 
 #### 📁 01_SPRING QUICK START
