@@ -3,7 +3,7 @@
 
 　  
 　   
-##  03. Express.js로 게시판 만들기 <small>뭐야</small>
+##  03. Express.js로 게시판 만들기
 #### 📁 03_Board_by_Express
 ![20230305_115433](https://user-images.githubusercontent.com/118149752/222939294-5d60391a-3cdf-4f87-90d7-fe9e7d07bd96.png)
 
