@@ -90,7 +90,7 @@
 
     background-color: rgba(204, 196, 196, 0.23);
 
-    height: 250px;
+    height: 100px;
     padding: 0px;
   }
 
@@ -107,15 +107,24 @@
   .scheduleInputBox{
     text-align: right;
   }
-  .ttt{
-    ;
+  .rightGrid{
+    padding: 10px;
   }
+ .rightGrid> div{
+   background-color: rgba(232, 232, 232, 0.42);
+   width: 100%;
+   height: 20vh;
+   margin-top: 10px;
+   border-radius: 30px;
+ }
+
 
 
 </style>
   <body>
     <nav>
         <div class="row headerNav">
+          <div class="row">
           <div class="col-md-1 ">
             <div class="headerHome">HOME
             </div>
@@ -129,6 +138,7 @@
           <div class="col-md-1">
           </div>
         </div>
+        </div>
     </nav>
   <main>
     <div class="container-fluid">
@@ -136,12 +146,19 @@
 
 
     <!--    사이드바 아이콘 목록-->
-        <div class="col-md-1">
+        <div class="col-md-1" >
           <div class="btn-group btn-group-vertical" role="group">
             <!--보관함-->
-            <button class="btn-group btn-group-vertical"  type="button" style="background-color: lightgrey">
+            <button class="btn-group btn-group-vertical"  type="button" id="loadBtn">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
                 <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+              </svg>
+            </button>
+
+            <button class="btn-group btn-group-vertical"  type="button"  id="removeBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
               </svg>
             </button>
             <!--선택-->
@@ -219,46 +236,46 @@
 
 
           </div>
-          <div class="btn-group btn-group-vertical palate" role="group">
-            <button class="btn-group btn-group-vertical red" >　</button>
-            <button class="btn-group btn-group-vertical orange">　</button>
-            <button class="btn-group btn-group-vertical yellow">　</button>
-            <button class="btn-group btn-group-vertical green">　</button>
-            <button class="btn-group btn-group-vertical blue">　</button>
-            <button class="btn-group btn-group-vertical navy">　</button>
-            <button class="btn-group btn-group-vertical purple">　</button>
-            <button class="btn-group btn-group-vertical black">　</button>
-            <button class="btn-group btn-group-vertical white">　</button>
-            <button class="btn-group btn-group-vertical clear">　</button>
-          </div>
+<!--          <div class="btn-group btn-group-vertical palate" role="group">-->
+<!--            <button class="btn-group btn-group-vertical red" >　</button>-->
+<!--            <button class="btn-group btn-group-vertical orange">　</button>-->
+<!--            <button class="btn-group btn-group-vertical yellow">　</button>-->
+<!--            <button class="btn-group btn-group-vertical green">　</button>-->
+<!--            <button class="btn-group btn-group-vertical blue">　</button>-->
+<!--            <button class="btn-group btn-group-vertical navy">　</button>-->
+<!--            <button class="btn-group btn-group-vertical purple">　</button>-->
+<!--            <button class="btn-group btn-group-vertical black">　</button>-->
+<!--            <button class="btn-group btn-group-vertical white">　</button>-->
+<!--            <button class="btn-group btn-group-vertical clear">　</button>-->
+<!--          </div>-->
 
-        </div>
+        </div stri>
 
 
 
-        <div class="col-md-10">
-          <div class="row">
+        <div class="col-md-9">
+          <div class="row" style="margin-top: 30px">
             <div class="col-md-4">
 
               <nav>
-                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs nav" id="nav-tab" role="tablist">
                   <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-layout-text-window-reverse" viewBox="0 0 16 16">
                       <path d="M13 6.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5zm-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1h5z"/>
                       <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM2 1a1 1 0 0 0-1 1v1h14V2a1 1 0 0 0-1-1H2zM1 4v10a1 1 0 0 0 1 1h2V4H1zm4 0v11h9a1 1 0 0 0 1-1V4H5z"/>
-                    </svg> 일별일정
+                    </svg>
                   </button>
                   <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-calendar-day" viewBox="0 0 16 16">
                       <path d="M4.684 11.523v-2.3h2.261v-.61H4.684V6.801h2.464v-.61H4v5.332h.684zm3.296 0h.676V8.98c0-.554.227-1.007.953-1.007.125 0 .258.004.329.015v-.613a1.806 1.806 0 0 0-.254-.02c-.582 0-.891.32-1.012.567h-.02v-.504H7.98v4.105zm2.805-5.093c0 .238.192.425.43.425a.428.428 0 1 0 0-.855.426.426 0 0 0-.43.43zm.094 5.093h.672V7.418h-.672v4.105z"/>
                       <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                    </svg> 전체일정
+                    </svg>
                   </button>
                   <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-piggy-bank" viewBox="0 0 16 16">
                       <path d="M5 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm1.138-1.496A6.613 6.613 0 0 1 7.964 4.5c.666 0 1.303.097 1.893.273a.5.5 0 0 0 .286-.958A7.602 7.602 0 0 0 7.964 3.5c-.734 0-1.441.103-2.102.292a.5.5 0 1 0 .276.962z"/>
                       <path fill-rule="evenodd" d="M7.964 1.527c-2.977 0-5.571 1.704-6.32 4.125h-.55A1 1 0 0 0 .11 6.824l.254 1.46a1.5 1.5 0 0 0 1.478 1.243h.263c.3.513.688.978 1.145 1.382l-.729 2.477a.5.5 0 0 0 .48.641h2a.5.5 0 0 0 .471-.332l.482-1.351c.635.173 1.31.267 2.011.267.707 0 1.388-.095 2.028-.272l.543 1.372a.5.5 0 0 0 .465.316h2a.5.5 0 0 0 .478-.645l-.761-2.506C13.81 9.895 14.5 8.559 14.5 7.069c0-.145-.007-.29-.02-.431.261-.11.508-.266.705-.444.315.306.815.306.815-.417 0 .223-.5.223-.461-.026a.95.95 0 0 0 .09-.255.7.7 0 0 0-.202-.645.58.58 0 0 0-.707-.098.735.735 0 0 0-.375.562c-.024.243.082.48.32.654a2.112 2.112 0 0 1-.259.153c-.534-2.664-3.284-4.595-6.442-4.595zM2.516 6.26c.455-2.066 2.667-3.733 5.448-3.733 3.146 0 5.536 2.114 5.536 4.542 0 1.254-.624 2.41-1.67 3.248a.5.5 0 0 0-.165.535l.66 2.175h-.985l-.59-1.487a.5.5 0 0 0-.629-.288c-.661.23-1.39.359-2.157.359a6.558 6.558 0 0 1-2.157-.359.5.5 0 0 0-.635.304l-.525 1.471h-.979l.633-2.15a.5.5 0 0 0-.17-.534 4.649 4.649 0 0 1-1.284-1.541.5.5 0 0 0-.446-.275h-.56a.5.5 0 0 1-.492-.414l-.254-1.46h.933a.5.5 0 0 0 .488-.393zm12.621-.857a.565.565 0 0 1-.098.21.704.704 0 0 1-.044-.025c-.146-.09-.157-.175-.152-.223a.236.236 0 0 1 .117-.173c.049-.027.08-.021.113.012a.202.202 0 0 1 .064.199z"/>
-                    </svg> 예산표
+                    </svg>
                   </button>
 
                 </div>
@@ -304,7 +321,7 @@
           </div>
 
 <!--          <div class="accordion .accordion-flush" id="accordionExample">-->
-          <div class="accordion .accordion-flush tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+          <div class="accordion .accordion-flush tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0" >
 
             <div class="accordion-item">
               <h2 class="accordion-header">
@@ -387,34 +404,39 @@
             </div>
 
 
-        <div class="col-md-1">
 
-        </div></div></div>
+
+
+        </div></div>
+      <div class="col-md-2">
+        <div class="row row-cols-1 rightGrid">
+          <div class="col">제목,공개여부</div>
+          <div class="col">todoList</div>
+          <div class="col">참가자목록</div>
+          <div class="col">추가된 아이템 목록</div>
+        </div>
 
       </div>
     </div>
   </main>
 
     <script>
+      function $(x){return document.getElementById(x)}
       const test2 = document.querySelector('.accordion-body');
       const width = test2.clientWidth; //박스사이징 다시해주기
       const height = 200;
 
 
-      const stampBtn = document.getElementById("stampBtn")
-      const penBtn = document.getElementById("penBtn")
-      const lineBtn = document.getElementById("lineBtn")
-      // const rectBtn = document.getElementById("lineBtn")
-      // const postBtn = document.getElementById("lineBtn")
-      // const settingBtn = document.getElementById("lineBtn")
-      // const commentBtn = document.getElementById("lineBtn")
+
+
+
 
 
       ////////////////// 캔버스 생성용 클래스 //////////////////
-      // 각 행마다 다른 캔버스를 만들어줘야되니까 클래스 문법 사용하는게 나을거같아서.. (추측)
       class CanvasCreate {
         canvas; context; subCanvas; subContext;
-        array = "123"
+        testPara = "123"
+        canvasArray = [];
         constructor(width) {
           // 캔버스 본체
           this.canvas = document.createElement("canvas");
@@ -431,6 +453,7 @@
 
         //초기설정 따로빼줬음
         init(width){
+
           this.canvas.width = width;
           this.canvas.height = 250;
           this.subCanvas.width = width;
@@ -441,32 +464,39 @@
           this.testFunction()
 
         }
-
-
-        //오프컨텍스트에 그려진 내용을 다시 본 캔버스에 옮겨그리게 할것임
-        //아직 테스트중
-        draw = ()=> {
-            this.context.drawImage(this.subCanvas, 0, 0);
+        pageLiner = (height)=>{
+          this.context.strokeStyle="Green"
+          this.context.lineWidth=0.1;
+          let count=20;
+          while (count<height){
+            this.context.beginPath();
+            this.context.moveTo(20, count);
+            this.context.lineTo(width-20, count);
+            this.context.stroke();
+            count+=30;
+          }
         }
-        //익명함수로 써야 this가 안도망간다는데
-        // 되긴되는데 원리를 잘 모르겠음
 
-        //아래처럼 쓰면 혼자서는 잘 되는데... draw를 다른 맥락에서 호출했을때(Init에서 다른 함수를 호출 할 때 처럼)
-        // this가 draw의 필드로 잡혀버려서 안먹힘. 근데 익명함수로 쓰면 건너뛰고 클래스의 this가 된다는거같음(추측)
+        /*
+        1.이미지를 서브캔버스와 메인캔버스에 둘 다 그린다.
+        2.서브캔버스를 배열에 추가해주고 서브캔버스는 초기화한다.
+        3.결과적으로 현재 행동에 대한 결과가 배열에 담기게됨
+         */
+        drawImage(img,x,y){
+          this.subContext.drawImage(img, x, y)
+          this.context.drawImage(img, x, y)
+          this.canvasArray.push(this.subCanvas)
+          this.subContext.clearRect(0,0,this.subContext.width,this.subContext.height)
+        }
 
-        // draw(){
-        //   this.context.drawImage(this.subCanvas, 0, 0);
-        // }
 
 
         //도장 찍는 기능
         useStamp() {
           this.canvas.addEventListener("click",(e)=>{
-            const x = e.offsetX
-            const y = e.offsetY
             let imgElem = new Image();
-            imgElem.src = "./star.png"
-            this.context.drawImage(imgElem, x-25, y-25)
+            imgElem.src = "../img/star.png"
+            this.drawImage(imgElem, e.offsetX-25, e.offsetY-25)
           })
         }
         //직선 사용 가능
@@ -520,35 +550,46 @@
         }
 
         // 줄눈 그리기용
-        pageLiner = (height)=>{
-          this.context.strokeStyle="Green"
-          this.context.lineWidth=0.1;
-          let count=20;
-          while (count<height){
-            this.context.beginPath();
-            this.context.moveTo(20, count);
-            this.context.lineTo(width-20, count);
-            this.context.stroke();
-            count+=30;
-          }
-        }
+
 
         //사이드바 각 버튼에 기능부여
         giveFunction(){
-          stampBtn.addEventListener("click", ()=>{
+          $("stampBtn").addEventListener("click", ()=>{
             this.useStamp()
           })
-          penBtn.addEventListener("click", ()=>{
+          $("penBtn").addEventListener("click", ()=>{
             this.usePen()
           })
-          lineBtn.addEventListener("click", ()=>{
+          $("lineBtn").addEventListener("click", ()=>{
             this.useLine()
+          })
+          ///////배열 테스트용/////
+          $("removeBtn").addEventListener("click", ()=>{
+            this.context.clearRect(0,0,this.canvas.width,this.canvas.height)
+          })
+          ///////배열 테스트용/////
+          $("loadBtn").addEventListener("click", ()=>{
+            this.canvasArray.forEach((c)=>{
+              this.context.drawImage(c,0,0)
+            })
           })
         }
 
         testFunction(){
-          console.log("배열테스트")
-          console.log(this.array)
+          // // this.subContext.fillRect(x - 15, y - 15, 30, 30);
+
+          // (1).이미지를 그려서 저장
+          // let img = new Image();
+          // img.src = this.canvas.toDataURL();
+          // this.array.push(img)
+
+          // (2). 캔버스를 그냥 통째로 저장
+          // this.array.push(this.canvas)
+          //
+          // console.log(this.array)
+          // console.log(this.array[2])
+          // this.context.drawImage(this.array[2],10,10)
+
         }
 
 
@@ -561,8 +602,10 @@
       const newCanvas = document.getElementsByClassName("accordion-body")
       Array.from(newCanvas).forEach((canvasFrame)=>{
         canvasFrame.addEventListener("click",function (){
+          canvasFrame.style.height =250+"px";
+
             let width = this.clientWidth
-          canvasFrame.appendChild(new CanvasCreate(width).canvas)
+        canvasFrame.appendChild(new CanvasCreate(width).canvas)
         },{once:true})
       })
 
