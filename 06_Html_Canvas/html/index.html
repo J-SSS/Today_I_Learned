@@ -16,15 +16,7 @@
 
   </head>
 <style>
-  @font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-  *{
-    font-family: 'NanumSquareNeo-Variable';
-  }
+
   p {
     margin: 0;
   }
@@ -63,12 +55,12 @@
   }
 
   button{
-
     background-color: transparent;
-    border: 1px solid gray;
-    margin-top: 5px !important;
+    border: 1px solid lightgrey;
+    margin-left: 2px !important;
     padding: 5px;
     border-radius: 5px;
+    color: gray;
   }
   .headerHome{
     text-align: center;
@@ -99,13 +91,19 @@
   }
 
   .accordion-header, .accordion-button {
+    border-radius: 20px !important;
 
-    height: 100px;
+    height: 80px;
 
   }
-  .accordion-button {
-
-    border: 2px solid black;
+  .accordion-item{
+    background-color: transparent;
+    border-radius: 20px !important;
+  }
+  .accordion-button{
+    border: 3px solid lightgrey;
+    box-shadow: 0px 0px 5px 5px rgba(135, 206, 250, 0.11);
+    background-color: rgba(229, 229, 248, 0.51);
   }
 
 
@@ -118,19 +116,18 @@
     text-align: right;
   }
   .rightGrid, .leftGrid{
-
     padding: 0px 20px;
     /*background-color: rgba(245, 217, 217, 0.09);*/
   }
  .rightGrid> div{
-   border: 2px solid black;
-   line-height: 100px;
+   /*background-color: rgba(232, 232, 232, 0.27);*/
+   border: 1px solid lightgrey;
    width: 100%;
    height: 20vh;
    margin-top: 20px;
-   border-radius: 8px;
-   font-size: 20px;
+   border-radius: 15px;
    text-align: center;
+   font-weight: bold;
 
  }
  .mainSection{
@@ -179,7 +176,7 @@
               </svg>
             </button>
             <!--선택-->
-            <button class="btn-group btn-group-vertical" type="button" style="background-color: lightgrey" id="selectBtn =">
+            <button class="btn-group btn-group-vertical" type="button" id="selectorBtn">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-hand-index-thumb" viewBox="0 0 16 16">
                 <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1zM8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5.114 5.114 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.632 2.632 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046l-.048.002zm2.094 2.025z"/>
               </svg>
@@ -249,6 +246,12 @@
                 <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
               </svg>
             </button>
+            <button class="btn-group btn-group-vertical"  type="button"  id="plusBtn">
+              플
+            </button>
+            <button class="btn-group btn-group-vertical"  type="button"  id="minusBtn">
+              마
+            </button>
           </div><!--버튼그룹닫기-->
         </div> <!---->
       </div>
@@ -262,9 +265,9 @@
     <!--    사이드바 아이콘 목록-->
         <div class="col-md-2  leftGrid" >
           <div class="row row-cols-1 rightGrid">
-            <div class="col">월간달력</div>
-            <div class="col">프로젝트제목 <br>공개여부</div>
-            <div class="col">레이어목록(임시)</div>
+            <div class="col">Calendar</div>
+            <div class="col">Title <br>Public</div>
+            <div class="col">Tools</div>
           </div>
 
 <!--          <div class="btn-group btn-group-vertical palate" role="group">-->
@@ -340,11 +343,11 @@
             <div class="col-md-4 scheduleInputBox">
 
               <div class="dropdown scheduleInput">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 30px">
                   일정추가
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">직접입력</a></li>
+                  <li><a class="dropdown-item rowInputBtn" href="#">직접입력</a></li>
                   <li><a class="dropdown-item" href="#">아이템 검색</a></li>
                   <li><a class="dropdown-item" href="#">북마크한 일정</a></li>
                 </ul>
@@ -360,32 +363,28 @@
 
           <div class="accordion .accordion-flush" id="accordionExample">
 
-            <div class="accordion-item" draggable="true">
+            <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 
                   <div style="border: 0px solid gray; padding: 3px 5px; margin-left: -10px ; border-radius: 10px ; background-color: transparent">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="grey" class="bi bi-list" viewBox="0 0 16 16">
                       <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                   </div>
-                  <div style="border: 0.1px solid lightgrey; padding: 10px 10px; margin-left: 5px ; border-radius: 100% ; background-color: tomato"></div>
-                  <div style="background-color: #F1f1f1; padding: 10px 5px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ;color: black">　14 : 30　</div>
-                  <div style="background-color: #F1f1f1;  padding: 10px 5px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ;color: black">　타이틀 #2　</div>
-                  <div style="background-color: #F1f1f1;  padding: 10px 5px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ;color: black">　　설　　　　명　　</div>
+                  <div style=" padding: 10px 10px; margin-left: 5px ; border-radius: 100% ; background-color: tomato"></div>
+                  <div style=" background-color : rgba(241,241,241,0.46) ; color: #525d4e ; padding: 10px 10px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ">　14 : 30 　</div>
+                  <div style=" background-color : rgba(241,241,241,0.46) ; color: #525d4e ; padding: 10px 10px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ">　 [ 한라산 ] 　</div>
+                  <div style=" background-color : rgba(241,241,241,0.46) ; color: #525d4e ; padding: 10px 10px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ">:　　  한라산 가즈아 　　</div>
 
-                  <div class="ttt" style="  padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; background-color: transparent; font-weight: bolder ; font-size: 20px ;color: gray" >
+                  <div style=" background-color : rgba(241,241,241,0.46) ; color: #525d4e ;padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
                       <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
                     </svg>
                     95,000
                   </div>
-                  <div style=" padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; background-color: transparent ;color: gray">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                    </svg>
-                  </div>
-                  <div style="padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; background-color: transparent ;color: gray">
+
+                  <div style="background-color : rgba(241,241,241,0.46) ; color: #525d4e ;padding: 3px 5px; margin-left: 10px ; border-radius: 10px ;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
                       <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                     </svg>
@@ -402,39 +401,14 @@
 
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapseTwo">
 
-                  <div style="border: 0px solid lightgrey; padding: 3px 5px; margin-left: -10px ; border-radius: 10px ; background-color: transparent;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                  </div>
-                  <div style="border: 0.1px solid lightgrey; padding: 10px 10px; margin-left: 5px ; border-radius: 100% ; background-color: darkseagreen"></div>
-                  <div style="border: 1px solid lightgrey; padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ;color: gray">　16 : 30　</div>
-                  <div style="border: 1px solid lightgrey; padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ;color: gray">　타이틀 #3　</div>
-                  <div style="border: 1px solid lightgrey; padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 18px ;color: gray">　　설　　　　　　　명　　</div>
-
-                  <div style="border: 1px solid lightgrey; padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; background-color: transparent; font-weight: bolder ; font-size: 20px ;color: gray" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
-                      <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
-                    </svg>
-                    120,000
-                  </div>
-                  <div style="border: 1px solid lightgrey; padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; background-color: transparent ;color: gray">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-                    </svg>
-                  </div>
-                  <div style="border: 1px solid lightgrey; padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; background-color: transparent ;color: gray">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                      <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                    </svg>
-                  </div>
+                  두번째버튼
 
                 </button>
               </h2>
-              <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body canvasInit2">
+              <div id="collapse2" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                <div class="accordion-body">
 
                 </div>
               </div>
@@ -449,8 +423,8 @@
         <div class="row row-cols-1 rightGrid">
 
           <div class="col">todoList</div>
-          <div class="col">참가자목록</div>
-          <div class="col">채팅방</div>
+          <div class="col">Member</div>
+          <div class="col">Chatting</div>
 
         </div>
 
@@ -469,12 +443,13 @@
 
 
 
-
       ////////////////// 캔버스 생성용 클래스 //////////////////
       class CanvasCreate {
         canvas; context; subCanvas; subContext;
         testPara = "123"
         canvasArray = [];
+        activatedTool;
+        // activatedTool = "testFu"
         constructor(width) {
           // 캔버스 본체
           this.canvas = document.createElement("canvas");
@@ -491,15 +466,24 @@
 
         //초기설정 따로빼줬음
         init(width){
-
           this.canvas.width = width;
-          this.canvas.height = 250;
+          this.canvas.height = 500;
           this.subCanvas.width = width;
-          this.subCanvas.height = 250;
+          this.subCanvas.height = 500;
+          this.context.strokeStyle = "black";
+          this.context.lineWidth = 2.5;
+          this.context.scale(1,1)
+          this.context.translate(0,0)
+          this.context.save();
+          this.pageLiner(this.canvas.height)
+          this.toolActivate()
 
-          this.pageLiner(250)
-          this.giveFunction()
-          this.testFunction()
+
+          this.context.fillRect(0,0,50,50)
+          this.context.fillRect(100,0,50,50)
+          this.context.fillRect(0,100,50,50)
+          this.context.fillRect(50,50,50,50)
+          this.context.fillRect(100,100,50,50)
 
         }
         pageLiner = (height)=>{
@@ -513,72 +497,102 @@
             this.context.stroke();
             count+=30;
           }
+          this.context.restore()
         }
 
-        /*
-        1.이미지를 서브캔버스와 메인캔버스에 둘 다 그린다.
-        2.서브캔버스를 배열에 추가해주고 서브캔버스는 초기화한다.
-        3.결과적으로 현재 행동에 대한 결과가 배열에 담기게됨
-         */
+        //레이어 배열에 이미지엘리먼트 및 이미지 경로를 담고, 캔버스에 그린다
         drawImage(img,x,y){
-          this.subContext.drawImage(img, x, y)
+          this.canvasArray.push({img,x,y})
           this.context.drawImage(img, x, y)
-          this.canvasArray.push(this.subCanvas)
-          this.subContext.clearRect(0,0,this.subContext.width,this.subContext.height)
         }
+        drawPath(pathObj){
+          this.canvasArray.push(pathObj)
+          this.context.stroke(pathObj)
+        }
+
 
 
 
         //도장 찍는 기능
-        useStamp() {
-          this.canvas.addEventListener("click",(e)=>{
-            let imgElem = new Image();
-            imgElem.src = "../img/star.png"
-            this.drawImage(imgElem, e.offsetX-25, e.offsetY-25)
+        activateStamp() {
+          let myThis = this
+          function drawHandler(e){
+            if(myThis.activatedTool!=="stamp"){
+              myThis.canvas.removeEventListener("mousedown",drawHandler)
+            } else {
+
+              let imgElem = new Image();
+              imgElem.src = "../img/star.png"
+              myThis.drawImage(imgElem, e.offsetX-25, e.offsetY-25)
+            }
+          }
+            this.canvas.addEventListener("mousedown",drawHandler)
+        }
+
+
+        //미완성
+        activateSelector(){
+          this.canvas.addEventListener("mousemove",(e)=>{
+            let x = e.offsetX
+            let y = e.offsetY
+
+
+            this.canvasArray.forEach((c)=>{
+              if(c instanceof Path2D){
+                console.log(this.context.isPointInStroke(c,x,y))
+              }
+            })
           })
         }
-        //직선 사용 가능
-        useLine(){
+
+        //직선 그리기 기능
+        activateLine(){
           let myThis = this;
           function startPainting(e) {
-            let sX = e.offsetX;
-            let sY= e.offsetY;
-            this.addEventListener("mouseup",(e)=>{
-              myThis.context.strokeStyle = "black";
-              myThis.context.lineWidth = 2.5;
-              myThis.context.beginPath();
-              myThis.context.moveTo(sX,sY);
-              myThis.context.lineTo(e.offsetX,e.offsetY);
-              myThis.context.stroke();
-            },{once:true})
+            if(myThis.activatedTool!=="line"){
+              this.removeEventListener("mousedown", startPainting)
+            } else {
+              let startX = e.offsetX;
+              let startY= e.offsetY;
+              this.addEventListener("mouseup",(e)=>{
+                let path = new Path2D()
+                path.moveTo(startX,startY);
+                path.lineTo(e.offsetX,e.offsetY);
+                myThis.drawPath(path)
+                console.log(e.offsetX,e.offsetY)
+              },{once:true})
+            }
           }
-
           this.canvas.addEventListener("mousedown", startPainting);
-
         }
+
         //펜 사용 기능
-        usePen(){
+        activatePen(){
           let myThis = this;
           let painting = false;
-
+          let path = new Path2D()
           function startPainting() {
-            painting=true;
+            if(myThis.activatedTool!=="pen"){
+              this.removeEventListener("mousemove", onMouseMove);
+              this.removeEventListener("mousedown", startPainting);
+              this.removeEventListener("mouseup", stopPainting);
+              this.removeEventListener("mouseleave", stopPainting);
+            } else {
+              painting=true;
+            }
           }
           function stopPainting(e) {
             painting=false;
           }
           function onMouseMove(e){
-            myThis.context.strokeStyle = "black";
-            myThis.context.lineWidth = 2.5;
             const x = e.offsetX;
             const y = e.offsetY;
             if(!painting) {
-              myThis.context.beginPath();
-              myThis.context.moveTo(x,y);
+              path.moveTo(x,y);
             }
             else {
-              myThis.context.lineTo(x,y);
-              myThis.context.stroke();
+              path.lineTo(x,y);
+              myThis.drawPath(path)
             }};
 
           this.canvas.addEventListener("mousemove", onMouseMove);
@@ -591,44 +605,90 @@
 
 
         //사이드바 각 버튼에 기능부여
-        giveFunction(){
-          $("stampBtn").addEventListener("click", ()=>{
-            this.useStamp()
+        toolActivate(){
+          document.getElementById("stampBtn").addEventListener("click", ()=>{
+            this.activatedTool="stamp";
+            this.activateStamp();
           })
-          $("penBtn").addEventListener("click", ()=>{
-            this.usePen()
+          document.getElementById("penBtn").addEventListener("click", ()=>{
+            this.activatedTool="pen";
+            this.activatePen();
           })
-          $("lineBtn").addEventListener("click", ()=>{
-            this.useLine()
+          document.getElementById("lineBtn").addEventListener("click", ()=>{
+            this.activatedTool="line";
+            this.activateLine();
+          })
+          document.getElementById("selectorBtn").addEventListener("click", ()=>{
+            this.activatedTool="selector";
+            this.activateSelector();
+          })
+
+
+
+          ///////배열 테스트용/////
+          document.getElementById("removeBtn").addEventListener("click", ()=>{
+            this.activatedTool="default";
+            this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
           })
           ///////배열 테스트용/////
-          $("removeBtn").addEventListener("click", ()=>{
-            this.context.clearRect(0,0,this.canvas.width,this.canvas.height)
-          })
-          ///////배열 테스트용/////
-          $("loadBtn").addEventListener("click", ()=>{
+          document.getElementById("loadBtn").addEventListener("click", ()=>{
             this.canvasArray.forEach((c)=>{
-              this.context.drawImage(c,0,0)
+              if(c instanceof Path2D){
+                this.context.stroke(c)
+              } else {
+                this.context.drawImage(c.img,c.x,c.y)
+
+              }
+
             })
           })
+
+
+          document.getElementById("plusBtn").addEventListener("click",()=>{
+            this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
+            this.context.scale(1.3,1.3)
+
+
+            this.canvasArray.forEach((c)=>{
+
+              if(c instanceof Path2D){
+                this.context.stroke(c)
+              }})
+
+            this.context.fillRect(0,0,50,50)
+            this.context.fillRect(100,0,50,50)
+            this.context.fillRect(0,100,50,50)
+            this.context.fillRect(50,50,50,50)
+            this.context.fillRect(100,100,50,50)
+            // this.context.restore()
+
+            // this.context.scale(1.0,1.0)
+          })
+          document.getElementById("minusBtn").addEventListener("click",()=>{
+            this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
+            this.context.scale(0.9,0.9)
+
+            console.log(this.canvas.width,this.canvas.height)
+            this.canvasArray.forEach((c)=>{
+              if(c instanceof Path2D){
+                this.context.stroke(c)
+              }})
+
+            this.context.fillRect(0,0,50,50)
+            this.context.fillRect(100,0,50,50)
+            this.context.fillRect(0,100,50,50)
+            this.context.fillRect(50,50,50,50)
+            this.context.fillRect(100,100,50,50)
+            // this.context.restore()
+            // this.context.scale(1.0,1.0)
+
+
+          })
+
         }
 
-        testFunction(){
-          // // this.subContext.fillRect(x - 15, y - 15, 30, 30);
 
-          // (1).이미지를 그려서 저장
-          // let img = new Image();
-          // img.src = this.canvas.toDataURL();
-          // this.array.push(img)
 
-          // (2). 캔버스를 그냥 통째로 저장
-          // this.array.push(this.canvas)
-          //
-          // console.log(this.array)
-          // console.log(this.array[2])
-          // this.context.drawImage(this.array[2],10,10)
-
-        }
 
 
 
@@ -640,13 +700,29 @@
       const newCanvas = document.getElementsByClassName("accordion-body")
       Array.from(newCanvas).forEach((canvasFrame)=>{
         canvasFrame.addEventListener("click",function (){
-          canvasFrame.style.height =250+"px";
+          canvasFrame.style.height =500+"px";
 
             let width = this.clientWidth
         canvasFrame.appendChild(new CanvasCreate(width).canvas)
         },{once:true})
-      })
+      });
 
+
+
+      const rowInputBtn = document.querySelector(".rowInputBtn")
+      const scheduleBox = document.querySelector(".accordion")
+      rowInputBtn.addEventListener("click",(e)=>{
+        let parentDiv = document.createElement("div");
+        parentDiv.classList.add("accordion-item")
+        scheduleBox.append(parentDiv)
+          let headerH2 = document.createElement("h2")
+          headerH2.classList.add("accordion-header")
+          parentDiv.append(headerH2)
+            let headerBtn = document.createElement("btn")
+            headerBtn.classList.add("accordion-button");
+            headerBtn.classList.add("collapsed");
+            headerH2.append(headerBtn)
+      })
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
