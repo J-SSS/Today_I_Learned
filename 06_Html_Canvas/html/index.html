@@ -2,154 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-
     <title>캔버스 연습</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="./style.css">
+
   </head>
-<style>
 
-  p {
-    margin: 0;
-  }
-
-  body{
-
-    margin: 0;
-    padding: 0;
-  }
-  canvas{
-
-
-    width: 100%;
-    /*height: 200px;*/
-  }
-
-  .headerNav{
-    background-color: rgba(230, 230, 250, 0.33);
-    text-align: center;
-    padding: 5px;
-    border-bottom: 3px solid #d5d5d5;
-    border-top: 3px solid #d5d5d5;
-  }
-  .headerNav h3{
-    font-size: 25px;
-    font-weight: bolder;
-    color: #525d4e;
-  }
-  h4{
-    font-weight: bolder;
-    color: #565656;
-    padding: 10px;
-  }
-  .mainTitle{
-    text-align: center;
-  }
-
-  button{
-    background-color: transparent;
-    border: 1px solid lightgrey;
-    margin-left: 2px !important;
-    padding: 5px;
-    border-radius: 5px;
-    color: gray;
-  }
-  .headerHome{
-    text-align: center;
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: bolder;
-    border: 2px solid rgba(128, 128, 128, 0.8);
-    padding: 2px 0px ;
-    background-color: rgba(205, 205, 236, 0.58);
-
-  }
-
-  .accordion-body{
-    overflow: hidden;
-    height: 100px;
-    padding: 0px;
-  }
-
-  .accordion-header, .accordion-button {
-    border-radius: 20px !important;
-
-    height: 100px;
-
-  }
-  .accordion-button{
-    display: inline-flex;
-    padding-left: 0px;
-  }
-  .accordion-item{
-    background-color: transparent;
-    border-radius: 20px !important;
-  }
-  .accordion-button{
-    border: 1px solid lightgrey;
-    box-shadow: 0px 0px 5px 5px rgba(135, 206, 250, 0.04);
-    background-color: lavenderblush;
-  }
-
-
-  .scheduleInputBox{
-
-    text-align: right;
-  }
-  .rightGrid, .leftGrid{
-    padding: 0px 20px;
-    /*background-color: rgba(245, 217, 217, 0.09);*/
-  }
- .rightGrid> div{
-   /*background-color: rgba(232, 232, 232, 0.27);*/
-   border: 1px solid lightgrey;
-   width: 100%;
-   height: 20vh;
-   margin-top: 20px;
-   border-radius: 15px;
-   text-align: center;
-   font-weight: bold;
-
- }
- .mainSection{
-   background-color: rgba(135, 250, 240, 0.01);
- }
- .scheduleSide{
-   height: 70px;
-   font-weight: bold;
-   border-right: 10px solid snow;
-   color: gray;
- }
-  .scheduleTitle{
-    font-weight: bold;
-    color: gray;
-    font-size: 30px;
-  }
-  .scheduleContent{
-    margin-top: 10px;
-    font-weight: bold;
-    color: lightgrey;
-    font-size: 20px;
-  }
-
-
-
-
-</style>
   <body>
     <nav>
         <div class="row headerNav">
           <div class="row">
           <div class="col-md-1 ">
-            <div class="headerHome">GabojaGo
+            <div class="headerHome">Gaboja.GO
             </div>
 
           </div>
@@ -170,96 +41,96 @@
           <div class="btn-group btn-group-horizon" role="group">
             <!--보관함-->
             <button class="btn-group btn-group-vertical"  type="button" id="loadBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
                 <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
               </svg>
             </button>
 
             <button class="btn-group btn-group-vertical"  type="button"  id="removeBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
               </svg>
             </button>
             <!--선택-->
             <button class="btn-group btn-group-vertical" type="button" id="selectorBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-hand-index-thumb" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-hand-index-thumb" viewBox="0 0 16 16">
                 <path d="M6.75 1a.75.75 0 0 1 .75.75V8a.5.5 0 0 0 1 0V5.467l.086-.004c.317-.012.637-.008.816.027.134.027.294.096.448.182.077.042.15.147.15.314V8a.5.5 0 0 0 1 0V6.435l.106-.01c.316-.024.584-.01.708.04.118.046.3.207.486.43.081.096.15.19.2.259V8.5a.5.5 0 1 0 1 0v-1h.342a1 1 0 0 1 .995 1.1l-.271 2.715a2.5 2.5 0 0 1-.317.991l-1.395 2.442a.5.5 0 0 1-.434.252H6.118a.5.5 0 0 1-.447-.276l-1.232-2.465-2.512-4.185a.517.517 0 0 1 .809-.631l2.41 2.41A.5.5 0 0 0 6 9.5V1.75A.75.75 0 0 1 6.75 1zM8.5 4.466V1.75a1.75 1.75 0 1 0-3.5 0v6.543L3.443 6.736A1.517 1.517 0 0 0 1.07 8.588l2.491 4.153 1.215 2.43A1.5 1.5 0 0 0 6.118 16h6.302a1.5 1.5 0 0 0 1.302-.756l1.395-2.441a3.5 3.5 0 0 0 .444-1.389l.271-2.715a2 2 0 0 0-1.99-2.199h-.581a5.114 5.114 0 0 0-.195-.248c-.191-.229-.51-.568-.88-.716-.364-.146-.846-.132-1.158-.108l-.132.012a1.26 1.26 0 0 0-.56-.642 2.632 2.632 0 0 0-.738-.288c-.31-.062-.739-.058-1.05-.046l-.048.002zm2.094 2.025z"/>
               </svg>
             </button>
             <!--이동-->
             <button class="btn-group btn-group-vertical" type="button" style="background-color: lightgrey" id="moveBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"/>
               </svg>
             </button>
             <!--펜-->
             <button class="btn-group btn-group-vertical"  type="button" id="penBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
               </svg>
             </button>
             <!--직선-->
             <button class="btn-group btn-group-vertical"  type="button" id="lineBtn" >
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-slash-lg" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-slash-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
               </svg>
             </button>
             <!--박스 -->
             <button class="btn-group btn-group-vertical"  type="button" style="background-color: lightgrey" id="rectBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
               </svg>
             </button>
             <!--텍스트입력-->
             <button class="btn-group btn-group-vertical" type="button" style="background-color: lightgrey" id="textBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-font" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-earmark-font" viewBox="0 0 16 16">
                 <path d="M10.943 6H5.057L5 8h.5c.18-1.096.356-1.192 1.694-1.235l.293-.01v5.09c0 .47-.1.582-.898.655v.5H9.41v-.5c-.803-.073-.903-.184-.903-.654V6.755l.298.01c1.338.043 1.514.14 1.694 1.235h.5l-.057-2z"/>
                 <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
               </svg>
             </button>
             <!--파레트-->
             <button class="btn-group btn-group-vertical"  type="button"  style="background-color: lightgrey" id="palateBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-palette" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-palette" viewBox="0 0 16 16">
                 <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
                 <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z"/>
               </svg>
             </button>
             <!--포스트잇-->
             <button class="btn-group btn-group-vertical"  type="button" style="background-color: lightgrey" id="postBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-stickies" viewBox="0 0 16 16">
                 <path d="M1.5 0A1.5 1.5 0 0 0 0 1.5V13a1 1 0 0 0 1 1V1.5a.5.5 0 0 1 .5-.5H14a1 1 0 0 0-1-1H1.5z"/>
                 <path d="M3.5 2A1.5 1.5 0 0 0 2 3.5v11A1.5 1.5 0 0 0 3.5 16h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 16 9.586V3.5A1.5 1.5 0 0 0 14.5 2h-11zM3 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 .5.5V9h-4.5A1.5 1.5 0 0 0 9 10.5V15H3.5a.5.5 0 0 1-.5-.5v-11zm7 11.293V10.5a.5.5 0 0 1 .5-.5h4.293L10 14.793z"/>
               </svg>
             </button>
             <!--스템프-->
             <button class="btn-group btn-group-vertical"  type="button" id="stampBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
                 <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
               </svg>
             </button>
             <!--코멘트-->
             <button class="btn-group btn-group-vertical"  type="button" style="background-color: lightgrey" id="commentBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
                 <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                 <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
               </svg>
             </button>
             <!--설정-->
             <button class="btn-group btn-group-vertical"  type="button" style="background-color: lightgrey" id="settingBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                 <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
                 <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
               </svg>
             </button>
             <button class="btn-group btn-group-vertical"  type="button"  id="plusBtn">
-              플
+              (+)
             </button>
             <button class="btn-group btn-group-vertical"  type="button"  id="minusBtn">
-              마
+              (-)
             </button>
           </div><!--버튼그룹닫기-->
-        </div> <!---->
+        </div>
       </div>
 
 
@@ -271,9 +142,19 @@
     <!--    사이드바 아이콘 목록-->
         <div class="col-md-2  leftGrid" >
           <div class="row row-cols-1 rightGrid">
-            <div class="col">Calendar</div>
-            <div class="col">Title <br>Public</div>
-            <div class="col">Tools</div>
+            <div class="col">
+              <div>📅 Calendar</div>
+              <div>캘린더 내용</div>
+            </div>
+            <div class="col">
+              <div>[##_title_##]</div>
+              <div>[##_schedule_##]</div>
+              <div>주 목적지</div>
+              <div>사진</div>
+            </div>
+            <div class="col">
+              Tools
+            </div>
           </div>
 
 <!--          <div class="btn-group btn-group-vertical palate" role="group">-->
@@ -294,9 +175,7 @@
 
 
         <div class="col-md-8 mainSection">
-
           <div class="row" style="margin-top: 30px">
-
             <div class="col-md-4">
 
               <nav>
@@ -327,10 +206,10 @@
 <!--                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">-->
 <!--                  ...-->
 <!--                </div>-->
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0" style="background-color: lightgreen; width: 80vw; height: 600px">
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0" style="background-color: lightgreen; width: 30vw; height: 600px">
                  주별보기 넣을 부분
                 </div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0" style="background-color: lightskyblue; width: 80vw; height: 600px">
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0" style="background-color: lightskyblue; width: 30vw; height: 600px">
                   예산표보기
                 </div>
 
@@ -342,9 +221,9 @@
 
 
             <div class="col-md-4 mainTitle">
-              <h4>
-                ◀　　2022. 06. 11 (토)　　▶
-              </h4>
+              <h3>
+                ◀　2022. 06. 11 (토)　▶
+              </h3>
             </div>
             <div class="col-md-4 scheduleInputBox">
 
@@ -363,76 +242,38 @@
             </div>
           </div>
 
-          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0" style="padding: 0px 30px ; background-color: rgba(211,211,211,0.16)" >
-
-
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0" style="padding: 0px 30px ;" >
 
           <div class="accordion .accordion-flush" id="accordionExample">
-
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button class="accordion-button collapsed scheduleBtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
 
-                  <div class="container ">
-                    <div class="row">
-                      <div class="col col-md-1 scheduleSide">
-                        14:30
+                  <div class="container scheduleContainer ">
+                    <div class="row scheduleRow " >
+                      <div class="col col-md-1 scheduleLeft ">
+                          ️19:30
                       </div>
-                      <div class="col-md-10">
+                      <div class="col col-md-11 scheduleCenter">
                         <div class="row">
-                          <div class="col scheduleTitle">
-                            여행지 #1
+                          <div class="col col-s-11">
+                            <div class="row">
+                              <div class="col scheduleTitle">
+                                남산 타워
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col scheduleContent">
+                                → 경유지 #1 → 경유지 #2 → 경유지 #3 → 경유지 #4
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col col-md-1 scheduleRight">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-three-dots" viewBox="0 0 16 16">
+                              <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                            </svg>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col scheduleContent">
-<!--                            <small><small><small style="color: grey">→ 경유지 #1 → 경유지 #2 → 경유지 #3 → 경유지 #4</small></small></small>-->
-                            → 경유지 #1 → 경유지 #2 → 경유지 #3 → 경유지 #4
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col col-md-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                          <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                <div class="accordion-body canvasInit ">
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapseTwo">
-
-                  <div class="container ">
-                    <div class="row">
-                      <div class="col col-md-1 scheduleSide">
-                        16:30
-                      </div>
-                      <div class="col-md-10">
-                        <div class="row">
-                          <div class="col scheduleTitle">
-                            여행지 #2
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col scheduleContent">
-                            내용 혹은 사진
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col col-md-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                          <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                        </svg>
                       </div>
                     </div>
                   </div>
@@ -441,10 +282,55 @@
               </h2>
               <div id="collapse2" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-
+                  <div class="canvasBox"></div>
                 </div>
               </div>
             </div>
+
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" >
+                <button class="accordion-button collapsed scheduleBtn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+
+                  <div class="container scheduleContainer ">
+                    <div class="row scheduleRow " >
+                      <div class="col col-md-1 scheduleLeft ">
+                        14:30
+                      </div>
+                      <div class="col col-md-11 scheduleCenter">
+                        <div class="row">
+                          <div class="col col-s-11">
+                            <div class="row">
+                              <div class="col scheduleTitle">
+                                <span class="scheduleTitleText">신사동 가로수길</span>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col scheduleContent">
+                                → 경유지 #1 → 경유지 #2 → 경유지 #3 → 경유지 #4
+                              </div>
+                            </div>
+                          </div>
+                            <div class="col col-md-1 scheduleRight">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="gray" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="canvasBox"></div>
+                </div>
+              </div>
+            </div>
+
+
 
 
 
@@ -454,429 +340,17 @@
       <div class="col-md-2">
         <div class="row row-cols-1 rightGrid">
 
-          <div class="col">todoList</div>
+          <div class="col">📌 todoList</div>
           <div class="col">Member</div>
           <div class="col">Chatting</div>
 
         </div>
 
       </div>
+      </div>
     </div>
   </main>
-
-    <script>
-      function $(x){return document.getElementById(x)}
-
-      ////////////////// 캔버스 생성용 클래스 //////////////////
-      class CanvasCreate {
-        canvas; context; subCanvas; subContext;
-        layerArray = [];
-        activatedTool;
-        // activatedTool = "testFu"
-        constructor() {
-          // 캔버스 본체
-          this.canvas = document.createElement("canvas");
-          this.context = this.canvas.getContext("2d")
-
-          // 레이어 구현용 서브캔버스(미완성)
-          this.subCanvas = document.createElement("canvas");
-          this.subContext = this.subCanvas.getContext("2d");
-
-          //캔버스 초기화.. 길어지니까 따로 뺐음
-          this.init()
-
-        }
-
-        //초기설정 따로빼줬음
-        init(){
-          this.canvas.width = 1200;
-          this.canvas.height = 500;
-          this.subCanvas.width = 1200;
-          this.subCanvas.height = 500;
-          this.context.strokeStyle = "black";
-          this.context.lineWidth = 2.5;
-          this.context.scale(1,1)
-          this.context.translate(0,0)
-          this.context.save();
-          this.pageLiner(this.canvas.width,this.canvas.height)
-          this.toolActivate()
-
-
-        }
-        pageLiner = (width,height)=>{
-          let xCount = 0;
-          let yCount = 0;
-
-          while (xCount<=height){
-            this.subContext.beginPath();
-            if(xCount==0 || height-xCount==0){
-              this.subContext.strokeStyle="grey"
-              this.subContext.lineWidth=1.0;
-            } else if(xCount%50===0){
-              this.subContext.strokeStyle="grey"
-              this.subContext.lineWidth=0.3;
-            } else{
-              this.subContext.strokeStyle="grey"
-              this.subContext.lineWidth=0.1;
-            }
-            this.subContext.moveTo(0, xCount);
-            this.subContext.lineTo(width, xCount);
-            this.subContext.stroke();
-            xCount+=10;
-          }
-          while (yCount<=width){
-            this.subContext.beginPath();
-            if(yCount==0 || yCount==width){
-              this.subContext.strokeStyle="grey"
-              this.subContext.lineWidth=1.0;
-            } else if(yCount%50===0){
-              this.subContext.strokeStyle="grey"
-              this.subContext.lineWidth=0.3;
-            } else{
-              this.subContext.strokeStyle="grey"
-              this.subContext.lineWidth=0.1;
-            }
-            this.subContext.moveTo(yCount, 0);
-            this.subContext.lineTo(yCount, height);
-            this.subContext.stroke();
-            yCount+=10;
-          }
-          this.pushCanvas(this.subCanvas)
-          this.subContext.restore()
-        }
-
-        //레이어 배열에 이미지엘리먼트 및 이미지 경로를 담고, 캔버스에 그린다
-        pushImage(img,x,y){
-          this.layerArray.push({img,x,y})
-          this.context.drawImage(img, x, y)
-        }
-        pushPath(pathObj){
-          this.layerArray.push(pathObj)
-          this.context.stroke(pathObj)
-        }
-        pushCanvas(canvas){
-          this.layerArray.push(canvas)
-          this.context.drawImage(canvas, 0, 0)
-
-        }
-
-
-
-
-        //스템프 툴
-        activateStamp() {
-          let myThis = this
-          function drawHandler(e){
-            if(myThis.activatedTool!=="stamp"){
-              myThis.canvas.removeEventListener("mousedown",drawHandler)
-            } else {
-              let imgElem = new Image();
-              imgElem.src = "../img/star.png"
-              myThis.pushImage(imgElem, e.offsetX-25, e.offsetY-25)
-            }
-          }
-            this.canvas.addEventListener("mousedown",drawHandler)
-        }
-
-
-        //미완성
-        activateSelector(){
-          this.canvas.addEventListener("mousemove",(e)=>{
-            let x = e.offsetX
-            let y = e.offsetY
-            this.layerArray.forEach((c)=>{
-              if(c instanceof Path2D){
-                console.log(this.context.isPointInStroke(c,x,y))
-              }
-            })
-          })
-        }
-
-        //직선 툴
-        activateLine(){
-          let myThis = this;
-          function startPainting(e) {
-            if(myThis.activatedTool!=="line"){
-              this.removeEventListener("mousedown", startPainting)
-            } else {
-              let startX = e.offsetX;
-              let startY= e.offsetY;
-              this.addEventListener("mouseup",(e)=>{
-                let path = new Path2D()
-                path.moveTo(startX,startY);
-                path.lineTo(e.offsetX,e.offsetY);
-                myThis.pushPath(path)
-                console.log(e.offsetX,e.offsetY)
-              },{once:true})
-            }
-          }
-          this.canvas.addEventListener("mousedown", startPainting);
-        }
-
-        //펜 툴
-        activatePen(){
-          let myThis = this;
-          let painting = false;
-          let path = new Path2D()
-          function startPainting() {
-            if(myThis.activatedTool!=="pen"){
-              this.removeEventListener("mousemove", onMouseMove);
-              this.removeEventListener("mousedown", startPainting);
-              this.removeEventListener("mouseup", stopPainting);
-              this.removeEventListener("mouseleave", stopPainting);
-            } else {
-              painting=true;
-            }
-          }
-          function stopPainting(e) {
-            painting=false;
-            myThis.pushPath(path)
-          }
-          function onMouseMove(e){
-            const x = e.offsetX;
-            const y = e.offsetY;
-            if(!painting) {
-              path.moveTo(x,y);
-            }
-            else {
-              path.lineTo(x,y);
-              myThis.context.stroke(path)
-            }};
-
-          this.canvas.addEventListener("mousemove", onMouseMove);
-          this.canvas.addEventListener("mousedown", startPainting);
-          this.canvas.addEventListener("mouseup", stopPainting);
-          this.canvas.addEventListener("mouseleave", stopPainting);
-        }
-
-
-
-        //사이드바 각 버튼에 기능부여
-        toolActivate(){
-          //스템프툴 활성화//
-          document.getElementById("stampBtn").addEventListener("click", ()=>{
-            this.activatedTool="stamp";
-            this.activateStamp();
-          })
-          //펜툴 활성화//
-          document.getElementById("penBtn").addEventListener("click", ()=>{
-            this.activatedTool="pen";
-            this.activatePen();
-          })
-          //직선툴 활성화//
-          document.getElementById("lineBtn").addEventListener("click", ()=>{
-            this.activatedTool="line";
-            this.activateLine();
-          })
-          //선택툴 활성화//
-          document.getElementById("selectorBtn").addEventListener("click", ()=>{
-            this.activatedTool="selector";
-            this.activateSelector();
-          })
-
-
-
-          ///////배열 테스트용/////
-          document.getElementById("removeBtn").addEventListener("click", ()=>{
-            this.activatedTool="default";
-            this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
-          })
-          ///////배열 테스트용/////
-          document.getElementById("loadBtn").addEventListener("click", ()=>{
-            this.layerArray.forEach((c)=>{
-              if(c instanceof Path2D){
-                this.context.stroke(c)
-              } else {
-                this.context.drawImage(c.img,c.x,c.y)
-
-              }
-
-            })
-          })
-
-          ///////배율조정 테스트용/////
-          document.getElementById("plusBtn").addEventListener("click",()=>{
-            this.context.clearRect(0,0,this.canvas.width+10,this.canvas.height+10);
-            this.context.scale(1.3,1.3)
-
-
-              this.layerArray.forEach((c)=>{
-                if(c instanceof Path2D){
-                  this.context.stroke(c)
-                } else if (c instanceof HTMLCanvasElement)  {
-                  this.context.drawImage(c,0,0)
-                }
-              })
-
-          })
-          document.getElementById("minusBtn").addEventListener("click",()=>{
-            this.context.clearRect(0,0,this.canvas.width+100,this.canvas.height+100);
-            this.context.scale(0.9,0.9)
-
-
-            this.layerArray.forEach((c)=>{
-              if(c instanceof Path2D){
-                this.context.stroke(c)
-              } else if (c instanceof HTMLCanvasElement)  {
-                this.context.drawImage(c,0,0)
-              }
-            })
-
-          })
-
-        }
-
-
-      }//클래스 닫기
-
-
-      //새 캔버스 생성(querySelectorAll은 동적으로 생성되는 요소에 반응하지 않기 때문에 getElements로 찾아야한다)
-      const newCanvas = document.getElementsByClassName("accordion-body")
-      Array.from(newCanvas).forEach((canvasFrame)=>{
-        canvasFrame.addEventListener("click",function (){
-          canvasFrame.style.height =500+"px";
-
-            let width = this.clientWidth
-        canvasFrame.appendChild(new CanvasCreate().canvas)
-        },{once:true})
-      });
-
-
-      //새 일정 행 추가용.. 미구현
-      const rowInputBtn = document.querySelector(".rowInputBtn")
-      const scheduleBox = document.querySelector(".accordion")
-      rowInputBtn.addEventListener("click",(e)=>{
-        let parentDiv = document.createElement("div");
-        parentDiv.classList.add("accordion-item")
-        scheduleBox.append(parentDiv)
-          let headerH2 = document.createElement("h2")
-          headerH2.classList.add("accordion-header")
-          parentDiv.append(headerH2)
-            let headerBtn = document.createElement("btn")
-            headerBtn.classList.add("accordion-button");
-            headerBtn.classList.add("collapsed");
-            headerH2.append(headerBtn)
-      })
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-      // 여기서부터는 테스트용..
-      /*
-          this.context.fillRect(0,0,50,50)
-          this.context.fillRect(100,0,50,50)
-          this.context.fillRect(0,100,50,50)
-          this.context.fillRect(50,50,50,50)
-          this.context.fillRect(100,100,50,50)
-       */
-
-      // createRect = (e)=>{
-      //   const x = e.offsetX
-      //   const y = e.offsetY
-      //   this.subContext.fillRect(x - 15, y - 15, 30, 30);
-      //   this.draw()
-      // }
-
-
-      //포인터 변경기능
-      // canvas.style.cursor = 'pointer';
-
-
-      // //파레트기능
-      // const buttons = [
-      //   "red",
-      //   "orange",
-      //   "yellow",
-      //   "green",
-      //   "blue",
-      //   "navy",
-      //   "purple",
-      //   "black",
-      //   "white",
-      //   "clear",
-      //
-      // ];
-      // let lineColor = "black";
-      //
-      // buttons.forEach((content) => {
-      //   let button = document.querySelector(`.${content}`);
-      //
-      //   button.style.cursor = 'pointer';
-      //
-      //   if (content === "clear" ) {
-      //
-      //     button.style.background = "rgba(100,100,100,0.2)";
-      //   } else {
-      //     button.style.background = content;
-      //   }
-      //   button.style.color = "white";
-      //   button.style.display = "block";
-      //   button.style.lineHeight = "30px";
-      //   button.style.textAlign = "center";
-      //   button.style.width = "30px";
-      //   button.style.height = "30px";
-      //   button.style.borderRadius = "10%";
-      //   button.style.boxShadow = "1px 2px 2px gray";
-      //   button.style.marginLeft = "45px";
-      //
-      //   button.onclick = () => {
-      //     context.strokeStyle = content;
-      //     lineColor = content;
-      //   };
-      // });
-      //
-      // //전체 삭제버튼
-      // document.querySelector(".clear").onclick = () => {
-      //   context.clearRect(0, 0, width, height);
-      // };
-
-
-      //텍스트 입력기능 부분
-      // var hasInput = false;
-      //
-      // canvas.onclick = function(e) {
-      //   if (hasInput) return;
-      //   addInput(e.clientX, e.clientY);
-      // }
-      //
-      //
-      // let font = '14px sans-serif';
-      // function addInput(x, y) {
-      //   var input = document.createElement('input');
-      //
-      //   input.type = 'text';
-      //   input.style.position = 'fixed';
-      //   input.style.left = (x - 4) + 'px';
-      //   input.style.top = (y - 4) + 'px';
-      //
-      //   input.onkeydown = handleEnter;
-      //
-      //   document.body.appendChild(input);
-      //
-      //   input.focus();
-      //
-      //   hasInput = true;
-      // }
-      //
-      // function handleEnter(e) {
-      //   let keyCode = e.keyCode;
-      //   if (keyCode === 13) {
-      //     drawText(this.value, 100, 100);
-      //     document.body.removeChild(this);
-      //     hasInput = false;
-      //   }
-      // }
-      //
-      // function drawText(txt, x, y) {
-      //   // context.textBaseline = 'top';
-      //   context.textAlign = 'left';
-      //   context.font = font;
-      //   context.fillText(txt, x + 30, y + 30);
-      // }
-
-
-    </script>
-
-
   </body>
+  <script src="./script.js"></script>
+
 </html>
