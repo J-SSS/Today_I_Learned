@@ -28,8 +28,8 @@
   }
   canvas{
 
-    background-color: rgba(245, 245, 122, 0.47);
-    /*width: 500px;*/
+
+    width: 100%;
     /*height: 200px;*/
   }
 
@@ -73,19 +73,8 @@
 
   }
 
-  /*.canvasInit{*/
-  /*  height: 80px;*/
-  /*  text-align: center;*/
-  /*  font-size: 20px;*/
-  /*  font-weight: bolder;*/
-  /*  line-height: 50px;*/
-  /*  color: lightgrey;*/
-  /*}*/
-
   .accordion-body{
-
-    background-color: rgba(204, 196, 196, 0.23);
-
+    overflow: hidden;
     height: 100px;
     padding: 0px;
   }
@@ -93,24 +82,24 @@
   .accordion-header, .accordion-button {
     border-radius: 20px !important;
 
-    height: 80px;
+    height: 100px;
 
+  }
+  .accordion-button{
+    display: inline-flex;
+    padding-left: 0px;
   }
   .accordion-item{
     background-color: transparent;
     border-radius: 20px !important;
   }
   .accordion-button{
-    border: 3px solid lightgrey;
-    box-shadow: 0px 0px 5px 5px rgba(135, 206, 250, 0.11);
-    background-color: rgba(229, 229, 248, 0.51);
+    border: 1px solid lightgrey;
+    box-shadow: 0px 0px 5px 5px rgba(135, 206, 250, 0.04);
+    background-color: lavenderblush;
   }
 
 
-  .scheduleInput{
-
-    display: inline-block;
-  }
   .scheduleInputBox{
 
     text-align: right;
@@ -133,6 +122,23 @@
  .mainSection{
    background-color: rgba(135, 250, 240, 0.01);
  }
+ .scheduleSide{
+   height: 70px;
+   font-weight: bold;
+   border-right: 10px solid snow;
+   color: gray;
+ }
+  .scheduleTitle{
+    font-weight: bold;
+    color: gray;
+    font-size: 30px;
+  }
+  .scheduleContent{
+    margin-top: 10px;
+    font-weight: bold;
+    color: lightgrey;
+    font-size: 20px;
+  }
 
 
 
@@ -367,27 +373,30 @@
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 
-                  <div style="border: 0px solid gray; padding: 3px 5px; margin-left: -10px ; border-radius: 10px ; background-color: transparent">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="grey" class="bi bi-list" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                  </div>
-                  <div style=" padding: 10px 10px; margin-left: 5px ; border-radius: 100% ; background-color: tomato"></div>
-                  <div style=" background-color : rgba(241,241,241,0.46) ; color: #525d4e ; padding: 10px 10px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ">　14 : 30 　</div>
-                  <div style=" background-color : rgba(241,241,241,0.46) ; color: #525d4e ; padding: 10px 10px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ">　 [ 한라산 ] 　</div>
-                  <div style=" background-color : rgba(241,241,241,0.46) ; color: #525d4e ; padding: 10px 10px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px ">:　　  한라산 가즈아 　　</div>
-
-                  <div style=" background-color : rgba(241,241,241,0.46) ; color: #525d4e ;padding: 3px 5px; margin-left: 10px ; border-radius: 10px ; font-weight: bolder ; font-size: 20px" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
-                      <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
-                    </svg>
-                    95,000
-                  </div>
-
-                  <div style="background-color : rgba(241,241,241,0.46) ; color: #525d4e ;padding: 3px 5px; margin-left: 10px ; border-radius: 10px ;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                      <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                    </svg>
+                  <div class="container ">
+                    <div class="row">
+                      <div class="col col-md-1 scheduleSide">
+                        14:30
+                      </div>
+                      <div class="col-md-10">
+                        <div class="row">
+                          <div class="col scheduleTitle">
+                            여행지 #1
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col scheduleContent">
+<!--                            <small><small><small style="color: grey">→ 경유지 #1 → 경유지 #2 → 경유지 #3 → 경유지 #4</small></small></small>-->
+                            → 경유지 #1 → 경유지 #2 → 경유지 #3 → 경유지 #4
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col col-md-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                          <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                        </svg>
+                      </div>
+                    </div>
                   </div>
 
                 </button>
@@ -403,7 +412,30 @@
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapseTwo">
 
-                  두번째버튼
+                  <div class="container ">
+                    <div class="row">
+                      <div class="col col-md-1 scheduleSide">
+                        16:30
+                      </div>
+                      <div class="col-md-10">
+                        <div class="row">
+                          <div class="col scheduleTitle">
+                            여행지 #2
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col scheduleContent">
+                            내용 혹은 사진
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col col-md-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                          <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
 
                 </button>
               </h2>
@@ -434,23 +466,14 @@
 
     <script>
       function $(x){return document.getElementById(x)}
-      const test2 = document.querySelector('.accordion-body');
-      const width = test2.clientWidth; //박스사이징 다시해주기
-      const height = 200;
-
-
-
-
-
 
       ////////////////// 캔버스 생성용 클래스 //////////////////
       class CanvasCreate {
         canvas; context; subCanvas; subContext;
-        testPara = "123"
-        canvasArray = [];
+        layerArray = [];
         activatedTool;
         // activatedTool = "testFu"
-        constructor(width) {
+        constructor() {
           // 캔버스 본체
           this.canvas = document.createElement("canvas");
           this.context = this.canvas.getContext("2d")
@@ -460,70 +483,96 @@
           this.subContext = this.subCanvas.getContext("2d");
 
           //캔버스 초기화.. 길어지니까 따로 뺐음
-          this.init(width)
+          this.init()
 
         }
 
         //초기설정 따로빼줬음
-        init(width){
-          this.canvas.width = width;
+        init(){
+          this.canvas.width = 1200;
           this.canvas.height = 500;
-          this.subCanvas.width = width;
+          this.subCanvas.width = 1200;
           this.subCanvas.height = 500;
           this.context.strokeStyle = "black";
           this.context.lineWidth = 2.5;
           this.context.scale(1,1)
           this.context.translate(0,0)
           this.context.save();
-          this.pageLiner(this.canvas.height)
+          this.pageLiner(this.canvas.width,this.canvas.height)
           this.toolActivate()
 
 
-          this.context.fillRect(0,0,50,50)
-          this.context.fillRect(100,0,50,50)
-          this.context.fillRect(0,100,50,50)
-          this.context.fillRect(50,50,50,50)
-          this.context.fillRect(100,100,50,50)
-
         }
-        pageLiner = (height)=>{
-          this.context.strokeStyle="Green"
-          this.context.lineWidth=0.1;
-          let count=20;
-          while (count<height){
-            this.context.beginPath();
-            this.context.moveTo(20, count);
-            this.context.lineTo(width-20, count);
-            this.context.stroke();
-            count+=30;
+        pageLiner = (width,height)=>{
+          let xCount = 0;
+          let yCount = 0;
+
+          while (xCount<=height){
+            this.subContext.beginPath();
+            if(xCount==0 || height-xCount==0){
+              this.subContext.strokeStyle="grey"
+              this.subContext.lineWidth=1.0;
+            } else if(xCount%50===0){
+              this.subContext.strokeStyle="grey"
+              this.subContext.lineWidth=0.3;
+            } else{
+              this.subContext.strokeStyle="grey"
+              this.subContext.lineWidth=0.1;
+            }
+            this.subContext.moveTo(0, xCount);
+            this.subContext.lineTo(width, xCount);
+            this.subContext.stroke();
+            xCount+=10;
           }
-          this.context.restore()
+          while (yCount<=width){
+            this.subContext.beginPath();
+            if(yCount==0 || yCount==width){
+              this.subContext.strokeStyle="grey"
+              this.subContext.lineWidth=1.0;
+            } else if(yCount%50===0){
+              this.subContext.strokeStyle="grey"
+              this.subContext.lineWidth=0.3;
+            } else{
+              this.subContext.strokeStyle="grey"
+              this.subContext.lineWidth=0.1;
+            }
+            this.subContext.moveTo(yCount, 0);
+            this.subContext.lineTo(yCount, height);
+            this.subContext.stroke();
+            yCount+=10;
+          }
+          this.pushCanvas(this.subCanvas)
+          this.subContext.restore()
         }
 
         //레이어 배열에 이미지엘리먼트 및 이미지 경로를 담고, 캔버스에 그린다
-        drawImage(img,x,y){
-          this.canvasArray.push({img,x,y})
+        pushImage(img,x,y){
+          this.layerArray.push({img,x,y})
           this.context.drawImage(img, x, y)
         }
-        drawPath(pathObj){
-          this.canvasArray.push(pathObj)
+        pushPath(pathObj){
+          this.layerArray.push(pathObj)
           this.context.stroke(pathObj)
+        }
+        pushCanvas(canvas){
+          this.layerArray.push(canvas)
+          this.context.drawImage(canvas, 0, 0)
+
         }
 
 
 
 
-        //도장 찍는 기능
+        //스템프 툴
         activateStamp() {
           let myThis = this
           function drawHandler(e){
             if(myThis.activatedTool!=="stamp"){
               myThis.canvas.removeEventListener("mousedown",drawHandler)
             } else {
-
               let imgElem = new Image();
               imgElem.src = "../img/star.png"
-              myThis.drawImage(imgElem, e.offsetX-25, e.offsetY-25)
+              myThis.pushImage(imgElem, e.offsetX-25, e.offsetY-25)
             }
           }
             this.canvas.addEventListener("mousedown",drawHandler)
@@ -535,9 +584,7 @@
           this.canvas.addEventListener("mousemove",(e)=>{
             let x = e.offsetX
             let y = e.offsetY
-
-
-            this.canvasArray.forEach((c)=>{
+            this.layerArray.forEach((c)=>{
               if(c instanceof Path2D){
                 console.log(this.context.isPointInStroke(c,x,y))
               }
@@ -545,7 +592,7 @@
           })
         }
 
-        //직선 그리기 기능
+        //직선 툴
         activateLine(){
           let myThis = this;
           function startPainting(e) {
@@ -558,7 +605,7 @@
                 let path = new Path2D()
                 path.moveTo(startX,startY);
                 path.lineTo(e.offsetX,e.offsetY);
-                myThis.drawPath(path)
+                myThis.pushPath(path)
                 console.log(e.offsetX,e.offsetY)
               },{once:true})
             }
@@ -566,7 +613,7 @@
           this.canvas.addEventListener("mousedown", startPainting);
         }
 
-        //펜 사용 기능
+        //펜 툴
         activatePen(){
           let myThis = this;
           let painting = false;
@@ -583,6 +630,7 @@
           }
           function stopPainting(e) {
             painting=false;
+            myThis.pushPath(path)
           }
           function onMouseMove(e){
             const x = e.offsetX;
@@ -592,7 +640,7 @@
             }
             else {
               path.lineTo(x,y);
-              myThis.drawPath(path)
+              myThis.context.stroke(path)
             }};
 
           this.canvas.addEventListener("mousemove", onMouseMove);
@@ -601,23 +649,26 @@
           this.canvas.addEventListener("mouseleave", stopPainting);
         }
 
-        // 줄눈 그리기용
 
 
         //사이드바 각 버튼에 기능부여
         toolActivate(){
+          //스템프툴 활성화//
           document.getElementById("stampBtn").addEventListener("click", ()=>{
             this.activatedTool="stamp";
             this.activateStamp();
           })
+          //펜툴 활성화//
           document.getElementById("penBtn").addEventListener("click", ()=>{
             this.activatedTool="pen";
             this.activatePen();
           })
+          //직선툴 활성화//
           document.getElementById("lineBtn").addEventListener("click", ()=>{
             this.activatedTool="line";
             this.activateLine();
           })
+          //선택툴 활성화//
           document.getElementById("selectorBtn").addEventListener("click", ()=>{
             this.activatedTool="selector";
             this.activateSelector();
@@ -632,7 +683,7 @@
           })
           ///////배열 테스트용/////
           document.getElementById("loadBtn").addEventListener("click", ()=>{
-            this.canvasArray.forEach((c)=>{
+            this.layerArray.forEach((c)=>{
               if(c instanceof Path2D){
                 this.context.stroke(c)
               } else {
@@ -643,57 +694,40 @@
             })
           })
 
-
+          ///////배율조정 테스트용/////
           document.getElementById("plusBtn").addEventListener("click",()=>{
-            this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
+            this.context.clearRect(0,0,this.canvas.width+10,this.canvas.height+10);
             this.context.scale(1.3,1.3)
 
 
-            this.canvasArray.forEach((c)=>{
+              this.layerArray.forEach((c)=>{
+                if(c instanceof Path2D){
+                  this.context.stroke(c)
+                } else if (c instanceof HTMLCanvasElement)  {
+                  this.context.drawImage(c,0,0)
+                }
+              })
 
-              if(c instanceof Path2D){
-                this.context.stroke(c)
-              }})
-
-            this.context.fillRect(0,0,50,50)
-            this.context.fillRect(100,0,50,50)
-            this.context.fillRect(0,100,50,50)
-            this.context.fillRect(50,50,50,50)
-            this.context.fillRect(100,100,50,50)
-            // this.context.restore()
-
-            // this.context.scale(1.0,1.0)
           })
           document.getElementById("minusBtn").addEventListener("click",()=>{
-            this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
+            this.context.clearRect(0,0,this.canvas.width+100,this.canvas.height+100);
             this.context.scale(0.9,0.9)
 
-            console.log(this.canvas.width,this.canvas.height)
-            this.canvasArray.forEach((c)=>{
+
+            this.layerArray.forEach((c)=>{
               if(c instanceof Path2D){
                 this.context.stroke(c)
-              }})
-
-            this.context.fillRect(0,0,50,50)
-            this.context.fillRect(100,0,50,50)
-            this.context.fillRect(0,100,50,50)
-            this.context.fillRect(50,50,50,50)
-            this.context.fillRect(100,100,50,50)
-            // this.context.restore()
-            // this.context.scale(1.0,1.0)
-
+              } else if (c instanceof HTMLCanvasElement)  {
+                this.context.drawImage(c,0,0)
+              }
+            })
 
           })
 
         }
 
 
-
-
-
-
       }//클래스 닫기
-
 
 
       //새 캔버스 생성(querySelectorAll은 동적으로 생성되는 요소에 반응하지 않기 때문에 getElements로 찾아야한다)
@@ -703,12 +737,12 @@
           canvasFrame.style.height =500+"px";
 
             let width = this.clientWidth
-        canvasFrame.appendChild(new CanvasCreate(width).canvas)
+        canvasFrame.appendChild(new CanvasCreate().canvas)
         },{once:true})
       });
 
 
-
+      //새 일정 행 추가용.. 미구현
       const rowInputBtn = document.querySelector(".rowInputBtn")
       const scheduleBox = document.querySelector(".accordion")
       rowInputBtn.addEventListener("click",(e)=>{
@@ -728,10 +762,15 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 
       // 여기서부터는 테스트용..
-
+      /*
+          this.context.fillRect(0,0,50,50)
+          this.context.fillRect(100,0,50,50)
+          this.context.fillRect(0,100,50,50)
+          this.context.fillRect(50,50,50,50)
+          this.context.fillRect(100,100,50,50)
+       */
 
       // createRect = (e)=>{
-      //
       //   const x = e.offsetX
       //   const y = e.offsetY
       //   this.subContext.fillRect(x - 15, y - 15, 30, 30);
@@ -739,27 +778,8 @@
       // }
 
 
-      //캔버스 사이즈조절용...연구중...
-
-      // const re = document.querySelector(".resizeable")
-      // console.log(re)
-      // re.addEventListener("mousemove",function (){
-      //   // canvas.height =re.clientHeight;
-      //   console.log(re.clientHeight)
-      // })
-
-
-
-      //배율조정 테스트용 기준점
-      // context.fillRect(50 , 50 , 50, 50);
-      //
-      // context.font = '20px serif';
-      // context.fillText("텍스트", 150, 40);
-
-
       //포인터 변경기능
       // canvas.style.cursor = 'pointer';
-
 
 
       // //파레트기능
