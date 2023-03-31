@@ -1,6 +1,9 @@
 function $(x){return document.getElementById(x)}
 // window.onload = function (){
-const box = document.querySelector(".canvasBox")
+
+const box = document.querySelector(".accordion-header").clientWidth-40
+console.log(box.clientWidth)
+
 //배율조정기능 실험용
 // console.log(box)
 // console.log(box.clientWidth)
@@ -14,7 +17,7 @@ class CanvasCreate {
   canvas; context; subCanvas; subContext;
   layerArray = []; //레이어 구현용 배열
   activatedTool; //활성화 툴 체크용
-  pageZoom = box.clientWidth/1200; //페이지 사이즈 변화에 따른 배율 조졍용(아직)
+  pageZoom = box/1200; //페이지 사이즈 변화에 따른 배율 조졍용(아직)
   functionZoom = 1.0; //줌기능 배율 조졍용
 
   constructor() {
@@ -56,7 +59,7 @@ class CanvasCreate {
   }
 
   // 캔버스 기본 배경
-  pageLiner = (width,height)=>{
+  pageLiner(width,height){
     let x = 0;
     let y = 0;
     while (x<=height){
@@ -101,7 +104,6 @@ class CanvasCreate {
 
     this.pushCanvas(this.subCanvas)
     this.subContext.restore()
-    this.subContext.clearRect(0,0,100,100)
   }
 
   //레이어 배열에 레이어를 담고, 본 캔버스에 그린다

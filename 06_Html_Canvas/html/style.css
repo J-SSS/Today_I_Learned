@@ -76,7 +76,7 @@ button{
 
   border-radius: 20px !important;
 
-  height: 100px;
+  height: 70px;
 
 }
 .accordion-header{
@@ -95,9 +95,6 @@ button{
 
 }
 .accordion-button{
-
-
-
   border: 1px solid lightgrey;
   box-shadow: 0px 0px 5px 5px rgba(135, 206, 250, 0.04);
   background-color: rgba(121, 199, 248, 0.27);
@@ -139,8 +136,8 @@ button{
   height: 100%;
 }
 .scheduleLeft, .scheduleTitle, .scheduleContent, .scheduleRight{
-  padding-top: 10px;
-  padding-bottom: 5px;
+  padding-top: 8px;
+  padding-bottom: 0px;
 
 }
 .scheduleLeft{
@@ -155,6 +152,9 @@ button{
   font-size: 18px;
   color: white;
   text-shadow: -1px 0 lightgrey, 0 1px gray, 1px 0 gray, 0 -1px lightgrey;
+}
+.scheduleLeft:hover {
+  border-left-color: rgba(128, 128, 128, 0.69);
 }
 .scheduleCenter{
   position: relative;
@@ -179,14 +179,14 @@ button{
 
   font-weight: bold;
   color: #a8a8a8;
-  font-size: 18px;
+  font-size: 15px;
 
 }
 .scheduleTitle{
   /*text-shadow: -1px 0 white, 0 1px black, 1px 0 black, 0 -1px white;*/
   font-weight: bolder;
-  color: rgba(128, 128, 128, 0.82);
-  font-size: 25px;
+  color: rgb(105, 105, 105);
+  font-size: 20px;
   border-radius: 20px;
   padding-left: 30px;
 }
