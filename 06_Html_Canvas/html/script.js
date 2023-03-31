@@ -1,4 +1,4 @@
-// function $(x){return document.getElementById(x)}
+function $(x){return document.getElementById(x)}
 // window.onload = function (){
 const box = document.querySelector(".canvasBox")
 //배율조정기능 실험용
@@ -98,8 +98,11 @@ class CanvasCreate {
       this.subContext.stroke();
       y+=10;
     }
+
     this.pushCanvas(this.subCanvas)
+    this.pushCanvas(a)
     this.subContext.restore()
+    this.subContext.clearRect(0,0,100,100)
   }
 
   //레이어 배열에 레이어를 담고, 본 캔버스에 그린다
@@ -124,6 +127,7 @@ class CanvasCreate {
       if(myThis.activatedTool!=="stamp"){
         myThis.canvas.removeEventListener("mousedown",drawHandler)
       } else {
+        myThis.subContext.clearRect(0,0,100,100)
         let imgElem = new Image();
         imgElem.src = "../img/star.png"
         myThis.pushImage(imgElem, myThis.xy(e.offsetX-25),myThis.xy(e.offsetY-25))
@@ -207,7 +211,7 @@ class CanvasCreate {
   //사이드바 각 버튼에 기능부여
   toolActivate(){
     //스템프툴 활성화//
-    document.getElementById("stampBtn").addEventListener("click", ()=>{
+    $("stampBtn").addEventListener("click", ()=>{
       if(this.activatedTool=="stamp") {
         return;
       }
@@ -217,7 +221,7 @@ class CanvasCreate {
       }
     });
     //펜툴 활성화//
-    document.getElementById("penBtn").addEventListener("click", ()=>{
+    $("penBtn").addEventListener("click", ()=>{
       if(this.activatedTool=="pen") {
         return;
       } else {
@@ -226,7 +230,7 @@ class CanvasCreate {
       }
     });
     //직선툴 활성화//
-    document.getElementById("lineBtn").addEventListener("click", ()=>{
+    $("lineBtn").addEventListener("click", ()=>{
       if(this.activatedTool=="line") {
         return;
       } else {
@@ -235,7 +239,7 @@ class CanvasCreate {
       }
     });
     //선택툴 활성화//
-    document.getElementById("selectorBtn").addEventListener("click", ()=>{
+    $("selectorBtn").addEventListener("click", ()=>{
       if(this.activatedTool=="selector") {
         return
       } else {
@@ -245,12 +249,12 @@ class CanvasCreate {
     });
 
     ///////배열 테스트용/////
-    document.getElementById("removeBtn").addEventListener("click", ()=>{
+    $("removeBtn").addEventListener("click", ()=>{
       this.activatedTool="default";
       this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
     });
     ///////배열 테스트용/////
-    document.getElementById("loadBtn").addEventListener("click", ()=>{
+    $("loadBtn").addEventListener("click", ()=>{
       this.layerArray.forEach((c)=>{
         if(c instanceof Path2D){
           this.context.stroke(c)
@@ -262,7 +266,7 @@ class CanvasCreate {
 
 
     ///////배율조정 테스트용/////
-    document.getElementById("plusBtn").addEventListener("click",()=>{
+    $("plusBtn").addEventListener("click",()=>{
       this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
       this.functionZoom*=1.2;
       this.context.scale(1.2,1.2);
@@ -275,7 +279,7 @@ class CanvasCreate {
         }
       })
     });
-    document.getElementById("minusBtn").addEventListener("click",()=>{
+    $("minusBtn").addEventListener("click",()=>{
       if (this.functionZoom>1.05){
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
         this.context.scale(1/1.2,1/1.2)
