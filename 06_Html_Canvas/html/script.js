@@ -100,7 +100,6 @@ class CanvasCreate {
     }
 
     this.pushCanvas(this.subCanvas)
-    this.pushCanvas(a)
     this.subContext.restore()
     this.subContext.clearRect(0,0,100,100)
   }
