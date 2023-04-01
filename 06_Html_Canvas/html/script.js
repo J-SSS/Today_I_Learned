@@ -33,7 +33,7 @@ class CanvasCreate {
     this.subCanvas.width = 1200;
     this.subCanvas.height = 500;
     this.context.strokeStyle = "black";
-    this.context.lineWidth = 2.5;
+    this.context.lineWidth = 0.5;
     this.context.scale(1.0,1.0)
     this.context.translate(0,0)
     this.context.save();
@@ -41,8 +41,8 @@ class CanvasCreate {
     this.toolActivate()
 
     // test
-    this.canvas.addEventListener("click",()=>{
 
+    this.canvas.addEventListener("click",()=>{
       console.log(this.index)
       console.log(this.layerArray)
     })
@@ -65,48 +65,49 @@ class CanvasCreate {
     let x = 0;
     let y = 0;
     while (x<=height){
-      this.subContext.beginPath();
+      this.context.beginPath();
       if(x===0 || height-x===0){
-        this.subContext.strokeStyle="black"
-        this.subContext.lineWidth=1.5;
+        this.context.strokeStyle="black"
+        this.context.lineWidth=1.0;
       } else if(x%50===0){
-          this.subContext.strokeStyle="black"
-          this.subContext.lineWidth=0.3;
+          this.context.strokeStyle="gray"
+          this.context.lineWidth=0.2;
       } else{
-        this.subContext.strokeStyle="black"
-        this.subContext.lineWidth=0.1;
+        this.context.strokeStyle="gray"
+        this.context.lineWidth=0.1;
       }
-      this.subContext.moveTo(0, x);
-      this.subContext.lineTo(width, x);
-      this.subContext.stroke();
+      this.context.moveTo(0, x);
+      this.context.lineTo(width, x);
+      this.context.stroke();
       x+=10;
     }
     while (y<=width){
-      this.subContext.beginPath();
+      this.context.beginPath();
       if(y===0 || y===width){
-        this.subContext.strokeStyle="black"
-        this.subContext.lineWidth=1.5;
+        this.context.strokeStyle="black"
+        this.context.lineWidth=1.0;
       } else if(y%50===0){
         if(y/50===12){
-          this.subContext.strokeStyle="red"
-          this.subContext.lineWidth=0.3;
+          this.context.strokeStyle="red"
+          this.context.lineWidth=0.3;
         } else {
-          this.subContext.strokeStyle="black"
-          this.subContext.lineWidth=0.3;
+          this.context.strokeStyle="gray"
+          this.context.lineWidth=0.2;
         }
       } else{
-        this.subContext.strokeStyle="black"
-        this.subContext.lineWidth=0.1;
+        this.context.strokeStyle="gray"
+        this.context.lineWidth=0.1;
       }
-      this.subContext.moveTo(y, 0);
-      this.subContext.lineTo(y, height);
-      this.subContext.stroke();
+      this.context.moveTo(y, 0);
+      this.context.lineTo(y, height);
+      this.context.stroke();
       y+=10;
     }
-    this.pushCanvas(this.subCanvas)
-    this.subContext.restore()
+    this.pushCanvas(this.canvas)
+    this.context.restore()
     ///배열에 들어간 캔버스가 계속 변경되는 문제 해결
   }
+
 
   //레이어 배열에 레이어를 담고, 본 캔버스에 그린다
   pushImage(img,x,y){
@@ -118,7 +119,9 @@ class CanvasCreate {
     this.context.stroke(pathObj)
   }
   pushCanvas(canvas){
-    this.layerArray.push(canvas)
+    let tempImg = new Image();
+    tempImg.src = canvas.toDataURL()
+    this.layerArray.push(tempImg)
     this.context.drawImage(canvas, 0, 0)
   }
 
@@ -314,7 +317,7 @@ class CanvasCreate {
       this.layerArray.forEach((c)=>{
         if(c instanceof Path2D){
           this.context.stroke(c)
-        } else if (c instanceof HTMLCanvasElement)  {
+        } else if (c instanceof Image)  {
           this.context.drawImage(c,0,0)
         }
       })
@@ -329,7 +332,7 @@ class CanvasCreate {
         this.layerArray.forEach((c)=>{
           if(c instanceof Path2D){
             this.context.stroke(c)
-          } else if (c instanceof HTMLCanvasElement)  {
+          } else if (c instanceof Image)  {
             this.context.drawImage(c,0,0)
           }
         })
@@ -352,8 +355,13 @@ Array.from(newCanvas).forEach((canvasFrame)=>{
     let temp = 500/1200*canvasFrame.clientWidth+16
     canvasFrame.style.height =temp+"px";
     // canvasFrame.style.height =500+"px";
-
-    canvasFrame.appendChild(new CanvasCreate().canvas)
+    let newCanvas = new CanvasCreate()
+    let mainC = newCanvas.canvas
+    let subC = newCanvas.subCanvas
+    subC.classList.add("subCanvasX")
+    // canvasFrame.appendChild(subC)
+    canvasFrame.append(subC)
+    canvasFrame.append(mainC)
   },{once:true})
 });
 

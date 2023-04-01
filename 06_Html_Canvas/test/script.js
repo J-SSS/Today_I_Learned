@@ -313,8 +313,15 @@ Array.from(newCanvas).forEach((canvasFrame)=>{
     let temp = 500/1200*canvasFrame.clientWidth+16
     canvasFrame.style.height =temp+"px";
     // canvasFrame.style.height =500+"px";
-
-    canvasFrame.appendChild(new CanvasCreate().canvas)
+    let newCanvas = new CanvasCreate()
+    let mainC = newCanvas.canvas
+    let subC = newCanvas.subCanvas
+    console.log(subC)
+    console.log("??")
+    subC.classList.add("subCanvasX")
+    canvasFrame.appendChild(subC)
+    canvasFrame.append(subC)
+    // canvasFrame.appendChild(mainC)
   },{once:true})
 });
 

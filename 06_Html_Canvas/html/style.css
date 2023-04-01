@@ -1,22 +1,25 @@
 
-p {
-  margin: 0;
-}
-
 body{
-
   margin: 0;
   padding: 0;
 }
-canvas{
 
-  background-color: white;
+.subCanvasO{
+  position: absolute;
+  width: calc(100% - 40px);
+  background-color: red;
+}
+.subCanvasX{
+  position: absolute;
+  display: none;
+}
+canvas{
+  position: relative;
+  /*background-color: white;*/
   width: 100%;
   /*height: 100%;*/
 }
-.canvasBox{
-  box-sizing: border-box;
-}
+
 .headerHome{
   text-align: center;
   border-radius: 5px;
@@ -33,31 +36,61 @@ canvas{
   text-align: center;
   padding: 5px;
   border-bottom: 5px solid #d5d5d5;
-  margin-bottom: 5px;
-
 }
 .headerNav h3{
   font-size: 25px;
   font-weight: bolder;
   color: #525d4e;
 }
-h3{
+.nav-link{
+  font-weight: bold;
+  font-size: 17px;
+}
+.dayHeader{
+  border-radius: 30px;
+  border-top: 3px solid lightgrey;
+  border-bottom: 2px solid lightgrey;
+  padding: 8px 0px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.dayTitle{
   font-weight: bolder;
   color: #818181;
-  padding: 10px;
-}
-.mainTitle{
   text-align: center;
 }
 
-button{
-  background-color: transparent;
-  border: 1px solid lightgrey;
-  margin-left: 2px !important;
-  padding: 5px;
-  border-radius: 5px;
-  color: gray;
+.btnLine{
+
+  padding : 0px 10px 0px 10px;
+  background-color: rgba(227, 227, 227, 0.6);
+  border-left: 10px solid #9d9d9d;
+  border-right: 10px solid #9d9d9d;
+
 }
+.btnLine button{
+    border: none;
+    margin-left: 5px !important;
+    padding: 10px;
+    border-radius: 8px;
+    color: #333333;
+
+}
+.btnLine button:hover{
+  /*border: 1px solid gray;*/
+  background-color: rgba(211, 211, 211, 0.73);
+}
+
+/*button{*/
+/*  background-color: transparent;*/
+/*  border: none;*/
+/*  margin-left: 2px !important;*/
+/*  padding: 5px;*/
+/*  border-radius: 5px;*/
+/*  color: gray;*/
+/*}*/
 
 
 .accordion-item{
@@ -65,6 +98,7 @@ button{
 
 }
 .accordion-body{
+  position: relative;
   overflow: hidden! important;
 
   height: 100px;
@@ -73,20 +107,14 @@ button{
 }
 
 .accordion-header, .accordion-button {
-
-  border-radius: 20px !important;
-
+  border-radius: 15px !important;
   height: 70px;
-
 }
 .accordion-header{
   font-size: 0px;
 }
 .accordion-button{
   padding: 0px;
-
-
-  /*display: inline-flex;*/
 }
 .accordion-item{
   margin-bottom: 10px !important;
@@ -109,18 +137,48 @@ button{
   /*background-color: rgba(245, 217, 217, 0.09);*/
 }
 .rightGrid> div{
+  padding: 8px;
   /*background-color: rgba(232, 232, 232, 0.27);*/
   border: 1px solid lightgrey;
-  width: 100%;
-  height: 20vh;
+
+  /*height: 25vh;*/
   margin-top: 20px;
-  border-radius: 15px;
-  text-align: center;
+  border-radius: 8px;
   font-weight: bold;
+}
+.sideTitle{
+  margin-left: 2px;
+  height: 30px;
+  width: min-content;
+  border-top: 1px solid rgba(229, 229, 229, 0.5);
+  border-bottom: 3px solid lightgrey;
+  border-left: 15px solid rgba(234, 214, 255, 0.83);
+  border-right: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 0px 15px 3px 8px;
+  line-height: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #5d5d5d;
+}
+.sideContent{
+  margin-top: 5px;
+  min-height: 50px;
+  border: 1px solid lightgrey;
+  padding: 2px 0px 2px 5px;
+}
+.calenderBox{
+  height: 25vh;
+}
+.infoBox{
 
 }
+.layerBox{
+  height: 40vh;
+}
 .mainSection{
-  /*background-color: rgba(135, 250, 240, 0.01);*/
+  padding: 0px 30px;
+  /*background-color: rgba(0, 0, 0, 0.02);*/
 }
 
 .scheduleBtn{
@@ -145,13 +203,13 @@ button{
   box-sizing: border-box;
   height: 100%;
   font-weight: bold;
-  border-right: 8px solid snow;
+  border-right: 10px solid snow;
   border-left: 20px solid rgba(147, 185, 255, 0.29);
   border-radius: 10px 0px 0px 10px;
   text-align: left;
   font-size: 18px;
   color: white;
-  text-shadow: -1px 0 lightgrey, 0 1px gray, 1px 0 gray, 0 -1px lightgrey;
+  text-shadow: -1px 0 lightgrey, 1px 1px gray, 1px 2px gray, 0 -1px lightgrey;
 }
 .scheduleLeft:hover {
   border-left-color: rgba(128, 128, 128, 0.69);
@@ -167,7 +225,7 @@ button{
   left: 0px;
   right: 0px;
   bottom: 0px;
-  opacity: 0.15;
+  opacity: 0.10;
 }
 
 
@@ -178,17 +236,21 @@ button{
 .scheduleContent{
 
   font-weight: bold;
-  color: #a8a8a8;
-  font-size: 15px;
+  /*color: #737373;*/
+  color: #8c8c8c;
+  /*text-shadow: -1px 0 lightgrey, 0 1px lightgrey, 1px 0 lightgrey, 0 -1px lightgrey;*/
+  font-size: 17px;
+  padding-left: 25px;
 
 }
 .scheduleTitle{
-  /*text-shadow: -1px 0 white, 0 1px black, 1px 0 black, 0 -1px white;*/
+  /*text-shadow: -1px 0 whitesmoke, 2px 1px lightgrey, 1px 0 lightgrey, 0 -1px whitesmoke;*/
   font-weight: bolder;
-  color: rgb(105, 105, 105);
-  font-size: 20px;
+  color: rgb(75, 75, 75);
+
+  font-size: 21px;
   border-radius: 20px;
-  padding-left: 30px;
+  padding-left: 25px;
 }
 /*.scheduleTitleText{*/
 /*  padding: 3px 15px;*/
