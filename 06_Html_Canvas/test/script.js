@@ -1,12 +1,19 @@
-window.onload = function (){
-  function $(x){return document.getElementById(x)}
-  const box = document.querySelector(".accordion-header").clientWidth-40
-  let canvasCnt = 0;
+function $(x){return document.getElementById(x)}
+// window.onload = function (){
+
+const box = document.querySelector(".accordion-header").clientWidth-40
+console.log(box.clientWidth)
+
+//배율조정기능 실험용
+// console.log(box)
+// console.log(box.clientWidth)
+// console.log(box/1200)
+// console.log(1200/box)
+
 
 
 ////////////////// 캔버스 생성용 클래스 //////////////////
 class CanvasCreate {
-  index;
   canvas; context; subCanvas; subContext;
   layerArray = []; //레이어 구현용 배열
   activatedTool; //활성화 툴 체크용
@@ -26,8 +33,6 @@ class CanvasCreate {
 
   //초기설정 따로빼줬음
   init(){
-    this.index = ++canvasCnt;
-
     this.canvas.width = 1200;
     this.canvas.height = 500;
     this.subCanvas.width = 1200;
@@ -39,13 +44,6 @@ class CanvasCreate {
     this.context.save();
     this.pageLiner(this.canvas.width,this.canvas.height)
     this.toolActivate()
-
-    // test
-    this.canvas.addEventListener("click",()=>{
-
-      console.log(this.index)
-      console.log(this.layerArray)
-    })
 
   }
 
@@ -66,14 +64,14 @@ class CanvasCreate {
     let y = 0;
     while (x<=height){
       this.subContext.beginPath();
-      if(x===0 || height-x===0){
-        this.subContext.strokeStyle="black"
+      if(x==0 || height-x==0){
+        this.subContext.strokeStyle="grey"
         this.subContext.lineWidth=1.5;
       } else if(x%50===0){
-          this.subContext.strokeStyle="black"
+          this.subContext.strokeStyle="grey"
           this.subContext.lineWidth=0.3;
       } else{
-        this.subContext.strokeStyle="black"
+        this.subContext.strokeStyle="grey"
         this.subContext.lineWidth=0.1;
       }
       this.subContext.moveTo(0, x);
@@ -83,19 +81,19 @@ class CanvasCreate {
     }
     while (y<=width){
       this.subContext.beginPath();
-      if(y===0 || y===width){
-        this.subContext.strokeStyle="black"
+      if(y==0 || y==width){
+        this.subContext.strokeStyle="grey"
         this.subContext.lineWidth=1.5;
       } else if(y%50===0){
         if(y/50===12){
           this.subContext.strokeStyle="red"
           this.subContext.lineWidth=0.3;
         } else {
-          this.subContext.strokeStyle="black"
+          this.subContext.strokeStyle="grey"
           this.subContext.lineWidth=0.3;
         }
       } else{
-        this.subContext.strokeStyle="black"
+        this.subContext.strokeStyle="grey"
         this.subContext.lineWidth=0.1;
       }
       this.subContext.moveTo(y, 0);
@@ -103,9 +101,9 @@ class CanvasCreate {
       this.subContext.stroke();
       y+=10;
     }
+
     this.pushCanvas(this.subCanvas)
     this.subContext.restore()
-    ///배열에 들어간 캔버스가 계속 변경되는 문제 해결
   }
 
   //레이어 배열에 레이어를 담고, 본 캔버스에 그린다
@@ -113,6 +111,7 @@ class CanvasCreate {
     this.layerArray.push({img,x,y})
     this.context.drawImage(img, x, y)
   }
+
   pushPath(pathObj){
     this.layerArray.push(pathObj)
     this.context.stroke(pathObj)
@@ -154,25 +153,6 @@ class CanvasCreate {
   };
 
   //직선 툴
-  // activateLine(){
-  //   let myThis = this;
-  //   function startPainting(e) {
-  //     if(myThis.activatedTool!=="line"){
-  //       this.removeEventListener("mousedown", startPainting)
-  //     } else {
-  //       let startX = e.offsetX;
-  //       let startY= e.offsetY;
-  //       this.addEventListener("mouseup",(e)=>{
-  //         let path = new Path2D()
-  //         path.moveTo(myThis.xy(startX),myThis.xy(startY));
-  //         path.lineTo(myThis.xy(e.offsetX),myThis.xy(e.offsetY));
-  //         myThis.pushPath(path)
-  //       },{once:true})
-  //     }
-  //   }
-  //   this.canvas.addEventListener("mousedown", startPainting);
-  // };
-
   activateLine(){
     let myThis = this;
     function startPainting(e) {
@@ -181,30 +161,12 @@ class CanvasCreate {
       } else {
         let startX = e.offsetX;
         let startY= e.offsetY;
-        let temp = new Image()
-        temp.src = myThis.canvas.toDataURL()
-        this.addEventListener("mousemove", function move(e){
-            let path = new Path2D()
-            myThis.context.setLineDash([5, 15]);
-            myThis.context.clearRect(0,0,myThis.canvas.width,myThis.canvas.height)
-
-            path.moveTo(myThis.xy(startX),myThis.xy(startY));
-            path.lineTo(myThis.xy(e.offsetX),myThis.xy(e.offsetY));
-            myThis.context.stroke(path)
-            myThis.context.drawImage(temp,0,0)
-            this.addEventListener("mouseup",(e)=>{
-              this.removeEventListener("mousemove", move)
-            },{once:true})
-
-        })
-          this.addEventListener("mouseup",(e)=>{
+        this.addEventListener("mouseup",(e)=>{
           let path = new Path2D()
           path.moveTo(myThis.xy(startX),myThis.xy(startY));
           path.lineTo(myThis.xy(e.offsetX),myThis.xy(e.offsetY));
           myThis.pushPath(path)
-
         },{once:true})
-
       }
     }
     this.canvas.addEventListener("mousedown", startPainting);
@@ -251,7 +213,7 @@ class CanvasCreate {
   toolActivate(){
     //스템프툴 활성화//
     $("stampBtn").addEventListener("click", ()=>{
-      if(this.activatedTool==="stamp") {
+      if(this.activatedTool=="stamp") {
         return;
       }
       else {
@@ -261,7 +223,7 @@ class CanvasCreate {
     });
     //펜툴 활성화//
     $("penBtn").addEventListener("click", ()=>{
-      if(this.activatedTool==="pen") {
+      if(this.activatedTool=="pen") {
         return;
       } else {
         this.activatedTool="pen";
@@ -270,7 +232,7 @@ class CanvasCreate {
     });
     //직선툴 활성화//
     $("lineBtn").addEventListener("click", ()=>{
-      if(this.activatedTool==="line") {
+      if(this.activatedTool=="line") {
         return;
       } else {
         this.activatedTool = "line";
@@ -279,7 +241,7 @@ class CanvasCreate {
     });
     //선택툴 활성화//
     $("selectorBtn").addEventListener("click", ()=>{
-      if(this.activatedTool==="selector") {
+      if(this.activatedTool=="selector") {
         return
       } else {
       this.activatedTool="selector";
@@ -295,7 +257,6 @@ class CanvasCreate {
     ///////배열 테스트용/////
     $("loadBtn").addEventListener("click", ()=>{
       this.layerArray.forEach((c)=>{
-        console.log(c)
         if(c instanceof Path2D){
           this.context.stroke(c)
         } else {
@@ -490,4 +451,4 @@ this.context.fillRect(100,100,50,50)
 // }
 
 
-}
+// }
