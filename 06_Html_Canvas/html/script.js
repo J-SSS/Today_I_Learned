@@ -2,6 +2,7 @@ window.onload = function (){
   function $(x){return document.getElementById(x)}
   const box = document.querySelector(".accordion-header").clientWidth-40
   let canvasCnt = 0;
+  let jTest;
 
 
 ////////////////// 캔버스 생성용 클래스 //////////////////
@@ -62,6 +63,7 @@ class CanvasCreate {
 
   // 캔버스 기본 배경
   pageLiner(width,height){
+
     let x = 0;
     let y = 0;
     while (x<=height){
@@ -136,7 +138,7 @@ class CanvasCreate {
         let imgElem = new Image();
         imgElem.src = "../img/star.png"
         myThis.pushImage(imgElem, myThis.xy(e.offsetX-25),myThis.xy(e.offsetY-25))
-        // myThis.pushImage(imgElem, e.offsetX,e.offsetY)
+
       }
     }
     this.canvas.addEventListener("mousedown",drawHandler)
@@ -201,11 +203,10 @@ class CanvasCreate {
 
         })
           this.addEventListener("mouseup",(e)=>{
-          let path = new Path2D()
-          path.moveTo(myThis.xy(startX),myThis.xy(startY));
-          path.lineTo(myThis.xy(e.offsetX),myThis.xy(e.offsetY));
-          myThis.pushPath(path)
-
+          let path2 = new Path2D()
+          path2.moveTo(myThis.xy(startX),myThis.xy(startY));
+          path2.lineTo(myThis.xy(e.offsetX),myThis.xy(e.offsetY));
+          myThis.pushPath(path2)
         },{once:true})
 
       }
@@ -298,7 +299,7 @@ class CanvasCreate {
     ///////배열 테스트용/////
     $("loadBtn").addEventListener("click", ()=>{
       this.layerArray.forEach((c)=>{
-        console.log(c)
+
         if(c instanceof Path2D){
           this.context.stroke(c)
         } else {
