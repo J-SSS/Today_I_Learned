@@ -211,7 +211,6 @@ class CanvasCreate {
             this.addEventListener("mouseup",(e)=>{
               this.removeEventListener("mousemove", move)
             },{once:true})
-
         })
           this.addEventListener("mouseup",(e)=>{
           let path2 = new Path2D()
@@ -219,7 +218,6 @@ class CanvasCreate {
           path2.lineTo(myThis.xy(e.offsetX),myThis.xy(e.offsetY));
           myThis.pushPath(path2)
         },{once:true})
-
       }
     }
     this.canvas.addEventListener("mousedown", startPainting);
