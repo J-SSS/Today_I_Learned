@@ -47,16 +47,30 @@ canvas{
   font-size: 17px;
 }
 .dayHeader{
-  border-radius: 30px;
+  height: 50px;
+  background-color: rgba(186, 228, 246, 0.24);
+  /*border-radius: 30px;*/
   border-top: 3px solid lightgrey;
   border-bottom: 2px solid lightgrey;
-  padding: 8px 0px;
+
   font-weight: bold;
-  color: #000000;
   text-align: center;
   margin-bottom: 20px;
+  line-height: 50px;
+}
+.dayHeaderMain{
+  font-size: 25px;
+  line-height: 40px;
+  color: lightgrey;
+}
+.dayHeaderSide{
+  line-height: 40px;
+  /*background-color: lightgrey;*/
+  font-size: 30px;
+  color: rgba(111, 118, 152, 0.51);
 }
 .dayTitle{
+
   font-weight: bolder;
   color: #818181;
   text-align: center;

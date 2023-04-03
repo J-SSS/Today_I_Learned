@@ -2,7 +2,16 @@ window.onload = function (){
   function $(x){return document.getElementById(x)}
   const box = document.querySelector(".accordion-header").clientWidth-40
   let canvasCnt = 0;
-  let jTest;
+
+  let jTest = "어케하는겨";
+  let canvasParser = {
+
+    layerArrays : {123 : 123, jTest
+    }
+  }
+  console.log(canvasParser.layerArrays)
+  console.log(JSON.parse(JSON.stringify(canvasParser)))
+
 
 
 ////////////////// 캔버스 생성용 클래스 //////////////////
@@ -153,6 +162,8 @@ class CanvasCreate {
       this.layerArray.forEach((c)=>{
         if(c instanceof Path2D){
           console.log(this.context.isPointInStroke(c,x,y))
+        } else {
+          // console.log(this.context.isPointInStroke(x,y))
         }
       })
     })
