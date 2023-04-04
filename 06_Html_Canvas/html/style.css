@@ -4,14 +4,11 @@ body{
   padding: 0;
 }
 
-.subCanvasO{
+.subCanvas{
   position: absolute;
   width: calc(100% - 40px);
 }
-.subCanvasX{
-  position: absolute;
-  display: none;
-}
+
 canvas{
   position: relative;
   width: 100%;
@@ -62,24 +59,20 @@ canvas{
 }
 .dayHeaderSide{
   line-height: 40px;
-  /*background-color: lightgrey;*/
   font-size: 30px;
   color: rgba(111, 118, 152, 0.51);
 }
 .dayTitle{
-
   font-weight: bolder;
   color: #818181;
   text-align: center;
 }
 
 .btnLine{
-
   padding : 0px 10px 0px 10px;
   background-color: rgba(227, 227, 227, 0.6);
   border-left: 10px solid #9d9d9d;
   border-right: 10px solid #9d9d9d;
-
 }
 .btnLine button{
     border: none;
@@ -87,7 +80,6 @@ canvas{
     padding: 10px;
     border-radius: 8px;
     color: #333333;
-
 }
 .btnLine button:hover{
   /*border: 1px solid gray;*/
@@ -111,14 +103,20 @@ canvas{
 .accordion-body{
   position: relative;
   overflow: hidden! important;
-
-  height: 100px;
-
-
+  height: 130px;
+}
+.accordion-body .innerText{
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  color: lightgrey;
+}
+.accordion-body .innerText:hover{
+  color: #7c7cff;
 }
 
 .accordion-header, .accordion-button {
-  border-radius: 15px !important;
+  border-radius: 10px !important;
   height: 70px;
 }
 .accordion-header{
@@ -131,15 +129,12 @@ canvas{
   margin-bottom: 10px !important;
   background-color: transparent;
   border-radius: 20px !important;
-
 }
 .accordion-button{
   border: 1px solid lightgrey;
   box-shadow: 0px 0px 5px 5px rgba(135, 206, 250, 0.04);
-  background-color: rgba(121, 199, 248, 0.27);
+  background-color: rgb(207, 240, 255);
 }
-
-
 .scheduleInputBox{
   text-align: right;
 }
@@ -210,12 +205,12 @@ canvas{
 
 }
 .scheduleLeft{
-  background-color: rgba(0, 0, 255, 0.1);
+  background-color: rgb(199, 220, 255);
   box-sizing: border-box;
   height: 100%;
   font-weight: bold;
-  border-right: 10px solid snow;
-  border-left: 20px solid rgba(147, 185, 255, 0.29);
+  border-right: 15px solid snow;
+  border-left: 30px solid rgb(161, 193, 255);
   border-radius: 10px 0px 0px 10px;
   text-align: left;
   font-size: 18px;
@@ -223,7 +218,7 @@ canvas{
   text-shadow: -1px 0 lightgrey, 1px 1px gray, 1px 2px gray, 0 -1px lightgrey;
 }
 .scheduleLeft:hover {
-  border-left-color: rgba(128, 128, 128, 0.69);
+  border-left-color: rgba(108, 108, 108, 0.69);
 }
 .scheduleCenter{
   position: relative;
@@ -258,7 +253,6 @@ canvas{
   /*text-shadow: -1px 0 whitesmoke, 2px 1px lightgrey, 1px 0 lightgrey, 0 -1px whitesmoke;*/
   font-weight: bolder;
   color: rgb(75, 75, 75);
-
   font-size: 21px;
   border-radius: 20px;
   padding-left: 25px;

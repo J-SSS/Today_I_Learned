@@ -11,10 +11,11 @@ Array.from(newCanvas).forEach((canvasFrame)=>{
     let newCanvas = new CanvasCreate()
     let mainC = newCanvas.canvas
     let subC = newCanvas.subCanvas
-    subC.classList.add("subCanvasX")
-    // canvasFrame.appendChild(subC)
+
+    subC.classList.add("subCanvas")
     canvasFrame.append(subC)
     canvasFrame.append(mainC)
+    canvasFrame.childNodes[1].style.display="none"
   },{once:true})
 });
 
@@ -26,7 +27,9 @@ rowInputBtn.addEventListener("click",(e)=>{
   let acBody = sample.childNodes[3].childNodes[1];
   sample.childNodes[1].childNodes[1].setAttribute("data-bs-target",`#collapse${++canvasCnt}`)
   sample.childNodes[3].setAttribute("id",`collapse${canvasCnt}`)
-  sample.childNodes[3].childNodes[1].addEventListener("click",()=>{
+  sample.childNodes[3].childNodes[1].childNodes[1].addEventListener("click",function (){
+    console.log(this)
+    this.style.display="none";
     //16은 부트스트랩에 설정된 패딩값임..
     let temp = 500/1200*acBody.clientWidth+16
     acBody.style.height =temp+"px";

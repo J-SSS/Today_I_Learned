@@ -59,7 +59,6 @@ class CanvasCreate {
   // 배율 조정 및 윈도우 사이즈 조절시 수정된 좌표값 생성 함수
   xy(xy){
     return xy/this.pageZoom/this.functionZoom
-    // return xy
     /*
     scale()적용시 기준점이 이동하여 눈에 보이는 좌표와 실제 캔버스내 좌표가 달라지는데
     눈에 보이는 좌표를 scale()로 설정한 배율로 다시 나눠주면 캔버스상 좌표와 눈에 보이는 좌표가 일치함
@@ -133,7 +132,7 @@ class CanvasCreate {
   }
 
   //스템프 툴
-  activateStamp() {
+  stampTool() {
     let canvasObj = this
     function drawHandler(e){
       if(canvasObj.activatedTool!=="stamp"){
@@ -150,114 +149,90 @@ class CanvasCreate {
 
 
   //미완성
-  activateSelector(){
+  selectorTool(){
     this.canvas.addEventListener("mousemove",(e)=>{
-      let x = e.offsetX
-      let y = e.offsetY
-      this.layerArray.forEach((c)=>{
-        if(c instanceof Path2D){
-          console.log(this.context.isPointInStroke(c,x,y))
-        } else {
-          // console.log(this.context.isPointInStroke(x,y))
-        }
+      let x = this.xy(e.offsetX)
+      let y = this.xy(e.offsetY)
+      this.jsonArray.forEach((c)=>{
+
       })
     })
   };
 
   //직선 툴
-  activateLine(){
+  lineTool(){
     let canvasObj = this;
-    function startPainting(e) {
+    let moveHandler;
+    function startFunction
+    (e) {
       if(canvasObj.activatedTool!=="line"){
-        this.removeEventListener("mousedown", startPainting)
+        this.removeEventListener("mousedown", startFunction
+        )
       } else {
-        canvasObj.subActivation()
+
         let startX = e.offsetX;
         let startY= e.offsetY;
-        this.addEventListener("mousemove", function move(e){
-            let path = new Path2D()
+        this.addEventListener("mousemove", moveHandler = function (e){
             canvasObj.subContext.strokeStyle="grey";
             canvasObj.subContext.lineWidth=2;
             canvasObj.subContext.setLineDash([10, 10]);
+
             canvasObj.subContext.clearRect(0,0,canvasObj.canvas.width,canvasObj.canvas.height)
-
-            path.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
-            path.lineTo(canvasObj.xy(e.offsetX),canvasObj.xy(e.offsetY));
-            canvasObj.subContext.stroke(path)
-
-            this.addEventListener("mouseup",(e)=>{
-              this.removeEventListener("mousemove", move)
-              canvasObj.subDeactivation()
-            },{once:true})
+            canvasObj.subContext.beginPath()
+            canvasObj.subContext.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
+            canvasObj.subContext.lineTo(canvasObj.xy(e.offsetX),canvasObj.xy(e.offsetY));
+            canvasObj.subContext.stroke()
         })
           this.addEventListener("mouseup",(e)=>{
-            canvasObj.context.restore();
-            canvasObj.context.save();
-            // canvasObj.context.setLineDash([]);
-          let path2 = new Path2D()
-          path2.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
-          path2.lineTo(canvasObj.xy(e.offsetX),canvasObj.xy(e.offsetY));
-          canvasObj.pushPath(path2)
-          canvasObj.jsonParser(undefined ,undefined ,[startX,startY],[e.offsetX,e.offsetY])
+            this.removeEventListener("mousemove", moveHandler)
+            canvasObj.subCanvasClear()
+            canvasObj.context.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
+            canvasObj.context.lineTo(canvasObj.xy(e.offsetX),canvasObj.xy(e.offsetY));
+            canvasObj.context.stroke();
+            canvasObj.jsonParser(undefined ,undefined ,[startX,startY],[e.offsetX,e.offsetY])
+
+            // canvasObj.subContext.restore();
+            // canvasObj.subContext.save();
         },{once:true})
       }
     }
-    this.canvas.addEventListener("mousedown", startPainting);
+    this.canvas.addEventListener("mousedown", startFunction
+    );
   };
+
 
 
   //펜 툴
-  activatePen(){
+  penTool(){
     let canvasObj = this;
-    let painting = false;
-    let pathArray = []
-    let startX;
-    let startY;
-    let path = new Path2D()
-    function startPainting(e) {
+    let moveHandler;
+    function startFunction
+    (e) {
       if(canvasObj.activatedTool!=="pen"){
-        this.removeEventListener("mousemove", onMouseMove);
-        this.removeEventListener("mousedown", startPainting);
-        this.removeEventListener("mouseup", stopPainting);
-        this.removeEventListener("mouseleave", stopPainting);
+        this.removeEventListener("mousedown", startFunction
+        );
       } else {
-        painting=true;
-        startX = e.offsetX;
-        startY = e.offsetY;
+          let startX = e.offsetX;
+          let startY = e.offsetY;
+          let pathArray = [];
+          canvasObj.context.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
+          this.addEventListener("mousemove", moveHandler = function (e){
+              canvasObj.pathLogger(pathArray,e.offsetX,e.offsetY)
+              canvasObj.context.lineTo(canvasObj.xy(e.offsetX),canvasObj.xy(e.offsetY));
+              canvasObj.context.stroke()
+          })
+        this.addEventListener("mouseup",(e)=>{
+          this.removeEventListener("mousemove", moveHandler)
+          canvasObj.jsonParser(undefined ,undefined ,[startX,startY],undefined, pathArray)
+        },{once:true})
       }
     }
-    function stopPainting(e) {
-      painting=false;
-      canvasObj.pushPath(path)
-    }
-    function onMouseMove(e){
-      if(!painting) {
-        path.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
-      }
-      else {
-        canvasObj.pathLogger(pathArray,e.offsetX,e.offsetY)
-        path.lineTo(canvasObj.xy(e.offsetX),canvasObj.xy(e.offsetY));
-        canvasObj.context.stroke(path)
-      }}
-        canvasObj.jsonParser(undefined ,undefined ,[startX,startY],undefined, pathArray)
-    this.canvas.addEventListener("mousemove", onMouseMove);
-    this.canvas.addEventListener("mousedown", startPainting);
-    this.canvas.addEventListener("mouseup", stopPainting);
-    this.canvas.addEventListener("mouseleave", stopPainting);
+    this.canvas.addEventListener("mousedown", startFunction);
   };
 
-  //보조캔버스 on
-  subActivation(){
-    this.canvas.style.filter = "blur(1px)";
-    this.subCanvas.classList.remove("subCanvasX");
-    this.subCanvas.classList.add("subCanvasO");
-  }
-  //보조캔버스 off
-  subDeactivation(){
-    this.canvas.style.filter = "blur(0px)";
-    this.subCanvas.classList.remove("subCanvasO");
-    this.subCanvas.classList.add("subCanvasX");
-    this.subContext.restore();
+  //보조캔버스 클리어
+  subCanvasClear(){
+    // this.subContext.restore();
     this.subContext.clearRect(0,0,this.subCanvas.width,this.subCanvas.height);
   }
   // 펜 기능에서 좌표값을 배열에 담음 (펜 메서드 안에 집어넣어도딜듯)
@@ -295,6 +270,9 @@ class CanvasCreate {
         this.context.stroke();
       }
     })
+    this.layerArray.forEach((c)=>{
+      this.context.drawImage(c,0,0)
+    })
     console.log(this.jsonArray)
     console.log(JSON.stringify(this.jsonArray));
     console.log(JSON.parse(JSON.stringify(this.jsonArray)));
@@ -302,38 +280,15 @@ class CanvasCreate {
 
   //사이드바 각 버튼에 기능부여
   toolActivation(){
-    $("stampBtn").addEventListener("click", ()=>{
-      if(this.activatedTool==="stamp") {
-        return;
-      }
-      else {
-        this.activatedTool="stamp";
-        this['activateStamp']()
-      }
-    });
-    $("penBtn").addEventListener("click", ()=>{
-      if(this.activatedTool==="pen") {
-        return;
-      } else {
-        this.activatedTool="pen";
-        this.activatePen();
-      }
-    });
-    $("lineBtn").addEventListener("click", ()=>{
-      if(this.activatedTool==="line") {
-        return;
-      } else {
-        this.activatedTool = "line";
-        this.activateLine();
-      }
-    });
-    $("selectorBtn").addEventListener("click", ()=>{
-      if(this.activatedTool==="selector") {
-        return
-      } else {
-      this.activatedTool="selector";
-      this.activateSelector();
-      }
+    const tools = ["stamp","pen","line","selector"];
+    tools.forEach((tool)=>{
+      $(tool+"Btn").addEventListener("click",()=>{
+        if(this.activatedTool===tool) return;
+        else {
+          this.activatedTool=tool;
+          this[tool+"Tool"]();
+        }
+      })
     });
 
     ///////배열 테스트용/////
@@ -344,7 +299,7 @@ class CanvasCreate {
     ///////배열 테스트용/////
     $("loadBtn").addEventListener("click", ()=>{
       this.pathLoader()
-    },{once:true});
+    });
 
 
     ///////배율조정 테스트용/////
@@ -353,6 +308,7 @@ class CanvasCreate {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.functionZoom *= 1.2;
         this.context.scale(1.2, 1.2);
+        this.subContext.scale(1.2, 1.2);
         this.pathLoader()
       }
     });
@@ -360,6 +316,7 @@ class CanvasCreate {
       if (this.functionZoom>1.05){
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
         this.context.scale(1/1.2,1/1.2)
+        this.subContext.scale(1/1.2,1/1.2)
         this.functionZoom/=1.2;
         this.pathLoader()
       }
