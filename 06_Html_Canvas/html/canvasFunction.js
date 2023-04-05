@@ -114,10 +114,6 @@ class CanvasCreate {
     this.layerArray.push({img,x,y})
     this.context.drawImage(img, x, y)
   }
-  pushPath(pathObj){
-    this.layerArray.push(pathObj)
-    this.context.stroke(pathObj)
-  }
   pushCanvas(canvas){
     let tempImg = new Image();
     tempImg.src = canvas.toDataURL()
@@ -128,7 +124,7 @@ class CanvasCreate {
   //스템프 툴
   stampTool() {
     let canvasObj = this
-    function drawHandler(e){
+    function startFunction(e){
       if(canvasObj.activatedTool!=="stamp"){
         canvasObj.canvas.removeEventListener("mousedown",drawHandler)
       } else {
@@ -138,17 +134,37 @@ class CanvasCreate {
         canvasObj.pushImage(imgElem, canvasObj.xy(e.offsetX-25),canvasObj.xy(e.offsetY-25))
       }
     }
-    this.canvas.addEventListener("mousedown",drawHandler)
+    this.canvas.addEventListener("mousedown",startFunction)
   };
 
 
   //미완성
   selectorTool(){
+    let canvasObj = this
     this.canvas.addEventListener("mousemove",(e)=>{
       let x = this.xy(e.offsetX)
       let y = this.xy(e.offsetY)
-      this.jsonArray.forEach((c)=>{
-      })
+
+      function startFunction(){
+        canvasObj.jsonArray.forEach((c)=>{
+          if((x>=c.range[0][0] && x<=c.range[1][0] || x<=c.range[0][0] && x>=c.range[1][0])
+            &&
+            (y<=c.range[0][1] && y>=c.range[1][1] || y>=c.range[0][1] && y<=c.range[1][1])
+             ){
+            canvasObj.context.beginPath();
+            canvasObj.context.strokeStyle="grey";
+            canvasObj.context.lineWidth=0.1;
+            canvasObj.context.setLineDash([10, 10]);
+            canvasObj.context.strokeRect(c.range[0][0],c.range[0][1],c.range[1][0]-c.range[0][0],c.range[1][1]-c.range[0][1]);
+            canvasObj.context.stroke();
+            canvasObj.context.restore();
+            canvasObj.context.save();
+          }
+        })
+
+      }
+      this.canvas.addEventListener("mousedown",startFunction)
+
     })
   };
   textTool(){};
@@ -185,8 +201,6 @@ class CanvasCreate {
             canvasObj.context.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
             canvasObj.context.lineTo(canvasObj.xy(e.offsetX),canvasObj.xy(e.offsetY));
             canvasObj.context.stroke();
-            console.log(canvasObj.context.strokeStyle)
-            console.log(canvasObj.context.lineWidth)
             canvasObj.jsonParser([startX,startY],[e.offsetX,e.offsetY])
         },{once:true})
       }
@@ -288,17 +302,28 @@ class CanvasCreate {
   jsonParser(
              moveTo= undefined,
              lineTo= undefined,
-             path= undefined){
+             path= undefined)
+  {
+
     let tempObj = {
       strokeStyle : this.context.strokeStyle,
       lineWidth : this.context.lineWidth,
       matrix : this.context.getTransform(),
       moveTo : moveTo,
       lineTo : lineTo,
-      path : path
+      path : path,
+      range : [],
+      }
+      //범위 저장용
+    if(tempObj.moveTo){
+      tempObj.range.push(moveTo)
+      if(lineTo) {
+        tempObj.range.push(lineTo)
+      } else {
+        tempObj.range.push(tempObj.path[tempObj.path.length-1])
+      }
 
     }
-    console.log(tempObj.matrix);
     return this.jsonArray.push(tempObj);
 
   }

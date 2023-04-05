@@ -88,14 +88,6 @@ canvas{
   background-color: rgba(211, 211, 211, 0.73);
 }
 
-/*button{*/
-/*  background-color: transparent;*/
-/*  border: none;*/
-/*  margin-left: 2px !important;*/
-/*  padding: 5px;*/
-/*  border-radius: 5px;*/
-/*  color: gray;*/
-/*}*/
 
 
 .accordion-item{
@@ -119,7 +111,7 @@ canvas{
 
 .accordion-header, .accordion-button {
   border-radius: 10px !important;
-  height: 65px;
+  height: 60px;
 }
 .accordion-header{
   font-size: 0px;
@@ -193,24 +185,20 @@ canvas{
   padding: 0px 15px 0px 0px;
 }
 .scheduleContainer{
-
   margin: 0px;
   height: 100%;
 }
 .scheduleRow{
-
   height: 100%;
 }
 .scheduleLeft, .scheduleTitle, .scheduleContent, .scheduleRight{
-  padding-top: 8px;
-  padding-bottom: 0px;
 
 }
 .scheduleLeft{
   background-color: rgb(199, 220, 255);
   box-sizing: border-box;
   height: 100%;
-  line-height: 40px;
+  line-height: 55px;
   font-weight: bold;
   border-right: 15px solid snow;
   border-left: 30px solid rgb(161, 193, 255);
@@ -224,8 +212,14 @@ canvas{
   border-left-color: rgba(108, 108, 108, 0.69);
 }
 .scheduleCenter{
+  height: 100%;
   position: relative;
+  overflow: hidden !important;
 }
+.scheduleCenterInner{
+  line-height: 60px;
+}
+
 .scheduleCenter::before{
   position: absolute;
   content: "";
@@ -235,6 +229,8 @@ canvas{
   right: 0px;
   bottom: 0px;
   opacity: 0.10;
+  height: 100%;
+
 }
 
 
@@ -243,6 +239,7 @@ canvas{
 }
 
 .scheduleContent{
+
   font-weight: bold;
   /*color: #737373;*/
   color: #8c8c8c;
@@ -254,10 +251,9 @@ canvas{
   /*text-shadow: -1px 0 transparent, 1px 1px #8eabe3, 1px 2px #8eabe3, 0 -1px transparent;*/
   color: #565656;
   font-weight: bolder;
-
-  font-size: 30px;
+  font-size: 25px;
   border-radius: 20px;
-  padding-left: 25px;
+  padding-left: 10px;
 }
 /*.scheduleTitleText{*/
 /*  padding: 3px 15px;*/
