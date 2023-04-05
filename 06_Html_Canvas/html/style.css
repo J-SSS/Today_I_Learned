@@ -12,6 +12,8 @@ body{
 canvas{
   position: relative;
   width: 100%;
+
+
 }
 
 .headerHome{
@@ -53,9 +55,9 @@ canvas{
   line-height: 50px;
 }
 .dayHeaderMain{
-  font-size: 25px;
+  font-size: 30px;
   line-height: 40px;
-  color: lightgrey;
+  color: #5b5b5b;
 }
 .dayHeaderSide{
   line-height: 40px;
@@ -64,7 +66,7 @@ canvas{
 }
 .dayTitle{
   font-weight: bolder;
-  color: #818181;
+  color: #232323;
   text-align: center;
 }
 
@@ -117,7 +119,7 @@ canvas{
 
 .accordion-header, .accordion-button {
   border-radius: 10px !important;
-  height: 70px;
+  height: 65px;
 }
 .accordion-header{
   font-size: 0px;
@@ -208,12 +210,13 @@ canvas{
   background-color: rgb(199, 220, 255);
   box-sizing: border-box;
   height: 100%;
+  line-height: 40px;
   font-weight: bold;
   border-right: 15px solid snow;
   border-left: 30px solid rgb(161, 193, 255);
   border-radius: 10px 0px 0px 10px;
   text-align: left;
-  font-size: 18px;
+  font-size: 25px;
   color: white;
   text-shadow: -1px 0 lightgrey, 1px 1px gray, 1px 2px gray, 0 -1px lightgrey;
 }
@@ -240,20 +243,19 @@ canvas{
 }
 
 .scheduleContent{
-
   font-weight: bold;
   /*color: #737373;*/
   color: #8c8c8c;
   /*text-shadow: -1px 0 lightgrey, 0 1px lightgrey, 1px 0 lightgrey, 0 -1px lightgrey;*/
-  font-size: 17px;
+  font-size: 20px;
   padding-left: 25px;
-
 }
 .scheduleTitle{
-  /*text-shadow: -1px 0 whitesmoke, 2px 1px lightgrey, 1px 0 lightgrey, 0 -1px whitesmoke;*/
+  /*text-shadow: -1px 0 transparent, 1px 1px #8eabe3, 1px 2px #8eabe3, 0 -1px transparent;*/
+  color: #565656;
   font-weight: bolder;
-  color: rgb(75, 75, 75);
-  font-size: 21px;
+
+  font-size: 30px;
   border-radius: 20px;
   padding-left: 25px;
 }

@@ -181,16 +181,17 @@ class CanvasCreate {
           this.addEventListener("mouseup",(e)=>{
             this.removeEventListener("mousemove", moveHandler)
             canvasObj.subCanvasClear()
+            canvasObj.context.beginPath()
             canvasObj.context.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
             canvasObj.context.lineTo(canvasObj.xy(e.offsetX),canvasObj.xy(e.offsetY));
             canvasObj.context.stroke();
-            canvasObj.jsonParser(undefined ,undefined ,[startX,startY],[e.offsetX,e.offsetY])
-
+            console.log(canvasObj.context.strokeStyle)
+            console.log(canvasObj.context.lineWidth)
+            canvasObj.jsonParser([startX,startY],[e.offsetX,e.offsetY])
         },{once:true})
       }
     }
-    this.canvas.addEventListener("mousedown", startFunction
-    );
+    this.canvas.addEventListener("mousedown", startFunction);
 
   };
   //사각형 툴
@@ -229,7 +230,7 @@ class CanvasCreate {
                                   canvasObj.xy(e.offsetX)-canvasObj.xy(startX),
                                   canvasObj.xy(e.offsetY)-canvasObj.xy(startY));
           canvasObj.context.stroke();
-          canvasObj.jsonParser(undefined ,undefined ,[startX,startY],[e.offsetX,e.offsetY])
+          canvasObj.jsonParser([startX,startY],[e.offsetX,e.offsetY])
         },{once:true})
       }
     }
@@ -254,6 +255,7 @@ class CanvasCreate {
           let startX = e.offsetX;
           let startY = e.offsetY;
           let pathArray = [];
+          canvasObj.context.beginPath()
           canvasObj.context.moveTo(canvasObj.xy(startX),canvasObj.xy(startY));
           this.addEventListener("mousemove", moveHandler = function (e){
               canvasObj.pathLogger(pathArray,e.offsetX,e.offsetY)
@@ -262,7 +264,7 @@ class CanvasCreate {
           })
         this.addEventListener("mouseup",(e)=>{
           this.removeEventListener("mousemove", moveHandler)
-          canvasObj.jsonParser(undefined ,undefined ,[startX,startY],undefined, pathArray)
+          canvasObj.jsonParser([startX,startY],undefined, pathArray)
         },{once:true})
       }
     }
@@ -279,25 +281,24 @@ class CanvasCreate {
   }
   // 펜 기능에서 좌표값을 배열에 담음 (펜 메서드 안에 집어넣어도딜듯)
   pathLogger(arr,x,y){
-
     let logger = [x,y];
     return arr.push(logger);
-
   }
   // 경로값 저장용
-  jsonParser(strokeStyle='black',
-             lineWidth=1,
+  jsonParser(
              moveTo= undefined,
              lineTo= undefined,
              path= undefined){
-
     let tempObj = {
-      strokeStyle : strokeStyle,
-      lineWidth : lineWidth,
+      strokeStyle : this.context.strokeStyle,
+      lineWidth : this.context.lineWidth,
+      matrix : this.context.getTransform(),
       moveTo : moveTo,
       lineTo : lineTo,
       path : path
+
     }
+    console.log(tempObj.matrix);
     return this.jsonArray.push(tempObj);
 
   }
@@ -305,6 +306,9 @@ class CanvasCreate {
   pathLoader(){
 
     this.jsonArray.forEach((c)=>{
+      this.context.strokeStyle=c.strokeStyle;
+      this.context.lineWidth=c.lineWidth;
+      this.context.transform(c.matrix[0],c.matrix[1],c.matrix[2],c.matrix[3],c.matrix[4],c.matrix[5]);
       this.context.beginPath()
       this.context.moveTo(c.moveTo[0],c.moveTo[1])
       if(c.lineTo===undefined){
@@ -316,6 +320,9 @@ class CanvasCreate {
         this.context.lineTo(c.lineTo[0],c.lineTo[1])
         this.context.stroke();
       }
+      this.context.restore();
+      this.context.save();
+
     })
     this.layerArray.forEach((c)=>{
       this.context.drawImage(c,0,0)
@@ -356,7 +363,7 @@ class CanvasCreate {
     ///////배율조정 테스트용/////
     $("plusBtn").addEventListener("click",()=>{
       if (this.functionZoom<5.00) {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.functionZoom *= 1.2;
         this.context.scale(1.2, 1.2);
         this.subContext.scale(1.2, 1.2);
@@ -379,6 +386,7 @@ class CanvasCreate {
       let button = document.querySelector(`.${content}`);
       button.onclick = () => {
         this.context.strokeStyle = content;
+        this.context.fillStyle = content;
       };
     });
   }

@@ -11,7 +11,7 @@ Array.from(newCanvas).forEach((canvasFrame)=>{
     let newCanvas = new CanvasCreate()
     let mainC = newCanvas.canvas
     let subC = newCanvas.subCanvas
-
+    // subC.style.display="none"
     subC.classList.add("subCanvas")
     canvasFrame.append(subC)
     canvasFrame.append(mainC)
@@ -34,11 +34,11 @@ rowInputBtn.addEventListener("click",(e)=>{
     let temp = 500/1200*acBody.clientWidth+16
     acBody.style.height =temp+"px";
     let newCanvas = new CanvasCreate()
-    let mainC = newCanvas.canvas
     let subC = newCanvas.subCanvas
+    let mainC = newCanvas.canvas
     subC.classList.add("subCanvasX")
-    acBody.append(subC)
     acBody.append(mainC)
+    acBody.append(subC)
   },{once:true})
   scheduleBox.appendChild(sample)
 })
