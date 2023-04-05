@@ -20,12 +20,11 @@ class CanvasCreate {
     // 레이어 구현용 보조캔버스
     this.subCanvas = document.createElement("canvas");
     this.subContext = this.subCanvas.getContext("2d");
-    //캔버스 초기화
+    // 캔버스 초기화
     this.init()
   }
-
-  //초기설정 따로빼줬음
   init(){
+    // 스타일 관련 초기 설정
     this.index = ++canvasCnt;
     this.canvas.width = 1200;
     this.canvas.height = 500;
@@ -44,15 +43,10 @@ class CanvasCreate {
     this.context.save();
     this.subContext.save();
 
+    // 버튼활성화 및 배경디자인 생성
     this.pageLiner(this.canvas.width,this.canvas.height)
     this.toolActivation()
-
     this.colorBtn()
-    // test
-    // this.canvas.addEventListener("click",()=>{
-    //   console.log(this.index)
-    //   console.log(this.layerArray)
-    // })
 
   }
 
@@ -154,22 +148,23 @@ class CanvasCreate {
       let x = this.xy(e.offsetX)
       let y = this.xy(e.offsetY)
       this.jsonArray.forEach((c)=>{
-
       })
     })
   };
+  textTool(){};
+  palateTool(){ };
+  postTool(){};
 
   //직선 툴
   lineTool(){
+
     let canvasObj = this;
     let moveHandler;
-    function startFunction
-    (e) {
+    function startFunction(e) {
       if(canvasObj.activatedTool!=="line"){
         this.removeEventListener("mousedown", startFunction
         )
       } else {
-
         let startX = e.offsetX;
         let startY= e.offsetY;
         this.addEventListener("mousemove", moveHandler = function (e){
@@ -191,19 +186,63 @@ class CanvasCreate {
             canvasObj.context.stroke();
             canvasObj.jsonParser(undefined ,undefined ,[startX,startY],[e.offsetX,e.offsetY])
 
-            // canvasObj.subContext.restore();
-            // canvasObj.subContext.save();
         },{once:true})
       }
     }
     this.canvas.addEventListener("mousedown", startFunction
     );
+
+  };
+  //사각형 툴
+  rectTool(){
+
+    let canvasObj = this;
+    let moveHandler;
+    function startFunction(e) {
+      if(canvasObj.activatedTool!=="rect"){
+        this.removeEventListener("mousedown", startFunction
+        )
+      } else {
+        let startX = e.offsetX;
+        let startY= e.offsetY;
+        this.addEventListener("mousemove", moveHandler = function (e){
+          canvasObj.subContext.lineWidth=2;
+          canvasObj.subContext.strokeStyle="grey";
+          canvasObj.subContext.setLineDash([10, 10]);
+
+          canvasObj.subContext.clearRect(0,0,canvasObj.canvas.width,canvasObj.canvas.height)
+          // canvasObj.subContext.beginPath()
+
+          canvasObj.subContext.strokeRect(
+                                        canvasObj.xy(startX),
+                                        canvasObj.xy(startY),
+                                      canvasObj.xy(e.offsetX)-canvasObj.xy(startX),
+                                      canvasObj.xy(e.offsetY)-canvasObj.xy(startY));
+          canvasObj.subContext.stroke()
+        })
+        this.addEventListener("mouseup",(e)=>{
+          this.removeEventListener("mousemove", moveHandler)
+          canvasObj.subCanvasClear()
+          canvasObj.context.fillRect(
+                                    canvasObj.xy(startX),
+                                    canvasObj.xy(startY),
+                                  canvasObj.xy(e.offsetX)-canvasObj.xy(startX),
+                                  canvasObj.xy(e.offsetY)-canvasObj.xy(startY));
+          canvasObj.context.stroke();
+          canvasObj.jsonParser(undefined ,undefined ,[startX,startY],[e.offsetX,e.offsetY])
+        },{once:true})
+      }
+    }
+    this.canvas.addEventListener("mousedown", startFunction
+    );
+
   };
 
 
 
   //펜 툴
   penTool(){
+
     let canvasObj = this;
     let moveHandler;
     function startFunction
@@ -228,17 +267,22 @@ class CanvasCreate {
       }
     }
     this.canvas.addEventListener("mousedown", startFunction);
+
   };
 
   //보조캔버스 클리어
   subCanvasClear(){
+
     // this.subContext.restore();
     this.subContext.clearRect(0,0,this.subCanvas.width,this.subCanvas.height);
+
   }
   // 펜 기능에서 좌표값을 배열에 담음 (펜 메서드 안에 집어넣어도딜듯)
   pathLogger(arr,x,y){
+
     let logger = [x,y];
     return arr.push(logger);
+
   }
   // 경로값 저장용
   jsonParser(strokeStyle='black',
@@ -246,6 +290,7 @@ class CanvasCreate {
              moveTo= undefined,
              lineTo= undefined,
              path= undefined){
+
     let tempObj = {
       strokeStyle : strokeStyle,
       lineWidth : lineWidth,
@@ -254,9 +299,11 @@ class CanvasCreate {
       path : path
     }
     return this.jsonArray.push(tempObj);
+
   }
   // 저장돤 경로를 불러옴
   pathLoader(){
+
     this.jsonArray.forEach((c)=>{
       this.context.beginPath()
       this.context.moveTo(c.moveTo[0],c.moveTo[1])
@@ -276,11 +323,14 @@ class CanvasCreate {
     console.log(this.jsonArray)
     console.log(JSON.stringify(this.jsonArray));
     console.log(JSON.parse(JSON.stringify(this.jsonArray)));
+
   }
 
   //사이드바 각 버튼에 기능부여
   toolActivation(){
-    const tools = ["stamp","pen","line","selector"];
+
+    const tools = ["stamp","pen","line","selector","rect","text","palate","post"];
+
     tools.forEach((tool)=>{
       $(tool+"Btn").addEventListener("click",()=>{
         if(this.activatedTool===tool) return;
@@ -291,6 +341,7 @@ class CanvasCreate {
       })
     });
 
+    // 테스트중인 기능들
     ///////배열 테스트용/////
     $("removeBtn").addEventListener("click", ()=>{
       this.activatedTool="default";
@@ -341,13 +392,6 @@ class CanvasCreate {
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 // 여기서부터는 테스트용..
-/*
-this.context.fillRect(0,0,50,50)
-this.context.fillRect(100,0,50,50)
-this.context.fillRect(0,100,50,50)
-this.context.fillRect(50,50,50,50)
-this.context.fillRect(100,100,50,50)
-*/
 
 //포인터 변경기능
 // canvas.style.cursor = 'pointer';
