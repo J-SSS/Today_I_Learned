@@ -131,6 +131,7 @@ class CanvasCreate {
         canvasObj.subContext.clearRect(0,0,100,100)
         let imgElem = new Image();
         imgElem.src = "../img/star.png"
+        testFunction2(canvasObj);
         canvasObj.pushImage(imgElem, canvasObj.xy(e.offsetX-25),canvasObj.xy(e.offsetY-25))
       }
     }

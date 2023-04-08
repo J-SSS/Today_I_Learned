@@ -1,6 +1,8 @@
 
 ////////////////// 페이지 기능 관련  //////////////////
-
+function testFunction2(a){
+  console.log(a)
+}
 const newCanvas = document.getElementsByClassName("accordion-body")
 Array.from(newCanvas).forEach((canvasFrame)=>{
   canvasFrame.addEventListener("click",()=>{
