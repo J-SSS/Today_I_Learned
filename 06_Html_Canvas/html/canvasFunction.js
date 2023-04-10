@@ -1,5 +1,5 @@
 
-function $(x){return document.getElementById(x)}
+
 const box = document.querySelector(".accordion-header").clientWidth-40
 let canvasCnt = 0;
 
@@ -12,6 +12,7 @@ class CanvasCreate {
   activatedTool; //활성화 툴 체크용
   pageZoom = box/1200; //페이지 사이즈 변화에 따른 배율 조졍용(아직)
   functionZoom = 1.0; //줌기능 배율 조졍용
+  currentCanvas = new Image(); //배율조정시 리로드용
 
   constructor() {
     // 캔버스 본체
@@ -48,6 +49,7 @@ class CanvasCreate {
     this.toolActivation()
     this.colorBtn()
 
+    let currentCanvas = new Image();
   }
 
   // 배율 조정 및 윈도우 사이즈 조절시 수정된 좌표값 생성 함수
@@ -103,7 +105,7 @@ class CanvasCreate {
       this.context.stroke();
       y+=10;
     }
-    this.pushCanvas(this.canvas)
+    this.currentCanvas.src = this.canvas.toDataURL();
     this.context.restore()
     this.context.save()
     ///배열에 들어간 캔버스가 계속 변경되는 문제 해결 필요
@@ -147,22 +149,36 @@ class CanvasCreate {
       let y = this.xy(e.offsetY)
 
       function startFunction(){
-        canvasObj.jsonArray.forEach((c)=>{
-          if((x>=c.range[0][0] && x<=c.range[1][0] || x<=c.range[0][0] && x>=c.range[1][0])
-            &&
-            (y<=c.range[0][1] && y>=c.range[1][1] || y>=c.range[0][1] && y<=c.range[1][1])
-             ){
-            canvasObj.context.beginPath();
-            canvasObj.context.strokeStyle="grey";
-            canvasObj.context.lineWidth=0.1;
-            canvasObj.context.setLineDash([10, 10]);
-            canvasObj.context.strokeRect(c.range[0][0],c.range[0][1],c.range[1][0]-c.range[0][0],c.range[1][1]-c.range[0][1]);
-            canvasObj.context.stroke();
-            canvasObj.context.restore();
-            canvasObj.context.save();
-          }
-        })
-
+        for(let i = 0 ; i<canvasObj.jsonArray.length ; i++){
+          if((x>=canvasObj.jsonArray[i].range[0][0] && x<=canvasObj.jsonArray[i].range[1][0] || x<=canvasObj.jsonArray[i].range[0][0] && x>=canvasObj.jsonArray[i].range[1][0])
+                &&
+                (y<=canvasObj.jsonArray[i].range[0][1] && y>=canvasObj.jsonArray[i].range[1][1] || y>=canvasObj.jsonArray[i].range[0][1] && y<=canvasObj.jsonArray[i].range[1][1])
+                 ){
+                canvasObj.context.beginPath();
+                canvasObj.context.strokeStyle="grey";
+                canvasObj.context.lineWidth=0.1;
+                canvasObj.context.setLineDash([10, 10]);
+                canvasObj.context.strokeRect(canvasObj.jsonArray[i].range[0][0],canvasObj.jsonArray[i].range[0][1],canvasObj.jsonArray[i].range[1][0]-canvasObj.jsonArray[i].range[0][0],canvasObj.jsonArray[i].range[1][1]-canvasObj.jsonArray[i].range[0][1]);
+                canvasObj.context.stroke();
+                canvasObj.context.restore();
+                canvasObj.context.save();
+                break;
+              }
+        }
+        // canvasObj.jsonArray.forEach((c)=>{
+        //   if((x>=c.range[0][0] && x<=c.range[1][0] || x<=c.range[0][0] && x>=c.range[1][0])
+        //     &&
+        //     (y<=c.range[0][1] && y>=c.range[1][1] || y>=c.range[0][1] && y<=c.range[1][1])
+        //      ){
+        //     canvasObj.context.beginPath();
+        //     canvasObj.context.strokeStyle="grey";
+        //     canvasObj.context.lineWidth=0.1;
+        //     canvasObj.context.setLineDash([10, 10]);
+        //     canvasObj.context.strokeRect(c.range[0][0],c.range[0][1],c.range[1][0]-c.range[0][0],c.range[1][1]-c.range[0][1]);
+        //     canvasObj.context.stroke();
+        //     canvasObj.context.restore();
+        //     canvasObj.context.save();
+        //   }})
       }
       this.canvas.addEventListener("mousedown",startFunction)
 
@@ -325,6 +341,7 @@ class CanvasCreate {
       }
 
     }
+    this.currentCanvas.src = this.canvas.toDataURL()
     return this.jsonArray.push(tempObj);
 
   }
@@ -336,14 +353,14 @@ class CanvasCreate {
       this.context.lineWidth=c.lineWidth;
       this.context.transform(c.matrix[0],c.matrix[1],c.matrix[2],c.matrix[3],c.matrix[4],c.matrix[5]);
       this.context.beginPath()
-      this.context.moveTo(c.moveTo[0],c.moveTo[1])
+      this.context.moveTo(this.xy(c.moveTo[0]),this.xy(c.moveTo[1]))
       if(c.lineTo===undefined){
         c.path.forEach((p)=>{
           this.context.lineTo(p[0],p[1])
           this.context.stroke();
         })
       } else {
-        this.context.lineTo(c.lineTo[0],c.lineTo[1])
+        this.context.lineTo(this.xy(c.lineTo[0]),this.xy(c.lineTo[1]))
         this.context.stroke();
       }
       this.context.restore();
@@ -358,6 +375,11 @@ class CanvasCreate {
     console.log(JSON.parse(JSON.stringify(this.jsonArray)));
 
   }
+  // currentCanvas(){
+  //   let img = new Image()
+  //   img.src=this.canvas.toDataURL();
+  //   return img;
+  // }
 
   //사이드바 각 버튼에 기능부여
   toolActivation(){
@@ -365,7 +387,7 @@ class CanvasCreate {
     const tools = ["stamp","pen","line","selector","rect","text","palate","post"];
 
     tools.forEach((tool)=>{
-      $(tool+"Btn").addEventListener("click",()=>{
+      document.getElementById(tool+"Btn").addEventListener("click",()=>{
         if(this.activatedTool===tool) return;
         else {
           this.activatedTool=tool;
@@ -376,31 +398,34 @@ class CanvasCreate {
 
     // 테스트중인 기능들
     ///////배열 테스트용/////
-    $("removeBtn").addEventListener("click", ()=>{
+    document.getElementById("removeBtn").addEventListener("click", ()=>{
       this.activatedTool="default";
       this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
     });
     ///////배열 테스트용/////
-    $("loadBtn").addEventListener("click", ()=>{
+    document.getElementById("loadBtn").addEventListener("click", ()=>{
       this.pathLoader()
     });
 
 
     ///////배율조정 테스트용/////
-    $("plusBtn").addEventListener("click",()=>{
+    document.getElementById("plusBtn").addEventListener("click",()=>{
       if (this.functionZoom<5.00) {
-        // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.functionZoom *= 1.2;
         this.context.scale(1.2, 1.2);
         this.subContext.scale(1.2, 1.2);
-        this.pathLoader()
+        // this.pathLoader()
+
+
+        this.context.drawImage(this.currentCanvas,0,0)
       }
     });
-    $("minusBtn").addEventListener("click",()=>{
+    document.getElementById("minusBtn").addEventListener("click",()=>{
       if (this.functionZoom>1.05){
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
-        this.context.scale(1/1.2,1/1.2)
-        this.subContext.scale(1/1.2,1/1.2)
+        let img = new Image();
+        img.src = canvas
         this.functionZoom/=1.2;
         this.pathLoader()
       }
