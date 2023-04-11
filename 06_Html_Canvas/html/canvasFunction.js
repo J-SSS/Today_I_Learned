@@ -162,23 +162,8 @@ class CanvasCreate {
                 canvasObj.context.stroke();
                 canvasObj.context.restore();
                 canvasObj.context.save();
-                break;
-              }
+              }break;
         }
-        // canvasObj.jsonArray.forEach((c)=>{
-        //   if((x>=c.range[0][0] && x<=c.range[1][0] || x<=c.range[0][0] && x>=c.range[1][0])
-        //     &&
-        //     (y<=c.range[0][1] && y>=c.range[1][1] || y>=c.range[0][1] && y<=c.range[1][1])
-        //      ){
-        //     canvasObj.context.beginPath();
-        //     canvasObj.context.strokeStyle="grey";
-        //     canvasObj.context.lineWidth=0.1;
-        //     canvasObj.context.setLineDash([10, 10]);
-        //     canvasObj.context.strokeRect(c.range[0][0],c.range[0][1],c.range[1][0]-c.range[0][0],c.range[1][1]-c.range[0][1]);
-        //     canvasObj.context.stroke();
-        //     canvasObj.context.restore();
-        //     canvasObj.context.save();
-        //   }})
       }
       this.canvas.addEventListener("mousedown",startFunction)
 
@@ -227,7 +212,6 @@ class CanvasCreate {
   };
   //사각형 툴
   rectTool(){
-
     let canvasObj = this;
     let moveHandler;
     function startFunction(e) {
@@ -238,23 +222,26 @@ class CanvasCreate {
         let startX = e.offsetX;
         let startY= e.offsetY;
         this.addEventListener("mousemove", moveHandler = function (e){
-          canvasObj.subContext.lineWidth=2;
-          canvasObj.subContext.strokeStyle="grey";
-          canvasObj.subContext.setLineDash([10, 10]);
+          canvasObj.context.beginPath();
+          canvasObj.context.lineWidth=2;
+          canvasObj.context.strokeStyle="grey";
+          canvasObj.context.setLineDash([10, 10]);
 
-          canvasObj.subContext.clearRect(0,0,canvasObj.canvas.width,canvasObj.canvas.height)
-          // canvasObj.subContext.beginPath()
+          canvasObj.context.clearRect(0,0,canvasObj.canvas.width,canvasObj.canvas.height)
+          canvasObj.context.drawImage(canvasObj.currentCanvas,0,0)
 
-          canvasObj.subContext.strokeRect(
+          canvasObj.context.strokeRect(
                                         canvasObj.xy(startX),
                                         canvasObj.xy(startY),
                                       canvasObj.xy(e.offsetX)-canvasObj.xy(startX),
                                       canvasObj.xy(e.offsetY)-canvasObj.xy(startY));
-          canvasObj.subContext.stroke()
+          canvasObj.context.stroke()
         })
         this.addEventListener("mouseup",(e)=>{
           this.removeEventListener("mousemove", moveHandler)
-          canvasObj.subCanvasClear()
+          canvasObj.context.clearRect(0,0,canvasObj.canvas.width,canvasObj.canvas.height)
+          canvasObj.context.drawImage(canvasObj.currentCanvas,0,0)
+          canvasObj.context.beginPath();
           canvasObj.context.fillRect(
                                     canvasObj.xy(startX),
                                     canvasObj.xy(startY),
@@ -262,6 +249,8 @@ class CanvasCreate {
                                   canvasObj.xy(e.offsetY)-canvasObj.xy(startY));
           canvasObj.context.stroke();
           canvasObj.jsonParser([startX,startY],[e.offsetX,e.offsetY])
+          // canvasObj.context.restore()
+          // canvasObj.context.save()
         },{once:true})
       }
     }
@@ -269,6 +258,7 @@ class CanvasCreate {
     );
 
   };
+
 
 
 
@@ -375,11 +365,6 @@ class CanvasCreate {
     console.log(JSON.parse(JSON.stringify(this.jsonArray)));
 
   }
-  // currentCanvas(){
-  //   let img = new Image()
-  //   img.src=this.canvas.toDataURL();
-  //   return img;
-  // }
 
   //사이드바 각 버튼에 기능부여
   toolActivation(){
@@ -446,6 +431,12 @@ class CanvasCreate {
 
 };//클래스 닫기
 
+document.getElementById("settingBtn").addEventListener("click",()=>{
+  let CCC = document.getElementById("123");
+  console.log(CCC)
+  let CCCO = CCC.getContext("2d");
+  CCCO.strokeRect(0,0,50,50);
+})
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////

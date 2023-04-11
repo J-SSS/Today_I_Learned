@@ -14,6 +14,7 @@ Array.from(newCanvas).forEach((canvasFrame)=>{
     let mainC = newCanvas.canvas
     let subC = newCanvas.subCanvas
     // subC.style.display="none"
+    mainC.setAttribute('id','123');
     subC.classList.add("subCanvas")
     canvasFrame.append(subC)
     canvasFrame.append(mainC)
@@ -38,7 +39,9 @@ rowInputBtn.addEventListener("click",(e)=>{
     let newCanvas = new CanvasCreate()
     let subC = newCanvas.subCanvas
     let mainC = newCanvas.canvas
+
     subC.classList.add("subCanvasX")
+
     acBody.append(mainC)
     acBody.append(subC)
   },{once:true})
