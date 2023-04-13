@@ -12,11 +12,7 @@ Array.from(newCanvas).forEach((canvasFrame)=>{
     // canvasFrame.style.height =500+"px";
     let newCanvas = new CanvasCreate()
     let mainC = newCanvas.canvas
-    let subC = newCanvas.subCanvas
-    // subC.style.display="none"
     mainC.setAttribute('id','123');
-    subC.classList.add("subCanvas")
-    canvasFrame.append(subC)
     canvasFrame.append(mainC)
     canvasFrame.childNodes[1].style.display="none"
   },{once:true})
