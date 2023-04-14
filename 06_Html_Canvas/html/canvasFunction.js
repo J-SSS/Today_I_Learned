@@ -215,12 +215,15 @@ class CanvasCreate {
         let isMove = true;
         let startX = e.offsetX;
         let startY = e.offsetY;
+        co.canvasClear();
+        co.layerLoad(selectedLayer,true);
+        co.currentCanvas.src = co.canvas.toDataURL();
+
         co.canvas.addEventListener("mousemove",(e)=>{
           if(isMove){
             co.ctx.clearRect(0,0,co.canvas.width,co.canvas.height);
             co.ctx.drawImage(co.currentCanvas,0,0);
             co.ctx.fillRect(e.offsetX,e.offsetY,50,50)
-
 
           }
         })
@@ -232,10 +235,7 @@ class CanvasCreate {
             isMove = false;
           }
         })
-
-
       }
-
 
       this.canvas.addEventListener("mousedown",selectHandler)
   };
@@ -358,6 +358,10 @@ class CanvasCreate {
     co.ctx.restore();
     co.ctx.save();
   }
+  canvasClear(){
+    let co = this;
+    co.ctx.clearRect(0, 0, co.canvas.width, co.canvas.height);
+  }
 
 
   // 경로값 저장용
@@ -405,13 +409,19 @@ class CanvasCreate {
   }
 
 
-  layerLoad(){
+  layerLoad(index=undefined,rest=true){
     let co = this;
+    let arr = [];
+
     co.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     co.ctx.scale(co.currentScale,co.currentScale)
     co.ctx.drawImage(co.defaultBack,0,0);
 
-    co.layerArr.forEach((c, i)=>{
+    if(index===undefined){ arr = co.layerArr; console.log(arr)}
+    else if(index !== undefined && rest === true){ arr = co.layerArr.filter((c,i)=>{return i !== index });}
+    else if(index !== undefined && rest === false){ arr = co.layerArr.filter((c,i)=>{return i === index}); }
+
+    arr.forEach((c)=>{
       co.ctx.strokeStyle=c.strokeStyle;
       co.ctx.lineWidth=c.lineWidth;
 
@@ -437,8 +447,8 @@ class CanvasCreate {
     })
 
       co.canvasRestore();
-    console.log(JSON.stringify(this.layerArr));
-    console.log(JSON.parse(JSON.stringify(this.layerArr)));
+    // console.log(JSON.stringify(this.layerArr));
+    // console.log(JSON.parse(JSON.stringify(this.layerArr)));
 
   }
 
