@@ -122,9 +122,9 @@ class CanvasCreate {
   // 셀렉터 툴
   selectorTool(){
     let co = this;
-    let selectedLayer = 0;
+    let selectedLayer = null;
 
-      function drawHandler(e){
+      function selectHandler(e){
         let eX = e.offsetX;
         let eY = e.offsetY;
 
@@ -132,6 +132,7 @@ class CanvasCreate {
         let rPath; //확대축소 및 회전을 위한 클릭요소 위치를 저장하기 위한 변수
 
         // 레이어 역순으로 반복해서 가장 위에 덮인 레이어 선택
+        while (selectedLayer == null){
         for(let i = co.layerArr.length-1 ; i>=0 ; i--){
           /*
             마우스클릭 위치(e.offset)는 pageSize을 보정하지 않았기때문에
@@ -157,10 +158,7 @@ class CanvasCreate {
                   co.xy((co.layerArr[i].range[1][1]-co.layerArr[i].range[0][1])*co.currentScale/co.layerArr[i].scale)+40);
                 co.ctx.fillStyle="black";
 
-
-
                 // 마우스 이벤트에 pageSize를 보정하지 않기 때문에 클릭요소 좌표에도 보정해 줄 필요는 없다
-
 
                 if(sPath===undefined){
                   sPath = new Path2D();
@@ -180,14 +178,6 @@ class CanvasCreate {
                 } else {
                   rPath=undefined
                 }
-
-
-                co.canvas.addEventListener("click",(e)=>{
-                  console.log(sPath)
-                  console.log(co.ctx.isPointInPath(sPath,e.offsetX,e.offsetY))
-                  // console.log(co.ctx.isPointInPath(rPath,e.offsetX,e.offsetY))
-                })
-
 
                 co.ctx.fillRect(co.xy(minX)-25, co.xy(minY)-25, 10,10);
                 co.ctx.fillRect(co.xy(minX)-25, co.xy(maxY)+15, 10,10);
@@ -213,11 +203,41 @@ class CanvasCreate {
                 co.ctx.fill();
 
                 co.canvasRestore();
+
+                selectedLayer = i;
+                co.canvas.addEventListener("mousedown",moveHandler)
+            } //if
+          } //for
+        } //while
+      } //select
+
+      function moveHandler(e){
+        let isMove = true;
+        let startX = e.offsetX;
+        let startY = e.offsetY;
+        co.canvas.addEventListener("mousemove",(e)=>{
+          if(isMove){
+            co.ctx.clearRect(0,0,co.canvas.width,co.canvas.height);
+            co.ctx.drawImage(co.currentCanvas,0,0);
+            co.ctx.fillRect(e.offsetX,e.offsetY,50,50)
+
+
           }
-          selectedLayer = i;
-        }
+        })
+
+        co.canvas.addEventListener("mouseup",(e)=>{
+          if(isMove){
+            console.log("정지"+e.offsetX,e.offsetY)
+            console.log("마우스 업")
+            isMove = false;
+          }
+        })
+
+
       }
-      this.canvas.addEventListener("mousedown",drawHandler)
+
+
+      this.canvas.addEventListener("mousedown",selectHandler)
   };
   textTool(){};
   palateTool(){};
@@ -394,7 +414,6 @@ class CanvasCreate {
     co.layerArr.forEach((c, i)=>{
       co.ctx.strokeStyle=c.strokeStyle;
       co.ctx.lineWidth=c.lineWidth;
-
 
       co.ctx.beginPath();
       co.ctx.moveTo(co.xy(c.moveTo[0])/c.scale,co.xy(c.moveTo[1])/c.scale)
