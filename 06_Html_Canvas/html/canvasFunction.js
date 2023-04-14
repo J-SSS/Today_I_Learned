@@ -9,8 +9,8 @@ class CanvasCreate {
   canvas; ctx;
   layerArr = []; //레이어 구현용 배열
   activatedTool; //활성화 툴 체크용
-  pageZoom = box/1200; //페이지 사이즈 변화에 따른 배율 조졍용(아직)
-  fZoom = 1.0; // 줌기능 배율 조졍용
+  pageSize = box/1200; //페이지 사이즈 변화에 따른 배율 조졍용(아직)
+  currentScale = 1.0; // 줌기능 배율 조졍용
   currentCanvas = new Image(); //배율조정시 리로드용
   defaultBack = new Image();
 
@@ -43,10 +43,10 @@ class CanvasCreate {
 
   // 배율 조정 및 윈도우 사이즈 조절시 수정된 좌표값 생성 함수
   xy(xy){
-    return xy/this.pageZoom
+    return xy/this.pageSize
   }
   xyAll(xy){
-    return xy/this.pageZoom/this.fZoom
+    return xy/this.pageSize/this.currentScale
   }
 
 
@@ -119,55 +119,98 @@ class CanvasCreate {
   };
 
 
-  //셀렉터 툴
+  // 셀렉터 툴
   selectorTool(){
-    let co = this
+    let co = this;
     let selectedLayer = 0;
-      function drawHandler(e){
-        let x = e.offsetX;
-        let y = e.offsetY;
 
-        //이 부분은 코드 정리 다시해야됨
+      function drawHandler(e){
+        let eX = e.offsetX;
+        let eY = e.offsetY;
+
+        let sPath;
+        let rPath; //확대축소 및 회전을 위한 클릭요소 위치를 저장하기 위한 변수
+
+        // 레이어 역순으로 반복해서 가장 위에 덮인 레이어 선택
         for(let i = co.layerArr.length-1 ; i>=0 ; i--){
-          let minX = co.layerArr[i].range[0][0]*co.fZoom/co.layerArr[i].scale;
-          let minY = co.layerArr[i].range[0][1]*co.fZoom/co.layerArr[i].scale;
-          let maxX = co.layerArr[i].range[1][0]*co.fZoom/co.layerArr[i].scale;
-          let maxY = co.layerArr[i].range[1][1]*co.fZoom/co.layerArr[i].scale;
-          if((x>=co.layerArr[i].range[0][0]*co.fZoom/co.layerArr[i].scale && x<=co.layerArr[i].range[1][0]*co.fZoom/co.layerArr[i].scale)
-              &&
-            (y>=co.layerArr[i].range[0][1]*co.fZoom/co.layerArr[i].scale && y<=co.layerArr[i].range[1][1]*co.fZoom/co.layerArr[i].scale))
+          /*
+            마우스클릭 위치(e.offset)는 pageSize을 보정하지 않았기때문에
+            레이어의 range도 currentScale과 요소 자체 scale만 보정해서 선택여부 파악해주고
+            나중에 그려줄때는 pageSize까지 보정해야 원하는 위치에 제대로 그려짐
+           */
+
+          let scale = co.layerArr[i].scale;
+          let minX = co.layerArr[i].range[0][0]*co.currentScale/scale;
+          let minY = co.layerArr[i].range[0][1]*co.currentScale/scale;
+          let maxX = co.layerArr[i].range[1][0]*co.currentScale/scale;
+          let maxY = co.layerArr[i].range[1][1]*co.currentScale/scale;
+          if((eX>=minX && eX<=maxX) && (eY>=minY && eY<=maxY))
           {
                 co.ctx.beginPath();
                 co.ctx.strokeStyle="black";
                 co.ctx.lineWidth=1;
                 co.ctx.setLineDash([5, 5]);
                 co.ctx.strokeRect(
-                  co.xy(co.layerArr[i].range[0][0])*co.fZoom/co.layerArr[i].scale-20,
-                  co.xy(co.layerArr[i].range[0][1])*co.fZoom/co.layerArr[i].scale-20,
-                  co.xy(co.layerArr[i].range[1][0]-co.layerArr[i].range[0][0])*co.fZoom/co.layerArr[i].scale+40,
-                  co.xy(co.layerArr[i].range[1][1]-co.layerArr[i].range[0][1])*co.fZoom/co.layerArr[i].scale+40);
+                  co.xy(co.layerArr[i].range[0][0]*co.currentScale/co.layerArr[i].scale)-20,
+                  co.xy(co.layerArr[i].range[0][1]*co.currentScale/co.layerArr[i].scale)-20,
+                  co.xy((co.layerArr[i].range[1][0]-co.layerArr[i].range[0][0])*co.currentScale/co.layerArr[i].scale)+40,
+                  co.xy((co.layerArr[i].range[1][1]-co.layerArr[i].range[0][1])*co.currentScale/co.layerArr[i].scale)+40);
                 co.ctx.fillStyle="black";
+
+
+
+                // 마우스 이벤트에 pageSize를 보정하지 않기 때문에 클릭요소 좌표에도 보정해 줄 필요는 없다
+
+
+                if(sPath===undefined){
+                  sPath = new Path2D();
+                  sPath.rect(minX-30, minY-30, 20,20);
+                  sPath.rect(minX-30, maxY+10, 20,20);
+                  sPath.rect(maxX+10, minY-30, 20,20);
+                  sPath.rect(maxX+10, maxY+10, 20,20);
+                  sPath.closePath();
+                } else {
+                  sPath=undefined
+                };
+
+                if(rPath===undefined) {
+                  rPath = new Path2D();
+                  rPath.arc(maxX + 60, (maxY + minY) / 2, 10, 0, 2 * Math.PI);
+                  rPath.closePath()
+                } else {
+                  rPath=undefined
+                }
+
+
+                co.canvas.addEventListener("click",(e)=>{
+                  console.log(sPath)
+                  console.log(co.ctx.isPointInPath(sPath,e.offsetX,e.offsetY))
+                  // console.log(co.ctx.isPointInPath(rPath,e.offsetX,e.offsetY))
+                })
+
+
                 co.ctx.fillRect(co.xy(minX)-25, co.xy(minY)-25, 10,10);
                 co.ctx.fillRect(co.xy(minX)-25, co.xy(maxY)+15, 10,10);
                 co.ctx.fillRect(co.xy(maxX)+15, co.xy(minY)-25, 10,10);
                 co.ctx.fillRect(co.xy(maxX)+15, co.xy(maxY)+15, 10,10);
+
                 co.ctx.fillStyle="white";
                 co.ctx.fillRect(co.xy(minX)-23, co.xy(minY)-23, 6,6);
                 co.ctx.fillRect(co.xy(minX)-23, co.xy(maxY)+17, 6,6);
                 co.ctx.fillRect(co.xy(maxX)+17, co.xy(minY)-23, 6,6);
                 co.ctx.fillRect(co.xy(maxX)+17, co.xy(maxY)+17, 6,6);
+
                 co.ctx.setLineDash([5, 5]);
                 co.ctx.moveTo(co.xy(maxX)+20,co.xy((maxY+minY)/2));
                 co.ctx.lineTo(co.xy(maxX)+70,co.xy((maxY+minY)/2));
                 co.ctx.stroke();
+
                 co.ctx.beginPath();
                 co.ctx.fillStyle="black";
                 co.ctx.setLineDash([0, 0]);
                 co.ctx.arc(co.xy(maxX)+70, co.xy((maxY+minY)/2), 6, 0, 2*Math.PI);
                 co.ctx.stroke();
                 co.ctx.fill();
-
-
 
                 co.canvasRestore();
           }
@@ -311,7 +354,7 @@ class CanvasCreate {
       type : type,
       strokeStyle : co.ctx.strokeStyle,
       lineWidth : co.ctx.lineWidth,
-      scale : co.fZoom,
+      scale : co.currentScale,
       moveTo : moveTo,
       lineTo : lineTo,
       path : path,
@@ -345,7 +388,7 @@ class CanvasCreate {
   layerLoad(){
     let co = this;
     co.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    co.ctx.scale(co.fZoom,co.fZoom)
+    co.ctx.scale(co.currentScale,co.currentScale)
     co.ctx.drawImage(co.defaultBack,0,0);
 
     co.layerArr.forEach((c, i)=>{
@@ -410,9 +453,9 @@ class CanvasCreate {
 
     ///////배율조정 테스트용/////
     document.getElementById("plusBtn").addEventListener("click",()=>{
-      if (this.fZoom<5.00) {
+      if (this.currentScale<5.00) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.fZoom *= 1.2;
+        this.currentScale *= 1.2;
         this.ctx.scale(1.2, 1.2);
         this.ctx.drawImage(this.currentCanvas,0,0);
         this.ctx.scale(1/1.2, 1/1.2);
@@ -420,9 +463,9 @@ class CanvasCreate {
       }
     });
     document.getElementById("minusBtn").addEventListener("click",()=>{
-      if (this.fZoom>1.05){
+      if (this.currentScale>1.05){
         this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
-        this.fZoom/=1.2;
+        this.currentScale/=1.2;
         this.layerLoad();
 
         this.currentCanvas.src = this.canvas.toDataURL()
