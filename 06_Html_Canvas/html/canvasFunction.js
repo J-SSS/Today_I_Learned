@@ -5,7 +5,7 @@ let canvasCnt = 0;
 
 ////////////////// 캔버스 생성용 클래스 //////////////////
 class CanvasCreate {
-  index;
+  id;
   canvas; ctx;
   layerArr = []; //레이어 구현용 배열
   activatedTool; //활성화 툴 체크용
