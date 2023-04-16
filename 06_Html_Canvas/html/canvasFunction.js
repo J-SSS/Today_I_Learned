@@ -1,7 +1,6 @@
 
 
 const box = document.querySelector(".accordion-header").clientWidth-40
-let canvasCnt = 0;
 
 ////////////////// 캔버스 생성용 클래스 //////////////////
 class CanvasCreate {
@@ -24,7 +23,6 @@ class CanvasCreate {
   }
   init(){
     // 스타일 관련 초기 설정
-    this.index = ++canvasCnt;
     this.canvas.width = 1200;
     this.canvas.height = 500;
     this.ctx.strokeStyle = "black";
@@ -218,6 +216,7 @@ class CanvasCreate {
         co.canvasClear();
         co.layerLoad(selectedLayer,true);
         co.currentCanvas.src = co.canvas.toDataURL();
+
 
         co.canvas.addEventListener("mousemove",(e)=>{
           if(isMove){
@@ -447,7 +446,8 @@ class CanvasCreate {
     })
 
       co.canvasRestore();
-    // console.log(JSON.stringify(this.layerArr));
+    console.log(JSON.stringify(this.layerArr));
+    // console.log(JSON.parse(this.layerArr));
     // console.log(JSON.parse(JSON.stringify(this.layerArr)));
 
   }
