@@ -98,19 +98,112 @@ class CanvasCreate {
 
   }
 
+  // //스템프 툴
+  // stampTool() {
+  //   let co = this
+  //   function drawHandler(e){
+  //     if(co.activatedTool!=="stamp"){
+  //       co.canvas.removeEventListener("mousedown",drawHandler)
+  //     } else {
+  //       let imgElem = new Image();
+  //       let imgSrc = "../img/star.png";
+  //       imgElem.src = imgSrc;
+  //       co.ctx.drawImage(imgElem, co.xy(e.offsetX-25), co.xy(e.offsetY-25))
+  //       co.layerPush("img",[e.offsetX,e.offsetY],undefined,undefined, imgSrc)
+  //     }
+  //   }
+  //   this.canvas.addEventListener("mousedown",drawHandler)
+  // };
+
+  //사각형 툴
+  rectTool(){
+    let co = this;
+    let moveHandler;
+    function drawHandler(e) {
+      if(co.activatedTool!=="rect"){
+        this.removeEventListener("mousedown", drawHandler
+        )
+      } else {
+        let startX = e.offsetX;
+        let startY= e.offsetY;
+        this.addEventListener("mousemove", moveHandler = function (e){
+          co.ctx.beginPath();
+          co.ctx.lineWidth=2;
+          co.ctx.strokeStyle="grey";
+          co.ctx.setLineDash([10, 10]);
+          co.ctx.clearRect(0,0,co.canvas.width,co.canvas.height);
+          co.ctx.drawImage(co.currentCanvas,0,0);
+          co.ctx.strokeRect(
+            co.xy(startX),
+            co.xy(startY),
+            co.xy(e.offsetX)-co.xy(startX),
+            co.xy(e.offsetY)-co.xy(startY));
+          co.ctx.stroke()
+        })
+        this.addEventListener("mouseup",(e)=>{
+          this.removeEventListener("mousemove", moveHandler)
+          co.ctx.clearRect(0,0,co.canvas.width,co.canvas.height);
+          co.ctx.drawImage(co.currentCanvas,0,0);
+          co.ctx.beginPath();
+          co.ctx.fillRect(
+            co.xy(startX),
+            co.xy(startY),
+            co.xy(e.offsetX)-co.xy(startX),
+            co.xy(e.offsetY)-co.xy(startY));
+          co.ctx.stroke();
+          co.layerPush("rect",[startX,startY],[e.offsetX,e.offsetY]);
+        },{once:true});
+      }
+    }
+    this.canvas.addEventListener("mousedown", drawHandler);
+  };
+
 
   //스템프 툴
   stampTool() {
     let co = this
+    let moveHandler;
+    let imgElem = new Image();
+    let imgSrc = "../img/star.png";
+    imgElem.src = imgSrc;
     function drawHandler(e){
       if(co.activatedTool!=="stamp"){
         co.canvas.removeEventListener("mousedown",drawHandler)
       } else {
-        let imgElem = new Image();
-        let imgSrc = "../img/star.png";
-        imgElem.src = imgSrc;
-        co.ctx.drawImage(imgElem, co.xy(e.offsetX-25), co.xy(e.offsetY-25))
-        co.layerPush("img",[e.offsetX,e.offsetY],undefined,undefined, imgSrc)
+        let startX = e.offsetX;
+        let startY= e.offsetY;
+        this.addEventListener("mousemove", moveHandler = function (e){
+          co.ctx.beginPath();
+          co.ctx.lineWidth=2;
+          co.ctx.strokeStyle="grey";
+          co.ctx.setLineDash([10, 10]);
+          co.ctx.clearRect(0,0,co.canvas.width,co.canvas.height);
+          co.ctx.drawImage(co.currentCanvas,0,0);
+          co.ctx.strokeRect(
+            co.xy(startX),
+            co.xy(startY),
+            co.xy(e.offsetX)-co.xy(startX),
+            co.xy(e.offsetY)-co.xy(startY));
+          co.ctx.stroke()
+        })
+
+        // drawImage(image, dx, dy)
+        // drawImage(image, dx, dy, dWidth, dHeight)
+        // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+        // s : 원본이미지 기준(스플리트) d: 기존
+
+        this.addEventListener("mouseup",(e)=>{
+          this.removeEventListener("mousemove", moveHandler)
+          co.ctx.clearRect(0,0,co.canvas.width,co.canvas.height);
+          co.ctx.drawImage(co.currentCanvas,0,0);
+          co.ctx.drawImage(imgElem,
+                            co.xy(startX),
+                            co.xy(startY),
+                            co.xy(e.offsetX)-co.xy(startX),
+                            co.xy(e.offsetY)-co.xy(startY));
+          co.layerPush("img",[startX,startY],[e.offsetX,e.offsetY],undefined, imgSrc)
+
+        },{once:true});
       }
     }
     this.canvas.addEventListener("mousedown",drawHandler)
@@ -526,16 +619,6 @@ document.getElementById("settingBtn").addEventListener("click",()=>{
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// 사분면 파악용(필요없게 됐는데 일단 냅둠)
-// if(moveTo[0]<=lineTo[0] && moveTo[1]>=lineTo[1]) tempObj.quad = 1;
-// else if(moveTo[0]<=lineTo[0] && moveTo[1]<=lineTo[1]) tempObj.quad = 2;
-// else if(moveTo[0]>=lineTo[0] && moveTo[1]<=lineTo[1]) tempObj.quad = 3;
-// else if(moveTo[0]>=lineTo[0] && moveTo[1]>=lineTo[1]) tempObj.quad = 4;
-
-
-
 // 여기서부터는 테스트용..
 
 //포인터 변경기능
