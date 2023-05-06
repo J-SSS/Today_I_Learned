@@ -454,15 +454,19 @@ class CanvasCreate {
     let co = this;
     co.ctx.clearRect(0, 0, co.canvas.width, co.canvas.height);
   }
+  canvasSave(){
+    let co = this;
+    co.currentCanvas.src = co.canvas.toDataURL();
+  }
 
 
   // 경로값 저장용
   layerPush(
-             type,
-             moveTo = undefined,
-             lineTo = undefined,
-             path = undefined,
-             src = undefined)
+    type,
+    moveTo = undefined,
+    lineTo = undefined,
+    path = undefined,
+    src = undefined)
   {
     let co = this;
 
@@ -476,7 +480,9 @@ class CanvasCreate {
       path : path,
       src : src,
       range : [],
-      }
+      pageSize : co.pageSize,
+
+    }
     function findRange(arr){
       let maxX=0, maxY=0, minX=1200, minY=500;
       arr.forEach((xy)=>{
@@ -487,17 +493,23 @@ class CanvasCreate {
       })
       return [[minX,minY],[maxX,maxY]]
     }
-      // 범위 저장용
+    // 범위 저장용
     if(type==="line" || type==="rect") {
       tempObj.range = findRange([moveTo,lineTo]);
     } else if(type==="pen") {
       tempObj.range = findRange(path);
     }
 
-
+    let socket = JSON.stringify(tempObj)
+    stomp.send('/pub/plan/canvas', {}, JSON.stringify({roomId: roomId, path: socket, writer: username}));
     co.currentCanvas.src = co.canvas.toDataURL()
     return co.layerArr.push(tempObj);
 
+  }
+  receiver(path) {
+    let co = this;
+    let c = JSON.parse(path);
+    co.loadFunction(co,c,true);
   }
 
 
@@ -509,40 +521,46 @@ class CanvasCreate {
     co.ctx.scale(co.currentScale,co.currentScale)
     co.ctx.drawImage(co.defaultBack,0,0);
 
-    if(index===undefined){ arr = co.layerArr; console.log(arr)}
+    if(index===undefined && rest == true){ arr = co.layerArr;}
     else if(index !== undefined && rest === true){ arr = co.layerArr.filter((c,i)=>{return i !== index });}
-    else if(index !== undefined && rest === false){ arr = co.layerArr.filter((c,i)=>{return i === index}); }
+    // else if(index !== undefined && rest === false){ arr.push())}
 
     arr.forEach((c)=>{
-      co.ctx.strokeStyle=c.strokeStyle;
-      co.ctx.lineWidth=c.lineWidth;
-
-      co.ctx.beginPath();
-      co.ctx.moveTo(co.xy(c.moveTo[0])/c.scale,co.xy(c.moveTo[1])/c.scale)
-      if(c.type==="line") {
-        co.ctx.lineTo(co.xy(c.lineTo[0])/c.scale,co.xy(c.lineTo[1])/c.scale)
-        co.ctx.stroke();
-      } else if(c.type==="pen"){
-        c.path.forEach((p)=>{
-          co.ctx.lineTo(co.xy(p[0])/c.scale,co.xy(p[1])/c.scale);
-          co.ctx.stroke();
-        })
-      } else if(c.type==="rect"){
-
-          co.ctx.fillRect(
-            co.xy(c.moveTo[0])/c.scale,
-            co.xy(c.moveTo[1])/c.scale,
-            co.xy(c.lineTo[0])/c.scale-co.xy(c.moveTo[0])/c.scale,
-            co.xy(c.lineTo[1])/c.scale-co.xy(c.moveTo[1])/c.scale
-          );
-      }
+      co.loadFunction(co,c);
     })
+    co.canvasRestore();
+  }
+  loadFunction(co,c,receive=false){
+    let obj = this;
+    co.ctx.strokeStyle=c.strokeStyle;
+    co.ctx.lineWidth=c.lineWidth;
 
-      co.canvasRestore();
-    console.log(JSON.stringify(this.layerArr));
-    // console.log(JSON.parse(this.layerArr));
-    // console.log(JSON.parse(JSON.stringify(this.layerArr)));
+    console.log(co.pageSize)
+    function modi(xy){
+      if(receive === false) return xy;
+      else if(receive === true) return xy/c.pageSize;
+    }
 
+    co.ctx.beginPath();
+    console.log(c.moveTo[0]/c.scale, c.moveTo[1]/c.scale)
+    console.log(modi(c.moveTo[0])/c.scale, modi(c.moveTo[1])/c.scale)
+    co.ctx.moveTo(modi(c.moveTo[0])/c.scale,modi(c.moveTo[1])/c.scale)
+    if(c.type==="line") {
+      co.ctx.lineTo(modi(c.lineTo[0])/c.scale,modi(c.lineTo[1])/c.scale)
+      co.ctx.stroke();
+    } else if(c.type==="pen"){
+      c.path.forEach((p)=>{
+        co.ctx.lineTo(modi(p[0])/c.scale,modi(p[1])/c.scale);
+        co.ctx.stroke();
+      })
+    } else if(c.type==="rect"){
+      co.ctx.fillRect(
+        modi(c.moveTo[0])/c.scale,
+        modi(c.moveTo[1])/c.scale,
+        modi(c.lineTo[0])/c.scale-modi(c.moveTo[0])/c.scale,
+        modi(c.lineTo[1])/c.scale-modi(c.moveTo[1])/c.scale
+      );
+    }
   }
 
 
