@@ -1,4 +1,4 @@
-package step_by_step.s08_수학2;
+package step_by_step.s09_약수배수소수;
 /*
 문제
 주어진 수 N개 중에서 소수가 몇 개인지 찾아서 출력하는 프로그램을 작성하시오.
@@ -12,7 +12,7 @@ package step_by_step.s08_수학2;
  */
 import java.util.Scanner;
 
-public class Quiz01 {
+public class Quiz04 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
