@@ -12,5 +12,31 @@ package step_by_step.s12_브루트포스;
 N장의 카드에 써져 있는 숫자가 주어졌을 때, M을 넘지 않으면서 M에 최대한 가까운 카드 3장의 합을 구해 출력하시오.
  */
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
 public class Quiz01 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int cnt = Integer.parseInt(st.nextToken());
+        int num = Integer.parseInt(st.nextToken());
+        int[] arr = new int[cnt];
+        st = new StringTokenizer(br.readLine());
+        while (st.hasMoreTokens()) {
+            for (int i = 0; i < cnt; i++) {
+                arr[i] = Integer.parseInt(st.nextToken());
+            }
+        }
+        for(int i = 0 ; i<cnt ; i++){
+
+        }
+
+
+
+    }
 }
