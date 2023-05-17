@@ -1,39 +1,48 @@
 package step_by_step.s04_1차원배열;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+
 import java.util.StringTokenizer;
 
 public class Quiz10811 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader bfr = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bfw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
-        st = new StringTokenizer(br.readLine());
-        int[] arr = new int[Integer.parseInt(st.nextToken())];
 
-        int cnt = Integer.parseInt(st.nextToken());
-        for(int i = 0 ; i < arr.length ; i++){
-            arr[i] = i+1;
+        st = new StringTokenizer(bfr.readLine());
+
+        int num1 = Integer.parseInt(st.nextToken());
+        int num2 = Integer.parseInt(st.nextToken());
+
+        int arr[] = new int[num1 + 1];
+
+        int tmp = 0;
+
+        for(int i = 1; i <= num1; i++) {
+            arr[i] = i;
         }
 
-        int tempN = 0;
-        for(int i = 0 ; i < cnt ; i++){
-            st = new StringTokenizer(br.readLine());
-            int num1 = Integer.parseInt(st.nextToken())-1;
-            int num2 = Integer.parseInt(st.nextToken())-1;
-            for(int j = num1 ; j <= num2 ; j++){
-                tempN = arr[num1];
-                arr[num1] = arr[num2];
-                arr[num2] = tempN;
+        for(int i = 0; i < num2; i++) {
+            String as = bfr.readLine();
+            StringTokenizer stt = new StringTokenizer(as, " ");
+            num1 = Integer.parseInt(stt.nextToken());
+            num2 = Integer.parseInt(stt.nextToken());
+
+            for(int j = num1; j <= (num2 - num1) / 2 + num1; j++) {
+                tmp = arr[j];
+                arr[j] = arr[num2 - j + num1];
+                arr[num2 - j + num1] = tmp;
             }
-
-
         }
 
-        for(int i = 0 ; i < arr.length ; i++){
-            System.out.print(arr[i] + " ");
+        for(int i = 1; i <= num1; i++) {
+            bfw.write(arr[i] + " ");
         }
+
+        bfw.flush();
+        bfw.close();
     }
 }
+
