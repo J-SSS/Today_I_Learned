@@ -19,19 +19,26 @@ public class Quiz1316 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        int cnt = sc.nextInt();
+        int result = cnt;
 
-        int input = sc.nextInt();
-        int count = 0;
-        boolean isInfi = true;
-
-        for(int i = 0 ; i< input ; i++){
-
-
+        for(int i = 0 ; i< cnt ; i++){
+            String str = sc.next();
+            char[] arr = new char[26];
+            for(int j = 0 ; j < str.length() ; j++){
+                if(j == 0){
+                    arr[str.charAt(j)-97] = 1;
+                } else {
+                    if(arr[str.charAt(j)-97] != 1){
+                        arr[str.charAt(j)-97] = 1;
+                    } else if(arr[str.charAt(j)-97] == 1 && str.charAt(j-1)-97 != str.charAt(j)-97 ){
+                        result-=1;
+                        break;
+                    }
+                }
+            }
         }
-
-        System.out.println(count);
-
-
+        System.out.println(result);
 
     }
 }
