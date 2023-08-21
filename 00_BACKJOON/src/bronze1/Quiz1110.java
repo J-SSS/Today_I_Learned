@@ -23,11 +23,11 @@ public class Quiz1110 {
         Scanner sc = new Scanner(System.in);
 
         int num = sc.nextInt();
-
+//        git Test
         int ten = 0;
         int one = 0;
         int count = 0;
-        int fixN = num;
+        int fixN = num;;
         boolean isF = true;
         while(isF){
             ten = fixN/10;
