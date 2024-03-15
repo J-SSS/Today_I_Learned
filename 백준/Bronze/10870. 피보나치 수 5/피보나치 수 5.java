@@ -4,19 +4,13 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        
-        int seq = Integer.parseInt(br.readLine());
-        
-        List<Integer> rsltList = new ArrayList<>();
-        rsltList.add(0);
-        rsltList.add(1);
-        
-        for (int i = 0; i <= seq; i++) {
-            if(rsltList.size() < i+1){
-                rsltList.add(rsltList.get(i-1) + rsltList.get(i-2));
-            }
-        }
+        int N = Integer.parseInt(br.readLine());
+        System.out.println(func(N));
 
-        System.out.println(rsltList.get(seq));
+    }
+    static int func(int N) {
+        if (N == 0)	return 0;
+        if (N == 1)	return 1;
+        return func(N - 1) + func(N - 2);
     }
 }
