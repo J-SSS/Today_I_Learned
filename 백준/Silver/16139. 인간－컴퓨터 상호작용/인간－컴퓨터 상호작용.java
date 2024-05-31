@@ -1,43 +1,31 @@
 import java.io.*;
 import java.util.*;
 public class Main {
+    static int[][] arr;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-
+        StringBuilder sb = new StringBuilder();
         String str = br.readLine();
-        int cnt = Integer.parseInt(br.readLine());
-        Map<String,List<Integer>> charMap = new HashMap<>();
 
-        for (int i = 0; i < str.length(); i++) {
-            String thisChar = String.valueOf(str.charAt(i));
+        arr = new int[str.length() + 1][26];
 
-            if(charMap.get(thisChar) == null){
-                List<Integer> innerList = new ArrayList<>();
-                innerList.add(i);
-                charMap.put(thisChar,innerList);
-            } else {
-                charMap.get(thisChar).add(i);
+        for (int i = 1; i <= str.length(); i++) {
+            for (int j = 0; j < 26; j++) {
+                arr[i][j] = arr[i - 1][j];
             }
+            arr[i][str.charAt(i - 1)-97] += 1;
         }
-        
-        for (int i = 0; i < cnt; i++) {
-            int thisCnt = 0;
-            st = new StringTokenizer(br.readLine());
 
-            String thisChar = st.nextToken();
-
+        int cnt = Integer.parseInt(br.readLine());
+        while (cnt-- > 0) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int thisChar = st.nextToken().charAt(0)-97;
             int sIdx = Integer.parseInt(st.nextToken());
             int eIdx = Integer.parseInt(st.nextToken());
-
-            if(charMap.get(thisChar) != null){
-                for (Integer thisIdx : charMap.get(thisChar)) {
-                    if(thisIdx > eIdx) break;
-                    else if(thisIdx >= sIdx && thisIdx<=eIdx) thisCnt++;
-                }
-            }
-
-            System.out.println(thisCnt);
+            sb.append(arr[eIdx + 1][thisChar] - arr[sIdx][thisChar]).append("\n");
         }
+        System.out.print(sb);
+
     }
 }
